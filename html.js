@@ -15,7 +15,7 @@ const HTML = ({ body }) => {
     css = (
       <style
         dangerouslySetInnerHTML={{
-          __html: require('!raw!./public/styles.css')
+          __html: require('!raw!./public/styles.css') // eslint-disable-line global-require
         }}
       />
     )
@@ -50,7 +50,7 @@ const HTML = ({ body }) => {
 }
 
 HTML.propTypes = {
-  body: PropTypes.string
+  body: PropTypes.string.isRequired
 }
 
 module.exports = HTML

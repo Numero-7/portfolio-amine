@@ -17,7 +17,7 @@ const MD = ({ route }) => {
 }
 
 MD.propTypes = {
-  route: React.PropTypes.object
+  route: PropTypes.object.isRequired
 }
 
 module.exports = MD

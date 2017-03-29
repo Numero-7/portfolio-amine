@@ -16,7 +16,7 @@ const HTML = ({ route }) => {
 }
 
 HTML.propTypes = {
-  route: React.PropTypes.object
+  route: PropTypes.object.isRequired
 }
 
 module.exports = HTML
