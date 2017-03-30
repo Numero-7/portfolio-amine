@@ -1,8 +1,10 @@
+@import 'static/sass/variables/colors';
+
 .bar {
   display: inline-block;
   width: 1px;
   height: 15px;
-  background-color: rgb(40, 40, 40);
+  background-color: $light-grey;
   transition: background-color 1s;
 }
 
@@ -11,10 +13,11 @@
 }
 
 .active {
-  background-color: rgb(255, 255, 255);
+  background-color: $white;
 }
 
 .percentage {
+  margin-top: 1em;
   display: block;
-  color: rgb(179, 179, 179);
+  color: $grey;
 }

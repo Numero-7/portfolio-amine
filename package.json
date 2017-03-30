@@ -3,7 +3,7 @@
     "build": "gatsby build",
     "deploy": "gatsby build --prefix-links && gh-pages -d public",
     "develop": "gatsby develop",
-    "lint": "./node_modules/.bin/eslint '*.js'",
+    "lint": "./node_modules/.bin/eslint '**/*.js'",
     "lint:staged": "lint-staged"
   },
   "dependencies": {

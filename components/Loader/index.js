@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import Overlay from '../Overlay'
 import ProgressBar from '../ProgressBar'
-import styles from './loader.module.css'
+import styles from './loader.module.scss'
 
 class Loader extends Component {
   static propTypes = {
@@ -39,10 +38,11 @@ class Loader extends Component {
 
     return (
       <section className={styles.root}>
-        <Overlay />
-        <div className={styles.progressBarWrapper}>
+        <div className={styles.wrapper}>
           <span className={styles.welcomeText}>WELCOME</span>
-          <ProgressBar progress={progress} />
+          <div className={styles.progressBarWrapper}>
+            <ProgressBar progress={progress} />
+          </div>
         </div>
       </section>
     )

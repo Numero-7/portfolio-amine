@@ -1,0 +1,28 @@
+@import 'static/sass/variables/colors';
+$welcome-text-letter-spacing: 10px;
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.wrapper {
+  position: absolute;
+  text-align: center;
+}
+
+/**
+ * 1. Counteracts the letter spacing on the last letter.
+ */
+.welcomeText {
+  color: $grey;
+  font-weight: bold;
+  letter-spacing: $welcome-text-letter-spacing;
+  margin-right: -$welcome-text-letter-spacing; /* 1 */
+}
+
+.progressBarWrapper {
+  margin-top: 1.5em;
+}

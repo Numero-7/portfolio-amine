@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from './progress-bar.module.css'
+import styles from './progress-bar.module.scss'
 
 const BARS_COUNT = 40
 

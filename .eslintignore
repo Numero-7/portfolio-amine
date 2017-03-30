@@ -1,6 +1,1 @@
-**/*.json
-**/*.toml
-**/*.md
-**/*.lock
-**/*.css
-public/*
+public/
