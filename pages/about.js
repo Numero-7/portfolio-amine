@@ -4,14 +4,14 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import getPageTitle from '../utils/get-page-title'
 
-const Index = () => (
+const About = () => (
   <div>
     <Helmet
       title={getPageTitle()}
     />
-    <h1>Hello World</h1>
-    <Link to={prefixLink('/about/')}>About</Link>
+    <h1>Hello about</h1>
+    <Link to={prefixLink('/')}>Index</Link>
   </div>
 )
 
-export default Index
+export default About

@@ -1,0 +1,20 @@
+.bar {
+  display: inline-block;
+  width: 1px;
+  height: 15px;
+  background-color: rgb(40, 40, 40);
+  transition: background-color 1s;
+}
+
+.bar:not(:first-child) {
+  margin-left: 6px;
+}
+
+.active {
+  background-color: rgb(255, 255, 255);
+}
+
+.percentage {
+  display: block;
+  color: rgb(179, 179, 179);
+}
