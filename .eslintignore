@@ -3,3 +3,4 @@
 **/*.md
 **/*.lock
 **/*.css
+public/*

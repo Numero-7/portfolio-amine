@@ -36,6 +36,7 @@ class Loader extends Component {
 
   render () {
     const { progress } = this.state
+
     return (
       <section className={styles.root}>
         <Overlay />

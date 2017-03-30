@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { Container } from 'react-responsive-grid'
-import { rhythm } from '../utils/typography'
 import Loader from '../components/Loader'
 
 class Template extends Component {
@@ -18,14 +16,9 @@ class Template extends Component {
       <div>
         { this.state.assetsReady
           ? (
-            <Container
-              style={{
-                maxWidth: '100%',
-                padding: `${rhythm(0.5)} ${rhythm(1)}`
-              }}
-            >
+            <div>
               {this.props.children}
-            </Container>
+            </div>
           )
           : <Loader onReady={() => this.setState({ assetsReady: true })} />
         }
