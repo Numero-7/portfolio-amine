@@ -3,7 +3,7 @@
     "build": "gatsby build",
     "deploy": "gatsby build --prefix-links && gh-pages -d public",
     "develop": "gatsby develop",
-    "lint": "./node_modules/.bin/eslint '**'",
+    "lint": "./node_modules/.bin/eslint '*.js'",
     "lint:staged": "lint-staged"
   },
   "dependencies": {
@@ -17,6 +17,8 @@
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-sub": "^1.0.0",
     "object-assign": "^4.1.1",
+    "preact": "^7.2.1",
+    "preact-compat": "^3.14.3",
     "react-headroom": "^2.1.2",
     "react-helmet": "^3.2.2",
     "react-responsive-grid": "^0.3.3",
