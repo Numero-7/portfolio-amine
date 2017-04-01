@@ -9,6 +9,7 @@ const About = () => (
     <Helmet
       title={getPageTitle()}
     />
+
     <h1>Hello about</h1>
     <Link to={prefixLink('/')}>Index</Link>
   </div>

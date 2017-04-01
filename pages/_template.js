@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import Helmet from 'react-helmet'
+import getPageTitle from 'src/utils/get-page-title'
 import Loader from 'src/components/Loader'
+
 // Inject global styles.
 import 'src/sass/vendors/_normalize.scss'
 import 'src/sass/base/_root.scss'
@@ -17,12 +20,12 @@ class Template extends Component {
   render () {
     return (
       <div>
+        <Helmet
+          title={getPageTitle()}
+        />
+
         { this.state.assetsReady
-          ? (
-            <div>
-              {this.props.children}
-            </div>
-          )
+          ? this.props.children
           : <Loader onReady={() => this.setState({ assetsReady: true })} />
         }
       </div>

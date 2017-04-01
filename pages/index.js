@@ -9,6 +9,7 @@ const Index = () => (
     <Helmet
       title={getPageTitle()}
     />
+
     <h1>Hello World</h1>
     <Link to={prefixLink('/about/')}>About</Link>
   </div>
