@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
-import getPageTitle from '../utils/get-page-title'
+import getPageTitle from 'src/utils/get-page-title'
 
 const Index = () => (
   <div>

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import Helmet from 'react-helmet'
-import getPageTitle from '../utils/get-page-title'
+import getPageTitle from 'src/utils/get-page-title'
 
 const MD = ({ route }) => {
   const post = route.page.data

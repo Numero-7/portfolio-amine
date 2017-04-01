@@ -29,6 +29,11 @@ const HTML = ({ body }) => {
         />
         {head.title.toComponent()}
         {head.meta.toComponent()}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: require('!raw!./src/utils/browser/load-fonts.js') // eslint-disable-line global-require
+          }}
+        />
         {css}
       </head>
       <body>

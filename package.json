@@ -1,7 +1,9 @@
 {
   "scripts": {
-    "build": "gatsby build",
-    "deploy": "gatsby build --prefix-links && gh-pages -d public",
+    "build": "yarn build:clean && gatsby build",
+    "build:clean": "rimraf public",
+    "build:serve": "gatsby serve-build",
+    "deploy": "yarn build:clean && gatsby build --prefix-links && gh-pages -d public",
     "develop": "gatsby develop",
     "lint": "./node_modules/.bin/eslint '**/*.js'",
     "lint:staged": "lint-staged"
@@ -23,7 +25,8 @@
     "eslint-plugin-react": "^6.10.3",
     "gh-pages": "^0.12.0",
     "lint-staged": "^3.4.0",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.1"
   },
   "pre-commit": {
     "run": "lint:staged",
