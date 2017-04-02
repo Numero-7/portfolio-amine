@@ -1,0 +1,39 @@
+@import 'src/sass/variables/colors';
+
+.button {
+  width: 183px;
+  height: 55px;
+  position: relative;
+  color: $white;
+  text-align: center;
+  border: none;
+  background: none;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.rectanglesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.whiteBorders, .greyBorders {
+  fill: none;
+  stroke: $white;
+  shape-rendering: crispEdges; /* 1 */
+}
+
+.whiteBorders {
+  stroke-opacity: 1;
+  stroke-dasharray: 1000px;
+  stroke-dashoffset: 1000px;
+  transition: stroke-dashoffset 0.4s ease-in;
+}
+
+.greyBorders {
+  stroke-opacity: 0.2;
+}
