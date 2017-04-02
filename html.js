@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react'
 import Helmet from 'react-helmet'
-
 import { prefixLink } from 'gatsby-helpers'
-import { TypographyStyle, GoogleFont } from 'react-typography'
-import typography from './utils/typography'
 
 const BUILD_TIME = new Date().getTime()
 
@@ -32,8 +29,11 @@ const HTML = ({ body }) => {
         />
         {head.title.toComponent()}
         {head.meta.toComponent()}
-        <TypographyStyle typography={typography} />
-        <GoogleFont typography={typography} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: require('!raw!./src/utils/browser/load-fonts.js') // eslint-disable-line global-require
+          }}
+        />
         {css}
       </head>
       <body>
