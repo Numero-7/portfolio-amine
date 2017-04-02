@@ -15,6 +15,15 @@
   color: inherit;
 }
 
+.linkText {
+  opacity: 0.2;
+  transition: opacity 0.4s ease-in;
+}
+
+.button:hover .linkText {
+  opacity: 1;
+}
+
 .rectanglesContainer {
   position: absolute;
   top: 0;

@@ -57,7 +57,7 @@ class SwagButton extends Component {
           to={prefixLink(link)} 
           className={styles.link}
           target={externalLink ? "_blank" : ""}>
-          {text}
+          <span className={styles.linkText}>{text}</span>
           <svg width="183" height="55" className={styles.rectanglesContainer} xmlns="http://www.w3.org/2000/svg">
             <rect width="180" x="1.5" y="4.5" height="44" className={styles.greyBorders} />
             <rect width="172" height="52" x="4.5" y="1.5" className={styles.greyBorders} transform="rotate(180 91 27)" />
