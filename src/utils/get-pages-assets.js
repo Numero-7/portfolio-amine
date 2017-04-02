@@ -1,6 +1,6 @@
 import flatten from './flatten'
 
-const getAllPagesAssets = pages => (
+const getPagesAssets = pages => (
   flatten(
     pages
       .map(page => page.data.assets)
@@ -8,4 +8,4 @@ const getAllPagesAssets = pages => (
   )
 )
 
-export default getAllPagesAssets
+export default getPagesAssets
