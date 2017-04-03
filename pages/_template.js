@@ -8,6 +8,7 @@ import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
 import getChildrenPageData from 'src/utils/get-children-page-data'
 import getPagesAssets from 'src/utils/get-pages-assets'
+import Container from 'src/components/Container'
 import Loader from 'src/components/Loader'
 
 // Inject global styles.
@@ -45,20 +46,22 @@ class Template extends Component {
           title={getPageTitle()}
         />
 
-        { assetsReady || skipLoader
-          ? (
-            Children.map(
-              children,
-              child => cloneElement(child, { previousPath })
+        <Container>
+          { assetsReady || skipLoader
+            ? (
+              Children.map(
+                children,
+                child => cloneElement(child, { previousPath })
+              )
             )
-          )
-          : (
-            <Loader
-              assets={getPagesAssets(route.pages)}
-              onReady={() => this.setState({ assetsReady: true })}
-            />
-          )
-        }
+            : (
+              <Loader
+                assets={getPagesAssets(route.pages)}
+                onReady={() => this.setState({ assetsReady: true })}
+              />
+            )
+          }
+        </Container>
       </div>
     )
   }

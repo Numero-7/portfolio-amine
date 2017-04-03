@@ -21,11 +21,14 @@ const Index = ({ route }) => {
         href={prefixLink('/about/')}
       />
 
-      <SwagButton
-        text="About"
-        href={prefixLink('/about/')}
+      <LinkColumn
+        text="All projects"
+        href={prefixLink('/projects/')}
+        orientation="right"
       />
+
       <h1>Home</h1>
+      <SwagButton text="Swag button" />
 
       {projectsData.map(project => (
         <div>

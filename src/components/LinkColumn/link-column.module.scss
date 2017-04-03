@@ -1,11 +1,13 @@
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
+@import 'src/sass/variables/layout';
 
 $border: 2px solid $contrast-grey;
 
 .root {
   position: absolute;
-  width: 50px;
+  top: 0;
+  width: $content-padding;
   height: 100vh;
 }
 
