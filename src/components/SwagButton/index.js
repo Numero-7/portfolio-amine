@@ -14,25 +14,12 @@ class SwagButton extends Component {
     external: false
   }
 
-  constructor () {
-    super()
-    this.rectLength = 448
-    this.state = {
-      dashOffset: `${this.rectLength}px`,
-      dashArray: `${this.rectLength}px`
-    }
-  }
+  constructor (props) {
+    super(props)
 
-  startAnim () {
-    this.setState({
-      dashOffset: `${0}px`
-    })
-  }
-
-  stopAnim () {
-    this.setState({
-      dashOffset: `${this.rectLength}px`
-    })
+    this.rectLength =
+      `${(parseInt(styles.buttonWidth, 10) * 2) + (parseInt(styles.buttonHeight, 10) * 2)}px`
+    this.state = { dashOffset: this.rectLength }
   }
 
   createLinkProps () {
@@ -47,55 +34,54 @@ class SwagButton extends Component {
   }
 
   render () {
-    const { dashOffset, dashArray } = this.state
+    const { dashOffset } = this.state
     const { text } = this.props
 
     return (
       <button
         className={styles.button}
-        onMouseOver={() => this.startAnim()}
-        onMouseLeave={() => this.stopAnim()}
+        onMouseOver={() => this.setState({ dashOffset: '0px' })}
+        onMouseLeave={() => this.setState({ dashOffset: this.rectLength })}
       >
         <Link {...this.createLinkProps()}>
-          <span className={styles.linkText}>{text}</span>
+          <span>{text}</span>
           <svg
-            width="183"
-            height="55"
             className={styles.rectanglesContainer}
-            xmlns="http://www.w3.org/2000/svg"
+            width={styles.buttonWidth}
+            height={styles.buttonHeight}
           >
             <rect
+              className={styles.greyBorders}
               width="180"
+              height="44"
               x="1.5"
               y="4.5"
-              height="44"
-              className={styles.greyBorders}
             />
             <rect
+              className={styles.greyBorders}
               width="172"
               height="52"
               x="4.5"
               y="1.5"
-              className={styles.greyBorders}
               transform="rotate(180 91 27)"
             />
             <rect
+              className={styles.whiteBorders}
               width="180"
+              height="44"
               x="1.5"
               y="4.5"
-              height="44"
               strokeDashoffset={dashOffset}
-              strokeDasharray={dashArray}
-              className={styles.whiteBorders}
+              strokeDasharray={this.rectLength}
             />
             <rect
+              className={styles.whiteBorders}
               width="172"
               height="52"
               x="4.5"
               y="1.5"
               strokeDashoffset={dashOffset}
-              strokeDasharray={dashArray}
-              className={styles.whiteBorders}
+              strokeDasharray={this.rectLength}
               transform="rotate(180 91 27)"
             />
           </svg>

@@ -1,11 +1,23 @@
 @import 'src/sass/variables/colors';
+@import 'src/sass/mixins/stretch';
+
+// An hardcoded button size makes it easier for the animation. We don’t really need a dynamic size
+// as the button seems large enough for any normally sized text.
+$button-width: 183px;
+$button-height: 55px;
+
+// Export the button dimensions so that we can access them in the JS.
+:export {
+  buttonWidth: $button-width;
+  buttonHeight: $button-height;
+}
 
 .button {
-  width: 183px;
-  height: 55px;
   position: relative;
-  color: $white;
+  width: $button-width;
+  height: $button-height;
   text-align: center;
+  color: $white;
   border: none;
   background: none;
 }
@@ -15,19 +27,8 @@
   color: inherit;
 }
 
-.linkText {
-  opacity: 0.2;
-  transition: opacity 0.4s ease-in;
-}
-
-.button:hover .linkText {
-  opacity: 1;
-}
-
 .rectanglesContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include stretch();
 }
 
 /**
