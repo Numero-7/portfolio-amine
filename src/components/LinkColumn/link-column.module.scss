@@ -1,0 +1,43 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+$border: 2px solid $contrast-grey;
+
+.root {
+  position: absolute;
+  width: 50px;
+  height: 100vh;
+}
+
+.left {
+  left: 0;
+  border-right: $border;
+}
+
+.right {
+  right: 0;
+  border-left: $border;
+}
+
+.left .verticalText {
+  transform: rotate(-90deg);
+}
+
+.right .verticalText {
+  transform: rotate(90deg);
+}
+
+/**
+ * 1. Makes the whole column clickable.
+ */
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* 1 */
+  color: $white;
+  font-size: $big-font-size;
+  font-family: $serif-font-stack;
+  white-space: nowrap;
+  text-decoration: underline;
+}
