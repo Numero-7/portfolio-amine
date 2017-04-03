@@ -1,0 +1,50 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/mixins/stretch';
+
+// An hardcoded button size makes it easier for the animation. We don’t really need a dynamic size
+// as the button seems large enough for any normally sized text.
+$button-width: 183px;
+$button-height: 55px;
+
+// Export the button dimensions so that we can access them in the JS.
+:export {
+  buttonWidth: $button-width;
+  buttonHeight: $button-height;
+}
+
+.button {
+  position: relative;
+  width: $button-width;
+  height: $button-height;
+  text-align: center;
+  color: $white;
+  border: none;
+  background: none;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.rectanglesContainer {
+  @include stretch();
+}
+
+/**
+ * 1. Fixes rendering bug on IE/Edge
+ */
+.whiteBorders, .greyBorders {
+  fill: none;
+  stroke: $white;
+  shape-rendering: crispEdges; /* 1 */
+}
+
+.whiteBorders {
+  stroke-opacity: 1;
+  transition: stroke-dashoffset 0.4s ease-in;
+}
+
+.greyBorders {
+  stroke-opacity: 0.2;
+}
