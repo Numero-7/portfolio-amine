@@ -13,7 +13,7 @@ const Index = () => (
 
     <h1>Hello World</h1>
     <Link to={prefixLink('/about/')}>About</Link>
-    <SwagButton text='View project' link='/about/' externalLink={false}/>
+    <SwagButton text="View project" href="/about/" externalLink={false} />
   </div>
 )
 
