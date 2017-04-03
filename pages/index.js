@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import getPageTitle from 'src/utils/get-page-title'
 import getProjectsData from 'src/utils/get-projects-data'
+import LinkColumn from 'src/components/LinkColumn'
 import SwagButton from 'src/components/SwagButton'
 
 const Index = ({ route }) => {
@@ -15,12 +16,16 @@ const Index = ({ route }) => {
         title={getPageTitle()}
       />
 
-      <h1>Home</h1>
+      <LinkColumn
+        text="About me."
+        href={prefixLink('/about/')}
+      />
 
       <SwagButton
         text="About"
         href={prefixLink('/about/')}
       />
+      <h1>Home</h1>
 
       {projectsData.map(project => (
         <div>
