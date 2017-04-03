@@ -39,13 +39,8 @@
   shape-rendering: crispEdges; /* 1 */
 }
 
-/**
- * 1. Huge number to hide the stroke before the right value is calculated in JS
- */
 .whiteBorders {
   stroke-opacity: 1;
-  // stroke-dasharray: 1000px; /* 1 */
-  // stroke-dashoffset: 1000px; /* 1 */
   transition: stroke-dashoffset 0.4s ease-in;
 }
 
