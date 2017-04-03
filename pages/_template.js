@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
+import getChildrenPageData from 'src/utils/get-children-page-data'
+import getPagesAssets from 'src/utils/get-pages-assets'
 import Loader from 'src/components/Loader'
 
 // Inject global styles.
@@ -9,7 +11,8 @@ import 'src/sass/base/_root.scss'
 
 class Template extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    route: PropTypes.object.isRequired
   }
 
   constructor (props) {
@@ -18,15 +21,23 @@ class Template extends Component {
   }
 
   render () {
+    const { children, route } = this.props
+    const { skipLoader } = getChildrenPageData(children)
+
     return (
       <div>
         <Helmet
           title={getPageTitle()}
         />
 
-        { this.state.assetsReady
-          ? this.props.children
-          : <Loader onReady={() => this.setState({ assetsReady: true })} />
+        { this.state.assetsReady || skipLoader
+          ? children
+          : (
+            <Loader
+              assets={getPagesAssets(route.pages)}
+              onReady={() => this.setState({ assetsReady: true })}
+            />
+          )
         }
       </div>
     )

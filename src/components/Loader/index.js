@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react'
+import assetsLoader from 'assets-loader'
 import ProgressBar from '../ProgressBar'
 import styles from './loader.module.scss'
 
 class Loader extends Component {
   static propTypes = {
-    onReady: PropTypes.func.isRequired
+    onReady: PropTypes.func.isRequired,
+    assets: PropTypes.array.isRequired
   }
 
   constructor (props) {
@@ -17,20 +19,15 @@ class Loader extends Component {
   }
 
   componentWillUnmount () {
-    clearInterval(this.interval)
+    this.loader.destroy()
   }
 
   loadAssets () {
-    // @TODO get assets logic here instead of fake interval
-    this.interval = setInterval(() => {
-      if (this.state.progress === 100) {
-        this.props.onReady()
-      } else {
-        this.setState(prevState => ({
-          progress: prevState.progress + 1
-        }))
-      }
-    }, 100)
+    const { assets, onReady } = this.props
+    this.loader = assetsLoader({ assets })
+      .on('progress', progress => this.setState({ progress: Math.round(progress * 100) }))
+      .on('complete', onReady)
+      .start()
   }
 
   render () {
