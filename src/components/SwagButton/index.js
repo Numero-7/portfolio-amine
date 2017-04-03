@@ -6,12 +6,13 @@ import styles from './button.module.scss'
 class SwagButton extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
+    href: PropTypes.string,
     external: PropTypes.bool
   }
 
   static defaultProps = {
-    external: false
+    external: false,
+    href: '#'
   }
 
   constructor (props) {

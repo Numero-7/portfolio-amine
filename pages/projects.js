@@ -1,29 +1,30 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import getPageTitle from 'src/utils/get-page-title'
 import LinkColumn from 'src/components/LinkColumn'
 
-const About = ({ previousPath }) => (
+const Projects = () => (
   <div>
     <Helmet
       title={getPageTitle()}
     />
 
     <LinkColumn
-      text="Close."
-      href={prefixLink(previousPath) || prefixLink('/')}
+      text="About me."
+      href={prefixLink('/about/')}
     />
 
-    <h1>About page</h1>
+    <LinkColumn
+      text="Back to home."
+      href={prefixLink('/')}
+      orientation="right"
+    />
+
+    <h1>Projects page</h1>
     <Link to={prefixLink('/')}>Index</Link>
   </div>
 )
 
-About.propTypes = {
-  previousPath: PropTypes.string.isRequired
-}
-
-
-export default About
+export default Projects
