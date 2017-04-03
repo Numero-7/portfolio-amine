@@ -16,7 +16,11 @@ const Index = ({ route }) => {
       />
 
       <h1>Home</h1>
-      <SwagButton text="About" href={prefixLink('/about/')} externalLink={false} />
+
+      <SwagButton
+        text="About"
+        href={prefixLink('/about/')}
+      />
 
       {projectsData.map(project => (
         <div>

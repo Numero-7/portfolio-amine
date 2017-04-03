@@ -7,11 +7,11 @@ class SwagButton extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
-    externalLink: PropTypes.bool
+    external: PropTypes.bool
   }
 
   static defaultProps = {
-    externalLink: false
+    external: false
   }
 
   constructor () {
@@ -35,8 +35,20 @@ class SwagButton extends Component {
     })
   }
 
+  createLinkProps () {
+    const { href, external } = this.props
+
+    return ({
+      className: styles.link,
+      [external ? 'href' : 'to']: prefixLink(href) || '#',
+      target: external ? '_blank' : null,
+      rel: external ? 'noopener noreferrer' : null
+    })
+  }
+
   render () {
-    const { text, href, externalLink } = this.props
+    const { dashOffset, dashArray } = this.state
+    const { text } = this.props
 
     return (
       <button
@@ -44,11 +56,7 @@ class SwagButton extends Component {
         onMouseOver={() => this.startAnim()}
         onMouseLeave={() => this.stopAnim()}
       >
-        <Link
-          to={prefixLink(href)}
-          className={styles.link}
-          target={externalLink ? '_blank' : ''}
-        >
+        <Link {...this.createLinkProps()}>
           <span className={styles.linkText}>{text}</span>
           <svg
             width="183"
@@ -76,8 +84,8 @@ class SwagButton extends Component {
               x="1.5"
               y="4.5"
               height="44"
-              strokeDashoffset={this.state.dashOffset}
-              strokeDasharray={this.state.dashArray}
+              strokeDashoffset={dashOffset}
+              strokeDasharray={dashArray}
               className={styles.whiteBorders}
             />
             <rect
@@ -85,8 +93,8 @@ class SwagButton extends Component {
               height="52"
               x="4.5"
               y="1.5"
-              strokeDashoffset={this.state.dashOffset}
-              strokeDasharray={this.state.dashArray}
+              strokeDashoffset={dashOffset}
+              strokeDasharray={dashArray}
               className={styles.whiteBorders}
               transform="rotate(180 91 27)"
             />
