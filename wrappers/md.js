@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
 
-const MD = ({ route }) => {
+const Markdown = ({ route }) => {
   const post = route.page.data
 
   return (
@@ -17,8 +17,8 @@ const MD = ({ route }) => {
   )
 }
 
-MD.propTypes = {
+Markdown.propTypes = {
   route: PropTypes.object.isRequired
 }
 
-module.exports = MD
+module.exports = Markdown

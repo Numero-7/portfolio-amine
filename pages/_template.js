@@ -1,13 +1,9 @@
-import React, {
-  Component,
-  Children,
-  cloneElement,
-  PropTypes
-} from 'react'
+import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
 import getChildrenPageData from 'src/utils/get-children-page-data'
 import getPagesAssets from 'src/utils/get-pages-assets'
+import passDataToChildren from 'src/utils/pass-data-to-children'
 import Container from 'src/components/Container'
 import Loader from 'src/components/Loader'
 
@@ -38,7 +34,17 @@ class Template extends Component {
   render () {
     const { previousPath, assetsReady } = this.state
     const { children, route } = this.props
-    const { skipLoader } = getChildrenPageData(children)
+    const { skipLoader, needsPreviousPath } = getChildrenPageData(children)
+
+    const loader = (
+      <Loader
+        assets={getPagesAssets(route.pages)}
+        onReady={() => this.setState({ assetsReady: true })}
+      />
+    )
+    const content = needsPreviousPath
+      ? passDataToChildren(children, { previousPath })
+      : children
 
     return (
       <div>
@@ -47,20 +53,7 @@ class Template extends Component {
         />
 
         <Container>
-          { assetsReady || skipLoader
-            ? (
-              Children.map(
-                children,
-                child => cloneElement(child, { previousPath })
-              )
-            )
-            : (
-              <Loader
-                assets={getPagesAssets(route.pages)}
-                onReady={() => this.setState({ assetsReady: true })}
-              />
-            )
-          }
+          {(assetsReady || skipLoader) ? content : loader}
         </Container>
       </div>
     )

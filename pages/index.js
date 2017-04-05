@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react'
-import Helmet from 'react-helmet'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
-import getPageTitle from 'src/utils/get-page-title'
 import getProjectsData from 'src/utils/get-projects-data'
 import LinkColumn from 'src/components/LinkColumn'
 import SwagButton from 'src/components/SwagButton'
@@ -12,10 +10,6 @@ const Index = ({ route }) => {
 
   return (
     <div>
-      <Helmet
-        title={getPageTitle()}
-      />
-
       <LinkColumn
         text="About me."
         href={prefixLink('/about/')}
