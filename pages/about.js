@@ -21,5 +21,6 @@ About.propTypes = {
 
 export default About
 exports.data = {
-  needsPreviousPath: true
+  needsPreviousPath: true,
+  hideHeader: true
 }
