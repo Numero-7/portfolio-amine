@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
-import getChildrenPageData from 'src/utils/get-children-page-data'
+import getChildrenPage from 'src/utils/get-children-page'
 import getPagesAssets from 'src/utils/get-pages-assets'
 import passDataToChildren from 'src/utils/pass-data-to-children'
+import isProjectPage from 'src/utils/is-project-page'
+import Header from 'src/components/Header'
 import Container from 'src/components/Container'
 import Loader from 'src/components/Loader'
 
@@ -34,7 +36,8 @@ class Template extends Component {
   render () {
     const { previousPath, assetsReady } = this.state
     const { children, route } = this.props
-    const { skipLoader, needsPreviousPath } = getChildrenPageData(children)
+    const childrenPage = getChildrenPage(children)
+    const { skipLoader, needsPreviousPath, hideHeader } = childrenPage.data
 
     const loader = (
       <Loader
@@ -51,6 +54,8 @@ class Template extends Component {
         <Helmet
           title={getPageTitle()}
         />
+
+        {!hideHeader && <Header showCloseButton={isProjectPage(childrenPage)} />}
 
         <Container>
           {(assetsReady || skipLoader) ? content : loader}
