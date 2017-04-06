@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
 import getChildrenPage from 'src/utils/get-children-page'
 import getPagesAssets from 'src/utils/get-pages-assets'
+import getProjectsData from 'src/utils/get-projects-data'
 import passDataToChildren from 'src/utils/pass-data-to-children'
 import isProjectPage from 'src/utils/is-project-page'
 import Header from 'src/components/Header'
@@ -24,7 +25,8 @@ class Template extends Component {
     super(props)
     this.state = {
       assetsReady: false,
-      previousPath: ''
+      previousPath: '',
+      projectsData: getProjectsData(props.route.pages)
     }
   }
 
@@ -34,20 +36,20 @@ class Template extends Component {
   }
 
   render () {
-    const { previousPath, assetsReady } = this.state
+    const { previousPath, assetsReady, projectsData } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
-    const { skipLoader, needsPreviousPath, hideHeader } = childrenPage.data
+    const { skipLoader, needsRootData, hideHeader } = childrenPage.data
 
+    const content = needsRootData
+      ? passDataToChildren(children, { previousPath, projectsData })
+      : children
     const loader = (
       <Loader
         assets={getPagesAssets(route.pages)}
         onReady={() => this.setState({ assetsReady: true })}
       />
     )
-    const content = needsPreviousPath
-      ? passDataToChildren(children, { previousPath })
-      : children
 
     return (
       <div>
