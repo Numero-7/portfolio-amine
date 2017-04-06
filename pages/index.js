@@ -14,7 +14,7 @@ const Index = ({ projectsData }) => (
     <LinkColumn
       text="All projects"
       href={prefixLink('/projects/')}
-      orientation="right"
+      pull="right"
     />
 
     <h1>Home</h1>

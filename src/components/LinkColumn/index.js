@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import styles from './link-column.module.scss'
 
-const LinkColumn = ({ text, href, orientation }) => (
-  <div className={`${styles.root} ${styles[orientation]}`}>
+const LinkColumn = ({ text, href, pull }) => (
+  <div className={`${styles.root} ${styles[pull]}`}>
     <Link
       className={styles.link}
       to={href}
@@ -16,11 +16,11 @@ const LinkColumn = ({ text, href, orientation }) => (
 LinkColumn.propTypes = {
   text: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
-  orientation: PropTypes.string
+  pull: PropTypes.string
 }
 
 LinkColumn.defaultProps = {
-  orientation: 'left'
+  pull: 'left'
 }
 
 export default LinkColumn

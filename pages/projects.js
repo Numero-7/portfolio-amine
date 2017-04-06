@@ -13,7 +13,7 @@ const Projects = () => (
     <LinkColumn
       text="Back to home."
       href={prefixLink('/')}
-      orientation="right"
+      pull="right"
     />
 
     <h1>Projects page</h1>
