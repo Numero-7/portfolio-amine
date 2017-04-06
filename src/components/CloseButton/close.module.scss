@@ -1,0 +1,8 @@
+@import 'src/sass/variables/typography';
+@import 'src/sass/variables/colors';
+
+.link {
+  font: 120% $serif-font-stack;
+  color: $white;
+  text-decoration: none;
+}

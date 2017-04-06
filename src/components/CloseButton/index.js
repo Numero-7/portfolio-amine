@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
+import styles from './close.module.scss'
 
-const CloseButton = () => (
-  <p>Close</p>
+const CloseButton = ({ href }) => (
+  <Link
+    className={styles.link}
+    to={href}
+  >
+    Close.
+  </Link>
 )
+
+CloseButton.propTypes = {
+  href: PropTypes.string.isRequired
+}
 
 export default CloseButton
