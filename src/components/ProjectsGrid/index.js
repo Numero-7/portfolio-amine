@@ -30,11 +30,12 @@ class ProjectsGrid extends Component {
     const { projects } = this.props
 
     return (
-      <div>
+      <div className={styles.root}>
         <div
           style={{ backgroundImage: `url(${activeProject.thumbnail})` }}
           className={`${styles.background} ${showBackground ? styles.active : ''}`}
         />
+
         <ul className={styles.list}>
           {projects.map((project, index) => (
             <li
