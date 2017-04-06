@@ -2,7 +2,7 @@
 @import 'src/sass/variables/colors';
 
 .link {
-  font: 120% $serif-font-stack;
+  font: $big-font-size $serif-font-stack;
   color: $white;
   text-decoration: none;
 }
