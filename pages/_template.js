@@ -55,7 +55,7 @@ class Template extends Component {
           title={getPageTitle()}
         />
 
-        {!hideHeader && <Header showCloseButton={isProjectPage(childrenPage)} />}
+        {!hideHeader && <Header showCloseButton={isProjectPage(childrenPage)} previousPath={previousPath} />}
 
         <Container>
           {(assetsReady || skipLoader) ? content : loader}
