@@ -11,7 +11,7 @@ import Container from 'src/components/Container'
 import Loader from 'src/components/Loader'
 
 // Inject global styles.
-import 'src/sass/vendors/_normalize.scss'
+import 'src/sass/vendors/_reset.scss'
 import 'src/sass/base/_root.scss'
 
 class Template extends Component {
@@ -57,7 +57,12 @@ class Template extends Component {
           title={getPageTitle()}
         />
 
-        {!hideHeader && <Header showCloseButton={isProjectPage(childrenPage)} />}
+        {!hideHeader &&
+          <Header
+            showCloseButton={isProjectPage(childrenPage)}
+            previousPath={previousPath}
+          />
+        }
 
         <Container>
           {(assetsReady || skipLoader) ? content : loader}

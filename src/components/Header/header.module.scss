@@ -1,0 +1,27 @@
+@import 'src/sass/variables/typography';
+@import 'src/sass/variables/colors';
+
+.root {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  top: 3em;
+  left: 6em;
+  right: 6em;
+}
+
+.text {
+  font-family: $serif-font-stack;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.name {
+  font-size: $big-font-size;
+  color: $white;
+}
+
+.role {
+  color: rgb(120, 120, 120);
+}
