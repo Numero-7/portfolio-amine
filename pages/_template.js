@@ -53,16 +53,14 @@ class Template extends Component {
 
     return (
       <div>
-        <Helmet
-          title={getPageTitle()}
-        />
+        <Helmet title={getPageTitle()} />
 
-        {!hideHeader &&
+        {!hideHeader && assetsReady && (
           <Header
             showCloseButton={isProjectPage(childrenPage)}
             previousPath={previousPath}
           />
-        }
+        )}
 
         <Container>
           {(assetsReady || skipLoader) ? content : loader}

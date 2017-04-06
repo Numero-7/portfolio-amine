@@ -1,0 +1,57 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+@import 'src/sass/mixins/stretch';
+
+/**
+ * 1. Positioning context for background element.
+ */
+.root {
+  position: relative; /* 1 */
+  padding: 0 3em;
+  max-width: 980px;
+  height: 60vh;
+  max-height: 790px;
+  margin: 0 auto;
+}
+
+.background {
+  @include stretch();
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 3s;
+}
+
+.active {
+  opacity: 1;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+
+.item {
+  &:nth-child(even) {
+    align-self: flex-end;
+  }
+
+  &:nth-child(odd) {
+    align-self: flex-start;
+  }
+}
+
+.link {
+  text-decoration: none;
+  letter-spacing: 12px;
+  color: $white;
+  opacity: 0.2;
+  transition: opacity 1s;
+
+  &:focus,
+  &:hover {
+    opacity: 1;
+  }
+}
