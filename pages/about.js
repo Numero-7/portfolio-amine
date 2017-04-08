@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import LinkColumn from 'src/components/LinkColumn'
+import AboutContent from 'src/components/AboutContent'
 
 const About = ({ previousPath }) => (
   <div>
@@ -10,8 +10,7 @@ const About = ({ previousPath }) => (
       href={prefixLink(previousPath) || prefixLink('/')}
     />
 
-    <h1>About page</h1>
-    <Link to={prefixLink('/')}>Index</Link>
+    <AboutContent />
   </div>
 )
 
@@ -22,5 +21,6 @@ About.propTypes = {
 export default About
 exports.data = {
   needsRootData: true,
-  hideHeader: true
+  hideHeader: true,
+  assets: '/static/images/about-picture.png'
 }

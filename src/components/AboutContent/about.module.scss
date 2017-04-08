@@ -1,0 +1,51 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+.root {
+  position: relative;
+  background-image: url('/static/images/about-picture.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.mainContent {
+  font-family: $serif-font-stack;
+  color: $white;
+  letter-spacing: 1px;
+  line-height: 2;
+  text-align: center;
+  margin: 7em 0;
+}
+
+.gold {
+  color: $gold;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $gold;
+  }
+}
+
+.buttonsContainer {
+  margin-top: 3em;
+  display: flex;  
+  justify-content: center;
+}
+
+.buttonWrapper {
+  margin: 0 2em;
+}
+
+.shadowWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.bottomShadowText {
+  padding-bottom: 2em;
+}
