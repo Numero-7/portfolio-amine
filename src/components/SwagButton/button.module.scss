@@ -1,4 +1,5 @@
 @import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
 @import 'src/sass/mixins/stretch';
 
 // An hardcoded button size makes it easier for the animation. We don’t really need a dynamic size
@@ -17,6 +18,7 @@ $button-height: 55px;
   width: $button-width;
   height: $button-height;
   text-align: center;
+  font: 80% $sans-serif-font-stack;
   color: $white;
   border: none;
   background: none;
@@ -25,6 +27,7 @@ $button-height: 55px;
 .link {
   text-decoration: none;
   color: inherit;
+  text-transform: uppercase;
 }
 
 .rectanglesContainer {
@@ -42,7 +45,7 @@ $button-height: 55px;
 
 .whiteBorders {
   stroke-opacity: 1;
-  transition: stroke-dashoffset 0.4s ease-in;
+  transition: stroke-dashoffset 0.8s ease-in-out;
 }
 
 .greyBorders {
