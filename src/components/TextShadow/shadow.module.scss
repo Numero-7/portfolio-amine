@@ -1,0 +1,28 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+$about-text-letter-spacing: 200px;
+
+.container {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+}
+
+/**
+ * 1. Counteracts the letter spacing on the last letter.
+ */
+.text {
+  font: 460% $serif-font-stack;
+  color: $white;
+  letter-spacing: $about-text-letter-spacing;
+  margin-right: -$about-text-letter-spacing; /* 1 */
+  text-transform: uppercase;
+  opacity: 0.1;
+}
+
+.shadow {
+  position: absolute;
+  left: 0;
+  top: 15px;
+}
