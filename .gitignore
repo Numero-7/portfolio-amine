@@ -31,3 +31,4 @@ public/
 
 # Others
 .DS_STORE
+.vscode/
