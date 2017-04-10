@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
 import LinkColumn from 'src/components/LinkColumn'
 import ProjectsGrid from 'src/components/ProjectsGrid'
+import StretchedContainer from 'src/components/StretchedContainer'
 
 const Projects = ({ projectsData }) => (
-  <div style={{ width: '100%', height: '100%' }}>
+  <StretchedContainer>
     <LinkColumn
       text="About me."
       href={prefixLink('/about/')}
@@ -17,7 +18,7 @@ const Projects = ({ projectsData }) => (
       href={prefixLink('/')}
       pull="right"
     />
-  </div>
+  </StretchedContainer>
 )
 
 Projects.propTypes = {

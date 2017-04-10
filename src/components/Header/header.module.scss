@@ -1,14 +1,16 @@
-@import 'src/sass/variables/typography';
 @import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+@import 'src/sass/variables/layout';
 
 .root {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   position: absolute;
-  top: 3em;
-  left: 6em;
+  top: $header-top-padding;
   right: 6em;
+  left: 6em;
+  height: $header-height;
 }
 
 .text {
