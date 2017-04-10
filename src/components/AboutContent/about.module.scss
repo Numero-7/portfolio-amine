@@ -3,6 +3,7 @@
 
 .root {
   position: relative;
+  max-height: 100vh;
   background-image: url(pages/static/images/about-picture.png);
   background-repeat: no-repeat;
   background-position: right top;
@@ -14,7 +15,7 @@
   letter-spacing: 1px;
   line-height: 2;
   text-align: center;
-  margin: 7em 0;
+  margin: 10% 0;
 }
 
 .gold {
@@ -26,7 +27,7 @@
   color: inherit;
   transition: color 0.2s;
 
-  &:hover {
+  &:hover, &:focus {
     color: $gold;
   }
 }
