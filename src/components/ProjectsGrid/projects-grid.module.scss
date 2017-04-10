@@ -34,13 +34,23 @@
   width: 100%;
 }
 
+$item-offset: 10%;
+
 .item {
+  &:nth-child(odd) {
+    align-self: flex-start;
+  }
+
   &:nth-child(even) {
     align-self: flex-end;
   }
 
-  &:nth-child(odd) {
-    align-self: flex-start;
+  &:nth-child(2) {
+    margin-right: $item-offset;
+  }
+
+  &:nth-child(3) {
+    margin-left: $item-offset;
   }
 }
 
