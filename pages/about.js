@@ -22,5 +22,5 @@ export default About
 exports.data = {
   needsRootData: true,
   hideHeader: true,
-  assets: '/static/images/about-picture.png'
+  assets: ['/static/images/about-picture.png']
 }
