@@ -9,7 +9,7 @@
   background-position: right top;
 }
 
-.mainContent {
+.content {
   font-family: $serif-font-stack;
   color: $white;
   letter-spacing: 1px;
@@ -34,19 +34,15 @@
 
 .buttonsContainer {
   margin-top: 3em;
-  display: flex;  
+  display: flex;
   justify-content: center;
 }
 
-.buttonWrapper {
+.buttonsContainer > :nth-child(2) {
   margin: 0 2em;
 }
 
 .shadowWrapper {
   display: flex;
   justify-content: center;
-}
-
-.bottomShadowText {
-  padding-bottom: 2em;
 }

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from './shadow.module.scss'
+import styles from './text-shadow.module.scss'
 
 const TextShadow = ({ text }) => (
   <div className={styles.container}>

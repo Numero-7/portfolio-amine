@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
-import styles from './button.module.scss'
+import styles from './swag-button.module.scss'
 
 class SwagButton extends Component {
   static propTypes = {

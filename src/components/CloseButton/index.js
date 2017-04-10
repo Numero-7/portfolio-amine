@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import styles from './close.module.scss'
+import styles from './close-button.module.scss'
 
 const CloseButton = ({ href }) => (
   <Link

@@ -3,8 +3,11 @@
 
 $about-text-letter-spacing: 200px;
 
+/**
+ * 1. Positioning context for shadow element.
+ */
 .container {
-  position: relative;
+  position: relative; /* 1 */
   text-align: center;
   display: inline-block;
 }
@@ -13,7 +16,7 @@ $about-text-letter-spacing: 200px;
  * 1. Counteracts the letter spacing on the last letter.
  */
 .text {
-  font: 460% $serif-font-stack;
+  font: $very-huge-font-size $serif-font-stack;
   color: $white;
   letter-spacing: $about-text-letter-spacing;
   margin-right: -$about-text-letter-spacing; /* 1 */
