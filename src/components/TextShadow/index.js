@@ -4,7 +4,7 @@ import styles from './shadow.module.scss'
 const TextShadow = ({ text }) => (
   <div className={styles.container}>
     <span className={styles.text}>{text}</span>
-    <span className={`${styles.text} ${styles.textShadow}`}>{text}</span>
+    <span className={`${styles.text} ${styles.shadow}`}>{text}</span>
   </div>
 )
 
