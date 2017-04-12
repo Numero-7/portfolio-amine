@@ -5,7 +5,7 @@
 $border: 2px solid $contrast-grey;
 
 .root {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: $content-padding;
   height: 100vh;
