@@ -15,7 +15,7 @@
   letter-spacing: 1px;
   line-height: 2;
   text-align: center;
-  margin: 10% 0;
+  margin: 9% 0;
 }
 
 .gold {
@@ -45,4 +45,9 @@
 .shadowWrapper {
   display: flex;
   justify-content: center;
+}
+
+.topShadowWrapper {
+  position: relative;
+  top: 15px;
 }

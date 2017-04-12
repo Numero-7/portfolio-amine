@@ -6,7 +6,7 @@ import styles from './about-content.module.scss'
 
 const AboutContent = () => (
   <div className={styles.root}>
-    <div className={styles.shadowWrapper}>
+    <div className={`${styles.shadowWrapper} ${styles.topShadowWrapper}`}>
       <TextShadow text="About" />
     </div>
 
@@ -69,7 +69,7 @@ const AboutContent = () => (
       </div>
     </div>
 
-    <div className={`${styles.shadowWrapper} ${styles.bottomShadowText}`}>
+    <div className={styles.shadowWrapper}>
       <TextShadow text="Me" />
     </div>
   </div>

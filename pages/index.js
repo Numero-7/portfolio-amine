@@ -7,14 +7,8 @@ import SwagButton from 'src/components/SwagButton'
 const Index = ({ projectsData }) => (
   <div>
     <LinkColumn
-      text="About me."
       href={prefixLink('/about/')}
-    />
-
-    <LinkColumn
-      text="All projects"
-      href={prefixLink('/projects/')}
-      pull="right"
+      text="About me."
     />
 
     <h1>Home</h1>
@@ -27,6 +21,12 @@ const Index = ({ projectsData }) => (
         </Link>
       </div>
     ))}
+
+    <LinkColumn
+      href={prefixLink('/projects/')}
+      text="All projects"
+      pull="right"
+    />
   </div>
 )
 

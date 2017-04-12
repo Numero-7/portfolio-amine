@@ -7,15 +7,15 @@ import StretchedContainer from 'src/components/StretchedContainer'
 const Projects = ({ projectsData }) => (
   <StretchedContainer>
     <LinkColumn
-      text="About me."
-      href={prefixLink('/about/')}
+      text="Back to home."
+      href={prefixLink('/')}
     />
 
     <ProjectsGrid projects={projectsData} />
 
     <LinkColumn
-      text="Back to home."
-      href={prefixLink('/')}
+      text="About me."
+      href={prefixLink('/about/')}
       pull="right"
     />
   </StretchedContainer>

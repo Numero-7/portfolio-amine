@@ -8,3 +8,11 @@
 .pushed {
   padding-top: calc(#{$header-top-padding} + #{$header-height});
 }
+
+.left {
+  padding-left: $content-padding;
+}
+
+.right {
+  padding-right: $content-padding;
+}
