@@ -14,7 +14,7 @@ const StretchedContainer = ({ children, pushed, paddingSide }) => (
 StretchedContainer.propTypes = {
   children: PropTypes.node.isRequired,
   pushed: PropTypes.bool,
-  paddingSide: PropTypes.string
+  paddingSide: PropTypes.oneOf(['right', 'left', ''])
 }
 
 StretchedContainer.defaultProps = {

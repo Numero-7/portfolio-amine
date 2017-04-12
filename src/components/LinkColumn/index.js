@@ -16,7 +16,7 @@ const LinkColumn = ({ text, href, pull }) => (
 LinkColumn.propTypes = {
   text: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
-  pull: PropTypes.string
+  pull: PropTypes.oneOf(['right', 'left'])
 }
 
 LinkColumn.defaultProps = {
