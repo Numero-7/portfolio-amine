@@ -1,0 +1,10 @@
+@import 'src/sass/variables/layout';
+
+.root {
+  width: 100%;
+  height: 100%;
+}
+
+.pushed {
+  padding-top: calc(#{$header-top-padding} + #{$header-height});
+}
