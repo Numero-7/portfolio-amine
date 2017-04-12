@@ -6,7 +6,7 @@ const ProjectInfo = ({ title, content }) => (
     <span className={styles.title}>{title}</span>
     {typeof content === 'string'
       ? <span className={styles.content}>{content}</span>
-      : (content.map && content.map(line => ( <span className={styles.content}>{line}</span>))
+      : (content.map && content.map(line => (<span className={styles.content}>{line}</span>))
       )
     }
   </div>
