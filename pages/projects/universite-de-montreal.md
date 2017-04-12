@@ -1,11 +1,11 @@
 ---
 needsRootData: true
 title: Université de Montréal
-number: '03'
+order: 3
 assets:
   - /static/images/universite-de-montreal.png
 thumbnail: /static/images/universite-de-montreal.png
-description: I was in charge of the UX/UI design with Cédrick Lachot of a website conferences for the Montreal University.
+description: I was in charge of the UX/UI design, along Cédrick Lachot of a conference website for the university of Montreal.
 type: Website
 role:
   - Art Direction

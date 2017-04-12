@@ -1,11 +1,11 @@
 ---
 needsRootData: true
 title: Chantal Baudron
-number: '05'
+order: 5
 images:
   - /static/images/chantal-baudron.png
 thumbnail: /static/images/chantal-baudron.png
-description: Redesign of the site of the executive recruitment firm Chantal Baudron.
+description: Redesign of the website of the executive recruitment firm Chantal Baudron.
 type: Website
 role:
   - Art Direction
