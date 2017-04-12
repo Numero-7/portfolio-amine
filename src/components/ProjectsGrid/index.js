@@ -5,7 +5,12 @@ import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {
   static propTypes = {
-    projects: PropTypes.arrayOf(PropTypes.object).isRequired
+    projects: PropTypes.arrayOf(PropTypes.object).isRequired,
+    fullHeight: PropTypes.bool
+  }
+
+  static defaultProps = {
+    fullHeight: false
   }
 
   constructor (props) {
@@ -27,10 +32,10 @@ class ProjectsGrid extends Component {
 
   render () {
     const { activeProject, showBackground } = this.state
-    const { projects } = this.props
+    const { projects, fullHeight } = this.props
 
     return (
-      <div className={styles.root}>
+      <div className={`${styles.root} ${fullHeight ? styles.fullHeight : ''}`}>
         <div
           style={{ backgroundImage: `url(${activeProject.thumbnail})` }}
           className={`${styles.background} ${showBackground ? styles.active : ''}`}
