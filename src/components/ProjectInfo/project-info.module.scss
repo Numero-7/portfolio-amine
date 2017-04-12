@@ -1,0 +1,15 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+.title {
+  display: block;
+  font-family: $sans-serif-font-stack;
+  color: $light-grey;
+  text-align: center;
+}
+
+.content {
+  display: block;
+  color: $white;
+  text-align: center;
+}
