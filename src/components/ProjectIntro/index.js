@@ -1,17 +1,23 @@
 import React, { PropTypes } from 'react'
+import { prefixLink } from 'gatsby-helpers'
 import ProjectInfo from '../ProjectInfo'
 import SwagButton from '../SwagButton'
 import styles from './project-intro.module.scss'
 
 const ProjectIntro = ({ project }) => (
   <section
-    style={{ backgroundImage: `url(${project.thumbnail})` }}
+    style={{ backgroundImage: `url(${prefixLink(project.thumbnail)})` }}
     className={styles.root}
   >
 
     <div>
 
-      <span className={styles.number}>{project.number}</span>
+      <span className={styles.number}>
+        {project.order < 10
+          ? `0${project.order}`
+          : project.order
+        }
+      </span>
 
       <h1 className={styles.title}>{project.title}</h1>
 
