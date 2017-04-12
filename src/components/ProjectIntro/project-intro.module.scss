@@ -20,7 +20,7 @@ $project-title-letter-spacing: 18px;
 
 .number {
   position: absolute;
-  left: -40px;
+  left: -$content-padding + 10px;
   top: 50%;
   transform: translateY(-50%);
   font: $project-number-font-size $serif-font-stack;
