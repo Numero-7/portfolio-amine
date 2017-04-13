@@ -1,0 +1,29 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+.indicator {
+  position: fixed;
+  bottom: 0;
+  left: 10%;
+  font-size: $small-font-size;
+  color: $light-grey;
+  letter-spacing: 5px;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  opacity: 1;
+  transition: opacity 0.3s;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 3.5em;
+    height: 1px;
+    background-color: $light-grey;
+    margin-right: 1.5em;
+  }
+}
+
+.hidden {
+  opacity: 0;
+}
