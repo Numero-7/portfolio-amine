@@ -1,5 +1,6 @@
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
+@import 'src/sass/variables/layout';
 @import 'src/sass/mixins/stretch';
 
 /**
@@ -9,7 +10,7 @@
   position: relative; /* 1 */
   padding: 0 3em;
   max-width: 980px;
-  height: 80vh;
+  height: calc(100vh - #{$header-padding});
   max-height: 790px;
   margin: 0 auto;
 }

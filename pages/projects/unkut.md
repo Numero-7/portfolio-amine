@@ -1,6 +1,14 @@
 ---
+needsRootData: true
 title: Unküt Paris
-assets:
-  - /static/images/unkut.png
-thumbnail: /static/images/unkut.png
+order: 4
+images:
+  - /static/images/unkut/unkut.png
+thumbnail: /static/images/unkut/unkut.png
+description: Redesign of  the website of Ünkut Paris, an international sportwears brand.
+type: Website
+role:
+  - Art Direction
+  - UX/UI Design
+date: '2016'
 ---

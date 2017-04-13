@@ -1,0 +1,58 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+@import 'src/sass/variables/layout';
+
+$project-title-letter-spacing: 18px;
+
+/*
+* 1. Magic number to only have the left side of the picture showing
+*/
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: calc(100vh - #{$header-padding});
+  background-repeat: no-repeat;
+  background-position: calc(100% + 440px) center; /* 1 */
+}
+
+.number {
+  position: absolute;
+  left: -$content-padding + 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font: $project-number-font-size $serif-font-stack;
+  color: $white;
+  opacity: 0.07;
+  letter-spacing: 10px;
+}
+
+.title {
+  margin-bottom: 3em;
+  font: 200% $serif-font-stack;
+  text-transform: uppercase;
+  text-align: center;
+  color: $white;
+  letter-spacing: $project-title-letter-spacing;
+  margin-right: -$project-title-letter-spacing;
+  text-shadow: -11px -20px 0px rgba(255, 255, 255, 0.15);
+}
+
+.descriptionWrapper {
+  font-family: $serif-font-stack;
+  max-width: 470px;
+  margin: auto;
+}
+
+.infoWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 4em auto;
+  max-width: 500px;
+}
+
+.buttonWrapper {
+  text-align: center;
+}
