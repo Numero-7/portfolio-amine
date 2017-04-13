@@ -2,7 +2,7 @@
 needsRootData: true
 title: Unküt Paris
 order: 4
-assets:
+images:
   - /static/images/unkut.png
 thumbnail: /static/images/unkut.png
 description: Redesign of  the website of Ünkut Paris, an international sportwears brand.
