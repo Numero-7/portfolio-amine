@@ -29,7 +29,6 @@ class ProjectPage extends Component {
 
     return (
       <StretchedContainer>
-
         <LinkColumn
           text="About me."
           href={prefixLink('/about/')}
@@ -39,7 +38,6 @@ class ProjectPage extends Component {
         <ScrollIndicator hidden={hideScrollIndicator} />
 
         <ProjectIntro project={project} />
-
         {project.images.map(link => (
           <ProjectImage
             src={link}
@@ -53,7 +51,7 @@ class ProjectPage extends Component {
           onLeave={e => this.handleScrollIndicator(e)}
         >
           <section>
-            <ProjectsGrid projects={projectsData} />
+            <ProjectsGrid projects={projectsData.filter(({ order }) => order !== project.order)} />
           </section>
         </Waypoint>
 
@@ -62,7 +60,6 @@ class ProjectPage extends Component {
           href={prefixLink('/projects/')}
           pull="right"
         />
-
       </StretchedContainer>
     )
   }
