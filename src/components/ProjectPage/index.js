@@ -1,39 +1,71 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
+import Waypoint from 'react-waypoint'
 import LinkColumn from '../LinkColumn'
+import ScrollIndicator from '../ScrollIndicator'
 import ProjectIntro from '../ProjectIntro'
+import ProjectImage from '../ProjectImage'
 import ProjectsGrid from '../ProjectsGrid'
 import StretchedContainer from '../StretchedContainer'
 
-const ProjectPage = ({ projectsData, project }) => (
-  <StretchedContainer>
+class ProjectPage extends Component {
+  static propTypes = {
+    project: PropTypes.object.isRequired,
+    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+  }
 
-    <LinkColumn
-      text="About me."
-      href={prefixLink('/about/')}
-      pull="left"
-    />
+  constructor (props) {
+    super(props)
+    this.state = { hideScrollIndicator: false }
+  }
 
-    <ProjectIntro project={project} />
+  handleScrollIndicator (e) {
+    this.setState({ hideScrollIndicator: e.currentPosition === 'inside' })
+  }
 
-    <ProjectsGrid
-      fullHeight={true}
-      projects={projectsData}
-    />
+  render () {
+    const { hideScrollIndicator } = this.state
+    const { project, projectsData } = this.props
 
-    <LinkColumn
-      text="All projects."
-      href={prefixLink('/projects/')}
-      pull="right"
-    />
+    return (
+      <StretchedContainer>
 
-  </StretchedContainer>
+        <LinkColumn
+          text="About me."
+          href={prefixLink('/about/')}
+          pull="left"
+        />
 
-)
+        <ScrollIndicator hidden={hideScrollIndicator} />
 
-ProjectPage.propTypes = {
-  project: PropTypes.object.isRequired,
-  projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+        <ProjectIntro project={project} />
+
+        {project.images.map(link => (
+          <ProjectImage
+            src={link}
+            title={project.title}
+          />
+        ))}
+
+        <Waypoint
+          scrollableAncestor={window}
+          onEnter={e => this.handleScrollIndicator(e)}
+          onLeave={e => this.handleScrollIndicator(e)}
+        >
+          <section>
+            <ProjectsGrid projects={projectsData} />
+          </section>
+        </Waypoint>
+
+        <LinkColumn
+          text="All projects."
+          href={prefixLink('/projects/')}
+          pull="right"
+        />
+
+      </StretchedContainer>
+    )
+  }
 }
 
 export default ProjectPage
