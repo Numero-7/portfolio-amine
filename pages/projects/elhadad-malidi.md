@@ -5,7 +5,7 @@ order: 2
 assets:
   - /static/images/elhadad-malidi.png
 thumbnail: /static/images/elhadad-malidi.png
-description: I was in charge of the art direction of the new website of Elhadad Malidi, a webdeveloper student at HETIC.
+description: I was in charge of the art direction of the new website of Elhadad Malidi, a webdeveloper and student at HETIC.
 type: Portfolio
 role:
   - Art Direction
