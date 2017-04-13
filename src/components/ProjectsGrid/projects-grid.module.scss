@@ -15,10 +15,6 @@
   margin: 0 auto;
 }
 
-.fullHeight {
-  height: 100vh;
-}
-
 .background {
   @include stretch();
   background-size: cover;
