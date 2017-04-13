@@ -3,8 +3,11 @@ needsRootData: true
 title: Anna - Le Film
 order: 1
 images:
-  - /static/images/anna.png
-thumbnail: /static/images/anna.png
+  - /static/images/anna/anna-1.png
+  - /static/images/anna/anna-2.png
+  - /static/images/anna/anna-3.png
+  - /static/images/anna/anna-4.png
+thumbnail: /static/images/anna/anna-intro.png
 description: I was in charge of the UX/UI design for the promotional website of our short film Anna, made as a school project.
 type: Promotional website
 role:
