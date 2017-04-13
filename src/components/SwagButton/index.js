@@ -27,11 +27,18 @@ class SwagButton extends Component {
     const { href, external } = this.props
 
     return ({
-      className: styles.link,
       [external ? 'href' : 'to']: prefixLink(href) || '#',
       target: external ? '_blank' : null,
       rel: external ? 'noopener noreferrer' : null
     })
+  }
+
+  handleActive () {
+    this.setState({ dashOffset: '0px' })
+  }
+
+  handleLeave () {
+    this.setState({ dashOffset: this.rectLength })
   }
 
   render () {
@@ -39,55 +46,60 @@ class SwagButton extends Component {
     const { text } = this.props
 
     return (
-      <button
-        className={styles.button}
-        onMouseOver={() => this.setState({ dashOffset: '0px' })}
-        onMouseLeave={() => this.setState({ dashOffset: this.rectLength })}
+      <Link
+        className={styles.root}
+        {...this.createLinkProps()}
+        onMouseOver={() => this.handleActive()}
+        onFocus={() => this.handleActive()}
+        onMouseLeave={() => this.handleLeave()}
+        onBlur={() => this.handleLeave()}
       >
-        <Link {...this.createLinkProps()}>
-          <span>{text}</span>
-          <svg
-            className={styles.rectanglesContainer}
-            width={styles.buttonWidth}
-            height={styles.buttonHeight}
-          >
-            <rect
-              className={styles.greyBorders}
-              width="180"
-              height="44"
-              x="1.5"
-              y="4.5"
-            />
-            <rect
-              className={styles.greyBorders}
-              width="172"
-              height="52"
-              x="4.5"
-              y="1.5"
-              transform="rotate(180 91 27)"
-            />
-            <rect
-              className={styles.whiteBorders}
-              width="180"
-              height="44"
-              x="1.5"
-              y="4.5"
-              strokeDashoffset={dashOffset}
-              strokeDasharray={this.rectLength}
-            />
-            <rect
-              className={styles.whiteBorders}
-              width="172"
-              height="52"
-              x="4.5"
-              y="1.5"
-              strokeDashoffset={dashOffset}
-              strokeDasharray={this.rectLength}
-              transform="rotate(180 91 27)"
-            />
-          </svg>
-        </Link>
-      </button>
+        <span className={styles.text}>{text}</span>
+
+        <svg
+          className={styles.rectanglesContainer}
+          width={styles.buttonWidth}
+          height={styles.buttonHeight}
+        >
+          <rect
+            className={styles.greyBorders}
+            width="180"
+            height="44"
+            x="1.5"
+            y="4.5"
+          />
+
+          <rect
+            className={styles.greyBorders}
+            width="172"
+            height="52"
+            x="4.5"
+            y="1.5"
+            transform="rotate(180 91 27)"
+          />
+
+          <rect
+            className={styles.whiteBorders}
+            width="180"
+            height="44"
+            x="1.5"
+            y="4.5"
+            strokeDashoffset={dashOffset}
+            strokeDasharray={this.rectLength}
+          />
+
+          <rect
+            className={styles.whiteBorders}
+            width="172"
+            height="52"
+            x="4.5"
+            y="1.5"
+            strokeDashoffset={dashOffset}
+            strokeDasharray={this.rectLength}
+            transform="rotate(180 91 27)"
+          />
+        </svg>
+      </Link>
     )
   }
 }

@@ -43,12 +43,12 @@ class ProjectsGrid extends Component {
               className={styles.item}
             >
               <Link
+                className={styles.link}
+                to={prefixLink(project.path)}
                 onMouseOver={() => this.handleActive(index)}
                 onFocus={() => this.handleActive(index)}
                 onMouseLeave={() => this.handleLeave()}
                 onBlur={() => this.handleLeave()}
-                className={styles.link}
-                to={prefixLink(project.path)}
               >
                 {project.title}
               </Link>

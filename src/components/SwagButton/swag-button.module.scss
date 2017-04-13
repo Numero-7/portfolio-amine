@@ -13,21 +13,23 @@ $button-height: 55px;
   buttonHeight: $button-height;
 }
 
-.button {
+.root {
+  display: inline-block;
   position: relative;
   width: $button-width;
   height: $button-height;
   text-align: center;
   font: 80% $sans-serif-font-stack;
   color: $white;
-  border: none;
-  background: none;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
-.link {
-  text-decoration: none;
-  color: inherit;
-  text-transform: uppercase;
+/**
+ * 1. Vertically aligns the content of the button.
+ */
+.text {
+  line-height: $button-height; /* 1 */
 }
 
 .rectanglesContainer {
