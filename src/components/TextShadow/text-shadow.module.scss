@@ -4,28 +4,23 @@
 $about-text-letter-spacing: 200px;
 
 /**
- * 1. Positioning context for shadow element.
- */
-.container {
-  position: relative; /* 1 */
-  text-align: center;
-  display: inline-block;
-}
-
-/**
- * 1. Counteracts the letter spacing on the last letter.
+ * 1. Positioning context for before pseudo-element.
+ * 2. Counteracts the letter spacing on the last letter.
+ * 3. Use rgba color instead of opacity so that the before pseudo-element doesn’t have an
+ *    opacity relative to its parent.
  */
 .text {
+  position: relative; /* 1 */
   font: $very-huge-font-size $serif-font-stack;
-  color: $white;
   letter-spacing: $about-text-letter-spacing;
-  margin-right: -$about-text-letter-spacing; /* 1 */
+  margin-right: -$about-text-letter-spacing; /* 2 */
+  color: rgba($white, 0.1); /* 3 */
   text-transform: uppercase;
-  opacity: 0.1;
-}
 
-.shadow {
-  position: absolute;
-  top: -15px;
-  left: 0;
+  &::before {
+    content: attr(data-content);
+    position: absolute;
+    top: -15px;
+    left: 0;
+  }
 }
