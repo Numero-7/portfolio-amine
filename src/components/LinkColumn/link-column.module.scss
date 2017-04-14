@@ -7,9 +7,9 @@ $border: 2px solid $contrast-grey;
 .root {
   position: fixed;
   top: 0;
+  z-index: 10;
   width: $content-padding;
   height: 100vh;
-  z-index: 10;
 }
 
 .left {
@@ -38,9 +38,9 @@ $border: 2px solid $contrast-grey;
   align-items: center;
   justify-content: center;
   height: 100%; /* 1 */
-  color: $white;
-  font-size: $big-font-size;
   font-family: $serif-font-stack;
-  white-space: nowrap;
+  font-size: $big-font-size;
+  color: $white;
   text-decoration: underline;
+  white-space: nowrap;
 }

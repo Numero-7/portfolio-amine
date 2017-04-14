@@ -8,17 +8,17 @@
  */
 .root {
   position: relative; /* 1 */
-  padding: 0 3em;
-  max-width: 980px;
   height: calc(100vh - #{$header-padding});
+  max-width: 980px;
   max-height: 790px;
+  padding: 0 3em;
   margin: 0 auto;
 }
 
 .background {
-  @include stretch();
-  background-size: cover;
+  @include stretch;
   z-index: -1;
+  background-size: cover;
   opacity: 0;
   transition: opacity 2.5s;
 }
@@ -31,8 +31,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 $item-offset: 10%;
@@ -56,9 +56,9 @@ $item-offset: 10%;
 }
 
 .link {
-  text-decoration: none;
   letter-spacing: 12px;
   color: $white;
+  text-decoration: none;
   opacity: 0.2;
   transition: opacity 1s;
 

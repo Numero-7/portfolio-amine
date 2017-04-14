@@ -14,13 +14,13 @@ $button-height: 55px;
 }
 
 .root {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   width: $button-width;
   height: $button-height;
-  text-align: center;
   font: 80% $sans-serif-font-stack;
   color: $white;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -33,21 +33,22 @@ $button-height: 55px;
 }
 
 .rectanglesContainer {
-  @include stretch();
+  @include stretch;
 }
 
 /**
  * 1. Fixes rendering bug on IE/Edge
  */
-.whiteBorders, .greyBorders {
+.whiteBorders,
+.greyBorders {
   fill: none;
   stroke: $white;
   shape-rendering: crispEdges; /* 1 */
 }
 
 .whiteBorders {
-  stroke-opacity: 1;
   transition: stroke-dashoffset 0.8s ease-in-out;
+  stroke-opacity: 1;
 }
 
 .greyBorders {

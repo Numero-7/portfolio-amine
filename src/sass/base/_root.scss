@@ -5,8 +5,8 @@
  * Set up a decent box model on the root element
  */
 html {
-  box-sizing: border-box;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /**
@@ -15,7 +15,9 @@ html {
  * making all elements inheriting from the root box-sizing value
  * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
  */
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: inherit;
 }
 
@@ -23,12 +25,12 @@ html {
  * 1. Fixes some webkit typography bugs.
  */
 body {
-  background-color: $black;
-  color: $grey;
-  font: #{$root-font-size} / 1.5 $sans-serif-font-stack;
-  scroll-behavior: smooth;
   overflow-x: inherit;
-  -webkit-font-smoothing: antialiased; /* 1 */
+  font: #{$root-font-size} / 1.5 $sans-serif-font-stack;
+  color: $grey;
+  background-color: $black;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased; /* 1 */ // sass-lint:disable-line no-vendor-prefixes
 }
 
 /**
@@ -37,6 +39,6 @@ body {
 img {
   display: block;
   height: auto;
-  margin: 0 auto;
   max-width: 100%;
+  margin: 0 auto;
 }

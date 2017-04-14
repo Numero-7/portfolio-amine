@@ -6,10 +6,10 @@
   height: 15px;
   background-color: $contrast-grey;
   transition: background-color 1s;
-}
 
-.bar:not(:first-child) {
-  margin-left: 6px;
+  &:not(:first-child) {
+    margin-left: 6px;
+  }
 }
 
 .active {
@@ -17,7 +17,7 @@
 }
 
 .percentage {
-  margin-top: 1em;
   display: block;
+  margin-top: 1em;
   color: $grey;
 }

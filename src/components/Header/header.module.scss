@@ -3,21 +3,21 @@
 @import 'src/sass/variables/layout';
 
 .root {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   position: fixed;
   top: $header-top-padding;
   right: 6em;
   left: 6em;
-  height: $header-height;
   z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: $header-height;
 }
 
 .text {
   font-family: $serif-font-stack;
-  letter-spacing: 1px;
   line-height: 1.1;
+  letter-spacing: 1px;
 }
 
 .name {

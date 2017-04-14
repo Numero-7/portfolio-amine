@@ -5,17 +5,19 @@
     "build:serve": "gatsby serve-build",
     "deploy": "yarn build:clean && gatsby build --prefix-links && gh-pages -d public",
     "develop": "gatsby develop",
-    "lint": "./node_modules/.bin/eslint '**/*.js'",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "./node_modules/.bin/eslint '**/*.js'",
+    "lint:scss": "./node_modules/.bin/sass-lint '**/*.scss' -c .sass-lint.yml -v -q",
     "lint:staged": "lint-staged"
   },
   "dependencies": {
-    "react": "15.4.2",
     "assets-loader": "^0.5.0",
     "front-matter": "^2.1.2",
     "gatsby": "^0.12.40",
     "markdown-it": "^7.0.1",
     "preact": "^7.2.1",
     "preact-compat": "^3.14.3",
+    "react": "15.4.2",
     "react-helmet": "^3.2.2",
     "react-waypoint": "5.3.1"
   },
@@ -30,7 +32,8 @@
     "gh-pages": "^0.12.0",
     "lint-staged": "^3.4.0",
     "pre-commit": "^1.2.2",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "sass-lint": "^1.10.2"
   },
   "pre-commit": {
     "run": "lint:staged",
@@ -38,6 +41,7 @@
     "silent": true
   },
   "lint-staged": {
-    "*.@(js|jsx)": "lint"
+    "*.@(js)": "lint:js",
+    "*.@(scss)": "lint:scss"
   }
 }

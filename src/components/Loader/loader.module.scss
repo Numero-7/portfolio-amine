@@ -17,10 +17,10 @@ $welcome-text-letter-spacing: 10px;
  * 1. Counteracts the letter spacing on the last letter.
  */
 .welcomeText {
-  color: $grey;
+  margin-right: -$welcome-text-letter-spacing; /* 1 */
   font-weight: bold;
   letter-spacing: $welcome-text-letter-spacing;
-  margin-right: -$welcome-text-letter-spacing; /* 1 */
+  color: $grey;
 }
 
 .progressBarWrapper {

@@ -8,50 +8,50 @@ $project-title-letter-spacing: 18px;
 * 1. Magic number to only have the left side of the picture showing
 */
 .root {
+  position: relative;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  position: relative;
   height: calc(100vh - #{$header-padding});
+  background-position: 200% center; /* 1 */
   background-repeat: no-repeat;
   background-size: auto 80%;
-  background-position: 200% center; /* 1 */
 }
 
 .number {
   position: absolute;
-  left: -$content-padding + 10px;
   top: 50%;
-  transform: translateY(-50%);
+  left: -$content-padding + 10px;
   font: $project-number-font-size $serif-font-stack;
+  letter-spacing: 10px;
   color: $white;
   opacity: 0.07;
-  letter-spacing: 10px;
+  transform: translateY(-50%);
 }
 
 .title {
+  margin-right: -$project-title-letter-spacing;
   margin-bottom: 3em;
   font: 200% $serif-font-stack;
-  text-transform: uppercase;
-  text-align: center;
-  color: $white;
   letter-spacing: $project-title-letter-spacing;
-  margin-right: -$project-title-letter-spacing;
-  text-shadow: -11px -20px 0px rgba(255, 255, 255, 0.15);
+  color: $white;
+  text-align: center;
+  text-shadow: -11px -20px 0 rgba($white, 0.15);
+  text-transform: uppercase;
 }
 
 .descriptionWrapper {
-  font-family: $serif-font-stack;
   max-width: 470px;
   margin: auto;
+  font-family: $serif-font-stack;
 }
 
 .infoWrapper {
   display: flex;
   justify-content: space-between;
-  margin: 4em auto;
   max-width: 500px;
+  margin: 4em auto;
 }
 
 .buttonWrapper {

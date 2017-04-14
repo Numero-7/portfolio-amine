@@ -11,16 +11,16 @@ $about-text-letter-spacing: 200px;
  */
 .text {
   position: relative; /* 1 */
+  margin-right: -$about-text-letter-spacing; /* 2 */
   font: $very-huge-font-size $serif-font-stack;
   letter-spacing: $about-text-letter-spacing;
-  margin-right: -$about-text-letter-spacing; /* 2 */
   color: rgba($white, 0.1); /* 3 */
   text-transform: uppercase;
 
   &::before {
-    content: attr(data-content);
     position: absolute;
     top: -15px;
     left: 0;
+    content: attr(data-content);
   }
 }

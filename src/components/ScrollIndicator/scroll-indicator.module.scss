@@ -6,21 +6,21 @@
   bottom: 0;
   left: 10%;
   font-size: $small-font-size;
-  color: $light-grey;
   letter-spacing: 5px;
-  transform: rotate(-90deg);
-  transform-origin: bottom left;
+  color: $light-grey;
   opacity: 1;
+  transform: rotate(-90deg);
   transition: opacity 0.3s;
+  transform-origin: bottom left;
 
   &::before {
-    content: '';
     display: inline-block;
-    vertical-align: middle;
     width: 3.5em;
     height: 1px;
-    background-color: $light-grey;
     margin-right: 1.5em;
+    vertical-align: middle;
+    background-color: $light-grey;
+    content: '';
   }
 }
 
