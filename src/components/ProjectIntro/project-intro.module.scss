@@ -15,7 +15,8 @@ $project-title-letter-spacing: 18px;
   position: relative;
   height: calc(100vh - #{$header-padding});
   background-repeat: no-repeat;
-  background-position: calc(100% + 440px) center; /* 1 */
+  background-size: auto 80%;
+  background-position: 200% center; /* 1 */
 }
 
 .number {
