@@ -1,5 +1,4 @@
 ---
-needsRootData: true
 title: Anna - Le Film
 order: 1
 images:

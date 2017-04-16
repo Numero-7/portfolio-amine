@@ -26,6 +26,3 @@ Projects.propTypes = {
 }
 
 export default Projects
-exports.data = {
-  needsRootData: true
-}

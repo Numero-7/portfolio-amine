@@ -39,17 +39,7 @@ class Template extends Component {
     const { previousPath, assetsReady, projectsData } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
-    const { skipLoader, needsRootData, hideHeader } = childrenPage.data
-
-    const content = needsRootData
-      ? passDataToChildren(children, { previousPath, projectsData })
-      : children
-    const loader = (
-      <Loader
-        assets={getPagesAssets(route.pages)}
-        onReady={() => this.setState({ assetsReady: true })}
-      />
-    )
+    const { skipLoader, hideHeader } = childrenPage.data
 
     return (
       <div>
@@ -63,7 +53,15 @@ class Template extends Component {
         )}
 
         <Container>
-          {(assetsReady || skipLoader) ? content : loader}
+          {(assetsReady || skipLoader)
+            ? passDataToChildren(children, { previousPath, projectsData })
+            : (
+              <Loader
+                assets={getPagesAssets(route.pages)}
+                onReady={() => this.setState({ assetsReady: true })}
+              />
+            )
+          }
         </Container>
       </div>
     )

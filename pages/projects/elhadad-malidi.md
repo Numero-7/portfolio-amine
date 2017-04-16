@@ -1,5 +1,4 @@
 ---
-needsRootData: true
 title: Elhadad Malidi
 order: 2
 images:

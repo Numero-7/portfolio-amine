@@ -1,5 +1,4 @@
 ---
-needsRootData: true
 title: Chantal Baudron
 order: 5
 images:

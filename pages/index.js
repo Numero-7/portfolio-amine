@@ -36,6 +36,3 @@ Index.propTypes = {
 }
 
 export default Index
-exports.data = {
-  needsRootData: true
-}

@@ -1,5 +1,4 @@
 ---
-needsRootData: true
 title: Université de Montréal
 order: 3
 images:

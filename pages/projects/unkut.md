@@ -1,5 +1,4 @@
 ---
-needsRootData: true
 title: Unküt Paris
 order: 4
 images:
