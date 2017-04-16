@@ -1,19 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
+import PositionLayer from 'src/components/PositionLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import SwagButton from 'src/components/SwagButton'
 
 class Index extends Component {
   static propTypes = {
-    key: PropTypes.string.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    pageZIndex: PropTypes.number.isRequired
   }
 
   constructor (props) {
     super(props)
-    this.animationTime = 10000
+    this.animationTime = 2000
   }
 
   componentWillEnter (callback) {
@@ -37,35 +38,37 @@ class Index extends Component {
   }
 
   render () {
-    const { key, projectsData } = this.props
+    const { projectsData, pageZIndex } = this.props
 
     return (
-      <StretchedContainer
-        key={key}
+      <PositionLayer
         ref={(component) => { this.root = component }}
+        zIndex={pageZIndex}
       >
-        <LinkColumn
-          href={prefixLink('/about/')}
-          text="About me."
-        />
+        <StretchedContainer>
+          <LinkColumn
+            href={prefixLink('/about/')}
+            text="About me."
+          />
 
-        <h1>Home</h1>
-        <SwagButton text="Swag button" />
+          <h1>Home</h1>
+          <SwagButton text="Swag button" />
 
-        {projectsData.map(project => (
-          <div>
-            <Link to={prefixLink(project.path)}>
-              {project.title}
-            </Link>
-          </div>
-        ))}
+          {projectsData.map(project => (
+            <div>
+              <Link to={prefixLink(project.path)}>
+                {project.title}
+              </Link>
+            </div>
+          ))}
 
-        <LinkColumn
-          href={prefixLink('/projects/')}
-          text="All projects"
-          pull="right"
-        />
-      </StretchedContainer>
+          <LinkColumn
+            href={prefixLink('/projects/')}
+            text="All projects"
+            pull="right"
+          />
+        </StretchedContainer>
+      </PositionLayer>
     )
   }
 }

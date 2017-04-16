@@ -26,18 +26,24 @@ class Template extends Component {
     super(props)
     this.state = {
       assetsReady: false,
+      projectsData: getProjectsData(props.route.pages),
       previousPath: '',
-      projectsData: getProjectsData(props.route.pages)
+      pageZIndex: 1
     }
   }
 
   componentWillReceiveProps () {
-    // We store the previous path before it changes so that we can pass it down to the child page.
-    this.setState({ previousPath: this.props.location.pathname })
+    this.setState(prevState => ({
+      // We store the previous path before it changes so that we can pass it down to the child page.
+      previousPath: this.props.location.pathname,
+      // Always increment the page Z-index so that the next page is always on top.
+      // This is needed for proper page transitions.
+      pageZIndex: prevState.pageZIndex + 1
+    }))
   }
 
   render () {
-    const { previousPath, assetsReady, projectsData } = this.state
+    const { assetsReady, projectsData, previousPath, pageZIndex } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
     const { skipLoader, hideHeader } = childrenPage.data
@@ -58,8 +64,10 @@ class Template extends Component {
             {(assetsReady || skipLoader)
               ? (
                 passDataToChildren(children, {
-                  previousPath,
                   projectsData,
+                  previousPath,
+                  pageZIndex,
+                  // Add a unique key on the children so that TransitionGroup works.
                   key: childrenPage.path
                 })
               )
