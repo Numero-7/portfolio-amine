@@ -1,38 +1,73 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
+import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import SwagButton from 'src/components/SwagButton'
 
-const Index = ({ projectsData }) => (
-  <div>
-    <LinkColumn
-      href={prefixLink('/about/')}
-      text="About me."
-    />
+class Index extends Component {
+  static propTypes = {
+    key: PropTypes.string.isRequired,
+    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+  }
 
-    <h1>Home</h1>
-    <SwagButton text="Swag button" />
+  constructor (props) {
+    super(props)
+    this.animationTime = 10000
+  }
 
-    {projectsData.map(project => (
-      <div>
-        <Link to={prefixLink(project.path)}>
-          {project.title}
-        </Link>
-      </div>
-    ))}
+  componentWillEnter (callback) {
+    setTimeout(callback, this.animationTime)
+    // TweenLite.fromTo(
+    //   this.root,
+    //   1.5,
+    //   { x: -window.innerWidth },
+    //   { x: 0, onComplete: callback }
+    // )
+  }
 
-    <LinkColumn
-      href={prefixLink('/projects/')}
-      icon={true}
-      text="All projects."
-      pull="right"
-    />
-  </div>
-)
+  componentWillLeave (callback) {
+    setTimeout(callback, this.animationTime)
+    // TweenLite.fromTo(
+    //   this.root,
+    //   1.5,
+    //   { x: 0 },
+    //   { x: -window.innerWidth, onComplete: callback }
+    // )
+  }
 
-Index.propTypes = {
-  projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+  render () {
+    const { key, projectsData } = this.props
+
+    return (
+      <StretchedContainer
+        key={key}
+        ref={(component) => { this.root = component }}
+      >
+        <LinkColumn
+          href={prefixLink('/about/')}
+          text="About me."
+        />
+
+        <h1>Home</h1>
+        <SwagButton text="Swag button" />
+
+        {projectsData.map(project => (
+          <div>
+            <Link to={prefixLink(project.path)}>
+              {project.title}
+            </Link>
+          </div>
+        ))}
+
+        <LinkColumn
+          href={prefixLink('/projects/')}
+          text="All projects"
+          pull="right"
+        />
+      </StretchedContainer>
+    )
+  }
 }
 
 export default Index

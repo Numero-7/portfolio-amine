@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import TransitionGroup from 'preact-transition-group'
 import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
 import getChildrenPage from 'src/utils/get-children-page'
@@ -53,15 +54,23 @@ class Template extends Component {
         )}
 
         <Container>
-          {(assetsReady || skipLoader)
-            ? passDataToChildren(children, { previousPath, projectsData })
-            : (
-              <Loader
-                assets={getPagesAssets(route.pages)}
-                onReady={() => this.setState({ assetsReady: true })}
-              />
-            )
-          }
+          <TransitionGroup component="div">
+            {(assetsReady || skipLoader)
+              ? (
+                passDataToChildren(children, {
+                  previousPath,
+                  projectsData,
+                  key: childrenPage.path
+                })
+              )
+              : (
+                <Loader
+                  assets={getPagesAssets(route.pages)}
+                  onReady={() => this.setState({ assetsReady: true })}
+                />
+              )
+            }
+          </TransitionGroup>
         </Container>
       </div>
     )

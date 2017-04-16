@@ -1,30 +1,55 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
+import { TweenLite } from 'gsap'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import AboutContent from 'src/components/AboutContent'
 
-const About = ({ previousPath }) => {
-  const columnPosition = (previousPath === '/projects/' ? 'left' : 'right')
+class About extends Component {
+  static propTypes = {
+    key: PropTypes.string.isRequired,
+    previousPath: PropTypes.string.isRequired
+  }
 
-  return (
-    <StretchedContainer
-      pushed={false}
-      paddingSide={columnPosition}
-    >
-      <AboutContent />
+  componentWillEnter (callback) {
+    TweenLite.fromTo(
+      this.root.base,
+      10,
+      { x: -window.innerWidth },
+      { x: 0, onComplete: callback }
+    )
+  }
 
-      <LinkColumn
-        href={prefixLink(previousPath) || prefixLink('/')}
-        text="Close."
-        pull={columnPosition}
-      />
-    </StretchedContainer>
-  )
-}
+  componentWillLeave (callback) {
+    TweenLite.fromTo(
+      this.root.base,
+      10,
+      { x: 0 },
+      { x: -window.innerWidth, onComplete: callback }
+    )
+  }
 
-About.propTypes = {
-  previousPath: PropTypes.string.isRequired
+  render () {
+    const { key, previousPath } = this.props
+    const columnPosition = (previousPath === '/projects/' ? 'left' : 'right')
+
+    return (
+      <StretchedContainer
+        key={key}
+        ref={(component) => { this.root = component }}
+        pushed={false}
+        paddingSide={columnPosition}
+      >
+        <AboutContent />
+
+        <LinkColumn
+          href={prefixLink(previousPath) || prefixLink('/')}
+          text="Close."
+          pull={columnPosition}
+        />
+      </StretchedContainer>
+    )
+  }
 }
 
 export default About

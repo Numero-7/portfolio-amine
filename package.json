@@ -14,9 +14,11 @@
     "assets-loader": "^0.5.0",
     "front-matter": "^2.1.2",
     "gatsby": "^0.12.40",
+    "gsap": "^1.19.1",
     "markdown-it": "^7.0.1",
     "preact": "^7.2.1",
     "preact-compat": "^3.14.3",
+    "preact-transition-group": "^1.1.0",
     "react": "15.4.2",
     "react-helmet": "^3.2.2",
     "react-waypoint": "5.3.1"
