@@ -1,6 +1,7 @@
 ---
 needsRootData: true
 title: Anna - Le Film
+shortTitle: Anna
 order: 1
 images:
   - /static/images/anna/anna-1.png

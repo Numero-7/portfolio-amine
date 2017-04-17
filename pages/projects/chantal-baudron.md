@@ -1,6 +1,7 @@
 ---
 needsRootData: true
 title: Chantal Baudron
+shortTitle: CB
 order: 5
 images:
   - /static/images/chantal-baudron/chantal-baudron-1.png

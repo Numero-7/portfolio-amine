@@ -1,6 +1,7 @@
 ---
 needsRootData: true
 title: Elhadad Malidi
+shortTitle: EM
 order: 2
 images:
   - /static/images/elhadad-malidi/elhadad-malidi-1.png

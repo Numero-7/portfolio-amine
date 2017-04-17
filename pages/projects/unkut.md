@@ -1,6 +1,7 @@
 ---
 needsRootData: true
 title: Unküt Paris
+shortTitle: ÜKT
 order: 4
 images:
   - /static/images/unkut/unkut-1.png

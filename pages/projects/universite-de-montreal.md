@@ -1,6 +1,7 @@
 ---
 needsRootData: true
 title: Université de Montréal
+shortTitle: UDM
 order: 3
 images:
   - /static/images/universite-de-montreal/universite-de-montreal-1.png
