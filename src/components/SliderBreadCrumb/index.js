@@ -12,11 +12,10 @@ const SliderBreadCrumb = ({ projectsData, handleProjectSwitch, currentIndex }) =
               className={`${styles.number} ${currentIndex === index ? styles.active : ''}`}
               onClick={() => handleProjectSwitch(index)}
             >
-
               {currentIndex === index
                 ? project.title
-                : `0${project.order}`}
-
+                : `0${project.order}`
+              }
             </button>
           </div>
         </li>

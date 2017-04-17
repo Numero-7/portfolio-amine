@@ -34,7 +34,8 @@
     content: '';
   }
 
-  &.active {
+  &.active,
+  &:focus {
     color: $grey;
 
     &::after {
