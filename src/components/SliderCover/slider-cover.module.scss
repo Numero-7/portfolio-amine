@@ -1,0 +1,65 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+$grey-stroke: #383838;
+
+.rectangle {
+  position: relative;
+  width: 724px;
+  height: 324px;
+}
+
+.title {
+  position: absolute;
+  top: -106px;
+  left: 50%;
+  font: 700% $sans-serif-title-font-stack;
+  color: transparent;
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, rgba(19, 19, 19, 1) 0%, rgba(32, 32, 32, 1) 100%);
+  transform: translateX(-50%);
+  -webkit-background-clip: text; // sass-lint:disable-line no-vendor-prefixes
+}
+
+.projectInfo {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.projectType {
+  display: block;
+  font-size: 80%;
+  letter-spacing: 0.5px;
+  color: $light-grey;
+}
+
+.projectName {
+  font: 130% $serif-font-stack;
+  letter-spacing: 2px;
+  color: $white;
+}
+
+/**
+ * 1. Fixes rendering bug on IE/Edge
+ */
+.grey,
+.white {
+  fill: none;
+  stroke-width: 2px;
+  shape-rendering: crispEdges; /* 1 */
+}
+
+.grey {
+  stroke: $grey-stroke;
+}
+
+.white {
+  //stroke: $white;
+}
+
+.buttonWrapper {
+  margin-top: 4em;
+  text-align: center;
+}
