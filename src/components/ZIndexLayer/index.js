@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
-import styles from './position-layer.module.scss'
+import styles from './z-index-layer.module.scss'
 
-const PositionLayer = ({ zIndex, children }) => (
+const ZIndexLayer = ({ zIndex, children }) => (
   <div
     className={styles.root}
     style={{ zIndex }}
@@ -10,13 +10,13 @@ const PositionLayer = ({ zIndex, children }) => (
   </div>
 )
 
-PositionLayer.propTypes = {
+ZIndexLayer.propTypes = {
   zIndex: PropTypes.number,
   children: PropTypes.node.isRequired
 }
 
-PositionLayer.defaultProps = {
+ZIndexLayer.defaultProps = {
   zIndex: 1
 }
 
-export default PositionLayer
+export default ZIndexLayer

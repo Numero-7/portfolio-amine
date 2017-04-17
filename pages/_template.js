@@ -27,23 +27,17 @@ class Template extends Component {
     this.state = {
       assetsReady: false,
       projectsData: getProjectsData(props.route.pages),
-      previousPath: '',
-      pageZIndex: 1
+      previousPath: ''
     }
   }
 
   componentWillReceiveProps () {
-    this.setState(prevState => ({
-      // We store the previous path before it changes so that we can pass it down to the child page.
-      previousPath: this.props.location.pathname,
-      // Always increment the page Z-index so that the next page is always on top.
-      // This is needed for proper page transitions.
-      pageZIndex: prevState.pageZIndex + 1
-    }))
+    // We store the previous path before it changes so that we can pass it down to the child page.
+    this.setState({ previousPath: this.props.location.pathname })
   }
 
   render () {
-    const { assetsReady, projectsData, previousPath, pageZIndex } = this.state
+    const { assetsReady, projectsData, previousPath } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
     const { skipLoader, hideHeader } = childrenPage.data
@@ -52,12 +46,7 @@ class Template extends Component {
       <div>
         <Helmet title={getPageTitle()} />
 
-        {!hideHeader && assetsReady && (
-          <Header
-            showCloseButton={isProjectPage(childrenPage)}
-            previousPath={previousPath}
-          />
-        )}
+        {!hideHeader && assetsReady && <Header showCloseButton={isProjectPage(childrenPage)} />}
 
         <Container>
           <TransitionGroup component="div">
@@ -66,7 +55,6 @@ class Template extends Component {
                 passDataToChildren(children, {
                   projectsData,
                   previousPath,
-                  pageZIndex,
                   // Add a unique key on the children so that TransitionGroup works.
                   key: childrenPage.path
                 })

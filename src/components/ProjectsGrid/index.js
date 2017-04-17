@@ -15,13 +15,12 @@ class ProjectsGrid extends Component {
     this.state = { activeProject: props.projects[0], showBackground: false }
   }
 
-  handleActive (index) {
+  handleActiveLink (index) {
     const activeProject = this.props.projects[index]
-
     this.setState({ activeProject, showBackground: true })
   }
 
-  handleLeave () {
+  handleLeaveLink () {
     this.setState({ showBackground: false })
   }
 
@@ -45,10 +44,10 @@ class ProjectsGrid extends Component {
               <Link
                 className={styles.link}
                 to={prefixLink(project.path)}
-                onMouseOver={() => this.handleActive(index)}
-                onFocus={() => this.handleActive(index)}
-                onMouseLeave={() => this.handleLeave()}
-                onBlur={() => this.handleLeave()}
+                onMouseOver={() => this.handleActiveLink(index)}
+                onFocus={() => this.handleActiveLink(index)}
+                onMouseLeave={() => this.handleLeaveLink()}
+                onBlur={() => this.handleLeaveLink()}
               >
                 {project.title}
               </Link>
