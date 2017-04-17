@@ -33,7 +33,7 @@ exports.modifyWebpackConfig = function (config, stage) {
     test: /\.(jpe?g|png|gif|svg)(\?.*)?$/i,
     loaders: [
       'file?name=[path][name].[ext]',
-      'image-webpack-loader?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}', // eslint-disable-line
+      'image-webpack-loader?{ progressive: true, optimizationLevel: 7, interlaced: false, pngquant: { quality: "65-90", speed: 4 }, mozjpeg: { quality: 65 } }', // eslint-disable-line
     ],
   })
 
