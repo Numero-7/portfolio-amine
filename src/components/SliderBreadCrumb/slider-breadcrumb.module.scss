@@ -1,0 +1,44 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+.root {
+  position: absolute;
+  bottom: 5em;
+}
+
+.list {
+  display: flex;
+}
+
+.item {
+  &:not(:last-child) {
+    margin-right: 90px;
+  }
+}
+
+.number {
+  font: $root-font-size $sans-serif-font-stack;
+  color: $light-grey;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  outline: none;
+
+  &::after {
+    display: block;
+    width: 15px;
+    height: 2px;
+    margin: 6px auto 0;
+    background: $light-grey;
+    content: '';
+  }
+
+  &.active {
+    color: $grey;
+
+    &::after {
+      background: $grey;
+    }
+  }
+}
