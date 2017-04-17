@@ -17,7 +17,6 @@ class ProjectsGrid extends Component {
 
   handleActive (index) {
     const activeProject = this.props.projects[index]
-
     this.setState({ activeProject, showBackground: true })
   }
 
