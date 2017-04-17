@@ -13,7 +13,8 @@ images:
   - /static/images/universite-de-montreal/universite-de-montreal-7.jpg
   - /static/images/universite-de-montreal/universite-de-montreal-8.jpg
   - /static/images/universite-de-montreal/universite-de-montreal-9.jpg
-thumbnail: /static/images/universite-de-montreal/universite-de-montreal-intro.png
+cover: /static/images/universite-de-montreal/universite-de-montreal-cover.png
+intro: /static/images/universite-de-montreal/universite-de-montreal-intro.png
 description: I was in charge of the UX/UI design, along with Cédrick Lachot, of a conference website for the university of Montreal.
 type: Website
 role:

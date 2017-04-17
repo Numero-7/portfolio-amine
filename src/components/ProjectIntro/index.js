@@ -6,7 +6,7 @@ import styles from './project-intro.module.scss'
 
 const ProjectIntro = ({ project }) => (
   <section
-    style={{ backgroundImage: `url(${prefixLink(project.thumbnail)})` }}
+    style={{ backgroundImage: `url(${prefixLink(project.intro)})` }}
     className={styles.root}
   >
 

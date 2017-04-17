@@ -4,13 +4,11 @@ import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
 
 const SliderCover = ({ project }) => {
-  const { shortTitle, type, title } = project
+  const { shortTitle, type, title, path } = project
 
   return (
-
     <div>
       <div className={styles.rectangle}>
-
         <h1 className={styles.title}>{shortTitle}</h1>
 
         <div className={styles.projectInfo}>
@@ -32,15 +30,15 @@ const SliderCover = ({ project }) => {
             points="0.5,208.5 0.5,318.5 721.5,318.5 721.5,0.5 0.5,0.5 0.5,110.5 "
           />
         </svg>
-
       </div>
 
       <div className={styles.buttonWrapper}>
-        <SwagButton text="View project" href={prefixLink('/project/anna-le-film')} />
+        <SwagButton
+          href={prefixLink(path)}
+          text="View project"
+        />
       </div>
-
     </div>
-
   )
 }
 
