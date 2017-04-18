@@ -16,19 +16,14 @@ const SliderCover = ({ project }) => {
           <span className={styles.projectName}>{title}</span>
         </div>
 
-        <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 724 324"
-        >
-          <polyline
-            className={styles.grey}
-            points="0.5,208.5 0.5,318.5 721.5,318.5 721.5,0.5 0.5,0.5 0.5,110.5 "
-          />
-          <polyline
-            className={styles.white}
-            points="0.5,208.5 0.5,318.5 721.5,318.5 721.5,0.5 0.5,0.5 0.5,110.5 "
-          />
+        <svg className={styles.svg}>
+          {['grey', 'white'].map(lineColor => (
+            <polyline
+              key={lineColor}
+              className={styles[lineColor]}
+              points="1,208 1,318 721,318 721,1 1,1 1,110"
+            />
+          ))}
         </svg>
       </div>
 

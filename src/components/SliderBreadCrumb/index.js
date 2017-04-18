@@ -6,7 +6,10 @@ const SliderBreadCrumb = ({ projectsData, handleProjectSwitch, currentIndex }) =
 
     <ul className={styles.list}>
       {projectsData.map((project, index) => (
-        <li className={styles.item}>
+        <li
+          key={project.shortTitle}
+          className={styles.item}
+        >
           <div>
             <button
               className={`${styles.number} ${currentIndex === index ? styles.active : ''}`}
