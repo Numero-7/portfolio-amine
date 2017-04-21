@@ -62,8 +62,8 @@ $item-offset: 10%;
   opacity: 0.2;
   transition: opacity 1s;
 
-  &:focus,
-  &:hover {
+  &:hover,
+  &:focus {
     opacity: 1;
   }
 }

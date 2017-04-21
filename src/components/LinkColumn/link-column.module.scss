@@ -31,9 +31,48 @@ $border: 2px solid $contrast-grey;
 }
 
 /**
+ * 1. Positioning context for after element.
+ */
+.verticalText {
+  position: relative; /* 1 */
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentcolor;
+    content: '';
+    transition: width 500ms ease-in-out;
+  }
+}
+
+.icon {
+  stroke: rgba($white, 0.3);
+  stroke-width: 1;
+  transition: stroke 350ms ease-in-out;
+}
+
+// sass-lint:disable force-pseudo-nesting
+.link:hover,
+.link:focus {
+  .verticalText::after {
+    width: 100%;
+  }
+
+  .icon {
+    stroke: $white;
+  }
+}
+// sass-lint:enable force-pseudo-nesting
+
+
+/**
  * 1. Makes the whole column clickable.
  */
 .link {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,6 +80,6 @@ $border: 2px solid $contrast-grey;
   font-family: $serif-font-stack;
   font-size: $big-font-size;
   color: $white;
-  text-decoration: underline;
+  text-decoration: none;
   white-space: nowrap;
 }

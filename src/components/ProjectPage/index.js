@@ -56,6 +56,7 @@ class ProjectPage extends Component {
         </Waypoint>
 
         <LinkColumn
+          icon={true}
           text="All projects."
           href={prefixLink('/projects/')}
           pull="right"
