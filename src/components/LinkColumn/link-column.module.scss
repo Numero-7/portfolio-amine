@@ -48,11 +48,21 @@ $border: 2px solid $contrast-grey;
   }
 }
 
+.icon {
+  stroke: rgba($white, 0.3);
+  stroke-width: 1;
+  transition: stroke 350ms ease-in-out;
+}
+
 // sass-lint:disable force-pseudo-nesting
 .link:hover,
 .link:focus {
   .verticalText::after {
     width: 100%;
+  }
+
+  .icon {
+    stroke: $white;
   }
 }
 // sass-lint:enable force-pseudo-nesting
