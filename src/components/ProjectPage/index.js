@@ -19,8 +19,8 @@ class ProjectPage extends Component {
     this.state = { hideScrollIndicator: false }
   }
 
-  handleScrollIndicator (e) {
-    this.setState({ hideScrollIndicator: e.currentPosition === 'inside' })
+  handleScrollIndicator ({ currentPosition }) {
+    this.setState({ hideScrollIndicator: currentPosition === 'inside' })
   }
 
   render () {
@@ -46,7 +46,6 @@ class ProjectPage extends Component {
         ))}
 
         <Waypoint
-          scrollableAncestor={window}
           onEnter={e => this.handleScrollIndicator(e)}
           onLeave={e => this.handleScrollIndicator(e)}
         >

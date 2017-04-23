@@ -20,7 +20,6 @@ class ProjectImage extends Component {
 
     return (
       <Waypoint
-        scrollableAncestor={window}
         bottomOffset="15%"
         onEnter={() => this.setState({ visible: true })}
       >
