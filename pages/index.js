@@ -15,11 +15,18 @@ class Index extends Component {
     this.animationTime = 2000
   }
 
+  componentWillAppear (callback) {
+    // INITIAL RENDER ANIMATION GOES HERE
+    callback(this) // (this = temporarily ignore eslint)
+  }
+
   componentWillEnter (callback) {
+    // SUBSEQUENT ENTER ANIMATIONS GO HERE
     setTimeout(callback, this.animationTime)
   }
 
   componentWillLeave (callback) {
+    // LEAVE ANIMATION GOES HERE
     setTimeout(callback, this.animationTime)
   }
 

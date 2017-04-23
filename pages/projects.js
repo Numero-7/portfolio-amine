@@ -20,7 +20,13 @@ class Projects extends Component {
     this.projectsPageZIndex = parseInt(projectsPageZIndex, 10)
   }
 
+  componentWillAppear (callback) {
+    // INITIAL RENDER ANIMATION GOES HERE
+    callback(this) // (this = temporarily ignore eslint)
+  }
+
   componentWillEnter (callback) {
+    // SUBSEQUENT ENTER ANIMATIONS GO HERE
     if (this.props.previousPath === '/about/') {
       callback()
     } else {
@@ -34,6 +40,7 @@ class Projects extends Component {
   }
 
   componentWillLeave (callback) {
+    // LEAVE ANIMATION GOES HERE
     if (this.aboutClicked) {
       setTimeout(callback, this.animationTime * 1000)
     } else {

@@ -49,24 +49,26 @@ class Template extends Component {
         {!hideHeader && assetsReady && <Header showCloseButton={isProjectPage(childrenPage)} />}
 
         <Container>
-          <TransitionGroup component="div">
-            {(assetsReady || skipLoader)
-              ? (
-                passDataToChildren(children, {
-                  projectsData,
-                  previousPath,
-                  // Add a unique key on the children so that TransitionGroup works.
-                  key: childrenPage.path
-                })
-              )
-              : (
-                <Loader
-                  assets={getPagesAssets(route.pages)}
-                  onReady={() => this.setState({ assetsReady: true })}
-                />
-              )
-            }
-          </TransitionGroup>
+          {(assetsReady || skipLoader)
+            ? (
+              <TransitionGroup component="div">
+                {(
+                  passDataToChildren(children, {
+                    projectsData,
+                    previousPath,
+                    // Add a unique key on the children page so that TransitionGroup works.
+                    key: childrenPage.path
+                  })
+                )}
+              </TransitionGroup>
+            )
+            : (
+              <Loader
+                assets={getPagesAssets(route.pages)}
+                onReady={() => this.setState({ assetsReady: true })}
+              />
+            )
+          }
         </Container>
       </div>
     )

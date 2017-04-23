@@ -19,7 +19,13 @@ class About extends Component {
     this.aboutPageZIndex = parseInt(aboutPageZIndex, 10)
   }
 
+  componentWillAppear (callback) {
+    // INITIAL RENDER ANIMATION GOES HERE
+    callback(this) // (this = temporarily ignore eslint)
+  }
+
   componentWillEnter (callback) {
+    // SUBSEQUENT ENTER ANIMATIONS GO HERE
     const { previousPath } = this.props
     const initialPosition = (
       previousPath === '/projects/'
@@ -36,6 +42,7 @@ class About extends Component {
   }
 
   componentWillLeave (callback) {
+    // LEAVE ANIMATION GOES HERE
     const { previousPath } = this.props
     const initialPosition = (
       previousPath === '/projects/'
