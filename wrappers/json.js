@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import ProjectPage from '../src/components/ProjectPage'
 
-const Markdown = ({ route, projectsData }) => {
+const JSONWrapper = ({ route, projectsData }) => {
   const project = route.page.data
 
   return (
@@ -12,10 +12,9 @@ const Markdown = ({ route, projectsData }) => {
   )
 }
 
-Markdown.propTypes = {
+JSONWrapper.propTypes = {
   route: PropTypes.object.isRequired,
   projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-module.exports = Markdown
-
+module.exports = JSONWrapper
