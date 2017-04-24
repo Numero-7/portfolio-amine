@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
+import { config } from 'config'
 
 const BUILD_TIME = new Date().getTime()
 
@@ -32,12 +33,16 @@ const HTML = ({ body }) => {
       <head>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
+
         {head.title.toComponent()}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={config.siteURL} />
+        <meta property="og:image" content={`${config.siteURL}/static/images/og-image.png`} />
         {head.meta.toComponent()}
+        <link rel="canonical" href={config.siteURL} />
+        <link rel="icon" href={prefixLink('/static/images/favicon.ico')} />
+
         <script
           dangerouslySetInnerHTML={{
             __html: require('!raw!./src/utils/browser/load-fonts.js') // eslint-disable-line global-require
