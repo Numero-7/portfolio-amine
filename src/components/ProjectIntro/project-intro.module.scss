@@ -4,9 +4,6 @@
 
 $project-title-letter-spacing: 18px;
 
-/*
-* 1. Magic number to only have the left side of the picture showing
-*/
 .root {
   position: relative;
   display: flex;
@@ -14,7 +11,7 @@ $project-title-letter-spacing: 18px;
   flex-direction: column;
   justify-content: center;
   height: calc(100vh - #{$header-padding});
-  background-position: 200% center; /* 1 */
+  background-position: 100% center;
   background-repeat: no-repeat;
   background-size: auto 80%;
 }

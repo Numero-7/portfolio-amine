@@ -1,0 +1,79 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+$grey-stroke: rgb(56, 56, 56);
+$gradient-dark-grey: rgb(19, 19, 19);
+$gradient-light-grey: rgb(32, 32, 32);
+$title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-light-grey 100%);
+$rectangle-width: 724px;
+$rectangle-height: 324px;
+
+.rectangle {
+  position: relative;
+  width: $rectangle-width;
+  height: $rectangle-height;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  position: absolute;
+  top: -0.85em;
+  left: 50%;
+  font: 700% $sans-serif-title-font-stack;
+  color: $gradient-light-grey;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+
+  @supports(-webkit-background-clip: text) { // sass-lint:disable-line no-vendor-prefixes
+    color: transparent;
+    background-image: $title-gradient;
+    -webkit-background-clip: text; // sass-lint:disable-line no-vendor-prefixes
+  }
+}
+
+.projectInfo {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.projectType {
+  display: block;
+  font-size: 80%;
+  letter-spacing: 0.5px;
+  color: $light-grey;
+}
+
+.projectName {
+  font: 130% $serif-font-stack;
+  letter-spacing: 2px;
+  color: $white;
+}
+
+/**
+ * 1. Fixes rendering bug on IE/Edge
+ */
+.grey,
+.white {
+  fill: none;
+  stroke-width: 2px;
+  shape-rendering: crispEdges; /* 1 */
+}
+
+.grey {
+  stroke: $grey-stroke;
+}
+
+.white {
+  //stroke: $white;
+}
+
+.buttonWrapper {
+  margin-top: 4em;
+  text-align: center;
+}

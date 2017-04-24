@@ -17,7 +17,6 @@ class ProjectsGrid extends Component {
 
   handleActive (index) {
     const activeProject = this.props.projects[index]
-
     this.setState({ activeProject, showBackground: true })
   }
 
@@ -32,7 +31,7 @@ class ProjectsGrid extends Component {
     return (
       <div className={styles.root}>
         <div
-          style={{ backgroundImage: `url(${activeProject.thumbnail})` }}
+          style={{ backgroundImage: `url(${activeProject.cover})` }}
           className={`${styles.background} ${showBackground ? styles.active : ''}`}
         />
 

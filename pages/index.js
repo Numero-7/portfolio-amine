@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import LinkColumn from 'src/components/LinkColumn'
-import SwagButton from 'src/components/SwagButton'
+import Slider from 'src/components/Slider'
 
 const Index = ({ projectsData }) => (
   <div>
@@ -11,16 +10,7 @@ const Index = ({ projectsData }) => (
       text="About me."
     />
 
-    <h1>Home</h1>
-    <SwagButton text="Swag button" />
-
-    {projectsData.map(project => (
-      <div>
-        <Link to={prefixLink(project.path)}>
-          {project.title}
-        </Link>
-      </div>
-    ))}
+    <Slider projectsData={projectsData} />
 
     <LinkColumn
       href={prefixLink('/projects/')}
