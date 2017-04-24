@@ -19,6 +19,24 @@ class ProjectPage extends Component {
     this.state = { hideScrollIndicator: false }
   }
 
+  componentWillAppear (callback) {
+    // INITIAL RENDER ANIMATION GOES HERE
+    callback(this) // (this = temporarily ignore eslint)
+  }
+
+  componentWillEnter (callback) {
+    // SUBSEQUENT ENTER ANIMATIONS GO HERE
+    // Scroll back to the top of the page when the component appears. This fixes a problem when
+    // switching project using the grid at the bottom of the page.
+    this.root.base.scrollIntoView(true)
+    callback()
+  }
+
+  componentWillLeave (callback) {
+    // LEAVE ANIMATION GOES HERE
+    callback(this) // (this = temporarily ignore eslint)
+  }
+
   handleScrollIndicator ({ currentPosition }) {
     this.setState({ hideScrollIndicator: currentPosition === 'inside' })
   }
@@ -28,7 +46,7 @@ class ProjectPage extends Component {
     const { project, projectsData } = this.props
 
     return (
-      <StretchedContainer>
+      <StretchedContainer ref={(component) => { this.root = component }}>
         <LinkColumn
           text="About me."
           href={prefixLink('/about/')}
