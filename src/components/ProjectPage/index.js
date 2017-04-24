@@ -38,12 +38,14 @@ class ProjectPage extends Component {
         <ScrollIndicator hidden={hideScrollIndicator} />
 
         <ProjectIntro project={project} />
-        {project.images.map(link => (
-          <ProjectImage
-            src={link}
-            title={project.title}
-          />
-        ))}
+        <section>
+          {project.images.map(link => (
+            <ProjectImage
+              src={link}
+              title={project.title}
+            />
+          ))}
+        </section>
 
         <Waypoint
           onEnter={e => this.handleScrollIndicator(e)}

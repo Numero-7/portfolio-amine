@@ -9,9 +9,7 @@ const ProjectIntro = ({ project }) => (
     style={{ backgroundImage: `url(${prefixLink(project.intro)})` }}
     className={styles.root}
   >
-
     <div>
-
       <span className={styles.number}>
         {project.order < 10
           ? `0${project.order}`
@@ -32,11 +30,9 @@ const ProjectIntro = ({ project }) => (
       </div>
 
       <div className={styles.buttonWrapper}>
-        <SwagButton text="view website" />
+        <SwagButton text="View website" />
       </div>
-
     </div>
-
   </section>
 )
 

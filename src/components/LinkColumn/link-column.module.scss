@@ -49,9 +49,9 @@ $border: 2px solid $contrast-grey;
 }
 
 .icon {
+  transition: stroke 350ms ease-in-out;
   stroke: rgba($white, 0.3);
   stroke-width: 1;
-  transition: stroke 350ms ease-in-out;
 }
 
 // sass-lint:disable force-pseudo-nesting

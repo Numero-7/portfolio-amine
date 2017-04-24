@@ -9,10 +9,10 @@
  */
 .root {
   position: relative; /* 1 */
+  z-index: 1; /* 2 */
   height: calc(100vh - #{$header-padding});
   max-width: 980px;
   max-height: 790px;
-  z-index: 1; /* 2 */
   padding: 0 3em;
   margin: 0 auto;
 }
