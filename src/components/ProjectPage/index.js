@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import { prefixLink } from 'gatsby-helpers'
+import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
+import { prefixLink } from 'gatsby-helpers'
+import getPageTitle from 'src/utils/get-page-title'
+import getCurrentURL from 'src/utils/get-current-url'
 import LinkColumn from '../LinkColumn'
 import ScrollIndicator from '../ScrollIndicator'
 import ProjectIntro from '../ProjectIntro'
@@ -10,6 +13,7 @@ import StretchedContainer from '../StretchedContainer'
 
 class ProjectPage extends Component {
   static propTypes = {
+    route: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
@@ -43,10 +47,25 @@ class ProjectPage extends Component {
 
   render () {
     const { hideScrollIndicator } = this.state
-    const { project, projectsData } = this.props
+    const { route, project, projectsData } = this.props
+    const currentURL = getCurrentURL(route)
+    const pageTitle = getPageTitle(project.title)
 
     return (
       <StretchedContainer ref={(component) => { this.root = component }}>
+        <Helmet
+          title={pageTitle}
+          link={[
+            { rel: 'canonical', href: currentURL }
+          ]}
+          meta={[
+            { name: 'description', content: project.description },
+            { property: 'og:title', content: pageTitle },
+            { property: 'og:description', content: project.description },
+            { property: 'og:url', content: currentURL }
+          ]}
+        />
+
         <LinkColumn
           text="About me."
           href={prefixLink('/about/')}

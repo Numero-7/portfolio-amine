@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react'
+import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
+import getPageTitle from 'src/utils/get-page-title'
+import getCurrentURL from 'src/utils/get-current-url'
 import ZIndexLayer from 'src/components/ZIndexLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
@@ -9,6 +12,7 @@ import { contentPadding, aboutPageZIndex } from 'src/sass/variables/exports.modu
 
 class About extends Component {
   static propTypes = {
+    route: PropTypes.object.isRequired,
     previousPath: PropTypes.string.isRequired
   }
 
@@ -59,14 +63,27 @@ class About extends Component {
   }
 
   render () {
-    const { previousPath } = this.props
+    const { route, previousPath } = this.props
     const columnPosition = (previousPath === '/projects/' ? 'left' : 'right')
+    const currentURL = getCurrentURL(route)
+    const pageTitle = getPageTitle('About')
 
     return (
       <ZIndexLayer
         ref={(component) => { this.root = component }}
         zIndex={this.aboutPageZIndex}
       >
+        <Helmet
+          title={pageTitle}
+          link={[
+            { rel: 'canonical', href: currentURL }
+          ]}
+          meta={[
+            { property: 'og:title', content: pageTitle },
+            { property: 'og:url', content: currentURL }
+          ]}
+        />
+
         <StretchedContainer
           pushed={false}
           paddingSide={columnPosition}

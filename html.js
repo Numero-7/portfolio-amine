@@ -37,11 +37,10 @@ const HTML = ({ body }) => {
 
         {head.title.toComponent()}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={config.siteURL} />
         <meta property="og:image" content={`${config.siteURL}/static/images/og-image.png`} />
         {head.meta.toComponent()}
-        <link rel="canonical" href={config.siteURL} />
         <link rel="icon" href={prefixLink('/static/images/favicon.ico')} />
+        {head.link.toComponent()}
 
         <script
           dangerouslySetInnerHTML={{

@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import TransitionGroup from 'preact-transition-group'
 import Helmet from 'react-helmet'
+import TransitionGroup from 'preact-transition-group'
+import { config } from 'config'
 import getPageTitle from 'src/utils/get-page-title'
+import getCurrentURL from 'src/utils/get-current-url'
 import getChildrenPage from 'src/utils/get-children-page'
 import getPagesAssets from 'src/utils/get-pages-assets'
 import getProjectsData from 'src/utils/get-projects-data'
@@ -41,11 +43,23 @@ class Template extends Component {
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
     const { skipLoader, hideHeader } = childrenPage.data
+    const currentURL = getCurrentURL(route)
+    const pageTitle = getPageTitle()
 
     return (
       <div>
-        <Helmet title={getPageTitle()} />
-
+        <Helmet
+          title={pageTitle}
+          link={[
+            { rel: 'canonical', href: currentURL }
+          ]}
+          meta={[
+            { name: 'description', content: config.siteDescription },
+            { property: 'og:title', content: pageTitle },
+            { property: 'og:description', content: config.siteDescription },
+            { property: 'og:url', content: currentURL }
+          ]}
+        />
         {!hideHeader && assetsReady && <Header showCloseButton={isProjectPage(childrenPage)} />}
 
         <Container>
