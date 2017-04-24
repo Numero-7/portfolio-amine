@@ -7,12 +7,21 @@ const BUILD_TIME = new Date().getTime()
 const HTML = ({ body }) => {
   const head = Helmet.rewind()
   let css
+  let js
 
   if (process.env.NODE_ENV === 'production') {
     css = (
       <style
         dangerouslySetInnerHTML={{
           __html: require('!raw!./public/styles.css') // eslint-disable-line global-require
+        }}
+      />
+    )
+
+    js = (
+      <script
+        dangerouslySetInnerHTML={{
+          __html: require('!raw!./src/utils/browser/google-analytics.js') // eslint-disable-line global-require
         }}
       />
     )
@@ -43,7 +52,9 @@ const HTML = ({ body }) => {
             __html: body
           }}
         />
+
         <script src={prefixLink(`/bundle.js?t=${BUILD_TIME}`)} />
+        {js}
       </body>
     </html>
   )
