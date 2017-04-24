@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
-import SwagButton from 'src/components/SwagButton'
+import Slider from 'src/components/Slider'
 
 class Index extends Component {
   static propTypes = {
@@ -40,20 +39,12 @@ class Index extends Component {
           text="About me."
         />
 
-        <h1>Home</h1>
-        <SwagButton text="Swag button" />
-
-        {projectsData.map(project => (
-          <div>
-            <Link to={prefixLink(project.path)}>
-              {project.title}
-            </Link>
-          </div>
-        ))}
+        <Slider projectsData={projectsData} />
 
         <LinkColumn
           href={prefixLink('/projects/')}
-          text="All projects"
+          icon={true}
+          text="All projects."
           pull="right"
         />
       </StretchedContainer>
