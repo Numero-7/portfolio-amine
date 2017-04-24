@@ -1,7 +1,10 @@
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 
-$grey-stroke: #383838;
+$grey-stroke: rgb(56, 56, 56);
+$gradient-dark-grey: rgb(19, 19, 19);
+$gradient-light-grey: rgb(32, 32, 32);
+$title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-light-grey 100%);
 $rectangle-width: 724px;
 $rectangle-height: 324px;
 
@@ -18,14 +21,18 @@ $rectangle-height: 324px;
 
 .title {
   position: absolute;
-  top: -0.86em;
+  top: -0.85em;
   left: 50%;
   font: 700% $sans-serif-title-font-stack;
-  color: transparent;
+  color: $gradient-light-grey;
   text-transform: uppercase;
-  background-image: linear-gradient(to right, rgba(19, 19, 19, 1) 0%, rgba(32, 32, 32, 1) 100%);
   transform: translateX(-50%);
-  -webkit-background-clip: text; // sass-lint:disable-line no-vendor-prefixes
+
+  @supports(-webkit-background-clip: text) { // sass-lint:disable-line no-vendor-prefixes
+    color: transparent;
+    background-image: $title-gradient;
+    -webkit-background-clip: text; // sass-lint:disable-line no-vendor-prefixes
+  }
 }
 
 .projectInfo {
