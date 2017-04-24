@@ -39,6 +39,7 @@ $rectangle-height: 324px;
   position: absolute;
   top: 50%;
   left: 0;
+  text-align: left;
   transform: translateY(-50%);
 }
 
@@ -70,7 +71,7 @@ $rectangle-height: 324px;
 }
 
 .white {
-  //stroke: $white;
+  // stroke: $white;
 }
 
 .buttonWrapper {

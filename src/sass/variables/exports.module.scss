@@ -1,0 +1,8 @@
+@import './layout';
+
+// Export z-index values so that we can access them in the different pages.
+:export {
+  contentPadding: $content-padding;
+  aboutPageZIndex: 10;
+  projectsPageZIndex: 5;
+}

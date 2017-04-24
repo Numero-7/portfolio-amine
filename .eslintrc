@@ -57,12 +57,15 @@
             "state",
             "getChildContext",
             "componentWillMount",
+            "componentWillAppear",
+            "componentWillEnter",
             "componentDidMount",
             "componentWillReceiveProps",
             "shouldComponentUpdate",
             "componentWillUpdate",
             "componentDidUpdate",
-            "componentWillUnmount"
+            "componentWillUnmount",
+            "componentWillLeave"
           ]
         }
       }

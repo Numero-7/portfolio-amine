@@ -5,9 +5,11 @@
 
 /**
  * 1. Positioning context for background element.
+ * 2. Force new stacking context for the background-image.
  */
 .root {
   position: relative; /* 1 */
+  z-index: 1; /* 2 */
   height: calc(100vh - #{$header-padding});
   max-width: 980px;
   max-height: 790px;

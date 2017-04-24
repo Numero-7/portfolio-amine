@@ -34,7 +34,7 @@ const LinkColumn = ({ text, href, pull, icon }) => (
 
 LinkColumn.propTypes = {
   text: PropTypes.string,
-  icon: PropTypes.node,
+  icon: PropTypes.bool,
   href: PropTypes.string.isRequired,
   pull: PropTypes.oneOf(['right', 'left'])
 }
@@ -42,7 +42,7 @@ LinkColumn.propTypes = {
 LinkColumn.defaultProps = {
   pull: 'left',
   text: '',
-  icon: null
+  icon: false
 }
 
 export default LinkColumn

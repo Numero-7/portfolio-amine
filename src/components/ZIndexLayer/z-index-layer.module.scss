@@ -1,0 +1,6 @@
+/**
+ * 1. Relative positioning is needed for a `z-index` value to take effect.
+ */
+.root {
+  position: relative; /* 1 */
+}

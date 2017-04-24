@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import TransitionGroup from 'preact-transition-group'
 import Helmet from 'react-helmet'
 import getPageTitle from 'src/utils/get-page-title'
 import getChildrenPage from 'src/utils/get-children-page'
@@ -25,8 +26,8 @@ class Template extends Component {
     super(props)
     this.state = {
       assetsReady: false,
-      previousPath: '',
-      projectsData: getProjectsData(props.route.pages)
+      projectsData: getProjectsData(props.route.pages),
+      previousPath: ''
     }
   }
 
@@ -36,34 +37,38 @@ class Template extends Component {
   }
 
   render () {
-    const { previousPath, assetsReady, projectsData } = this.state
+    const { assetsReady, projectsData, previousPath } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
-    const { skipLoader, needsRootData, hideHeader } = childrenPage.data
-
-    const content = needsRootData
-      ? passDataToChildren(children, { previousPath, projectsData })
-      : children
-    const loader = (
-      <Loader
-        assets={getPagesAssets(route.pages)}
-        onReady={() => this.setState({ assetsReady: true })}
-      />
-    )
+    const { skipLoader, hideHeader } = childrenPage.data
 
     return (
       <div>
         <Helmet title={getPageTitle()} />
 
-        {!hideHeader && assetsReady && (
-          <Header
-            showCloseButton={isProjectPage(childrenPage)}
-            previousPath={previousPath}
-          />
-        )}
+        {!hideHeader && assetsReady && <Header showCloseButton={isProjectPage(childrenPage)} />}
 
         <Container>
-          {(assetsReady || skipLoader) ? content : loader}
+          {(assetsReady || skipLoader)
+            ? (
+              <TransitionGroup component="div">
+                {(
+                  passDataToChildren(children, {
+                    projectsData,
+                    previousPath,
+                    // Add a unique key on the children page so that TransitionGroup works.
+                    key: childrenPage.path
+                  })
+                )}
+              </TransitionGroup>
+            )
+            : (
+              <Loader
+                assets={getPagesAssets(route.pages)}
+                onReady={() => this.setState({ assetsReady: true })}
+              />
+            )
+          }
         </Container>
       </div>
     )
