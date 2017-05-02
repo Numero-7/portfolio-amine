@@ -16,6 +16,11 @@ const SliderCover = ({ project }) => {
           <span className={styles.projectName}>{title}</span>
         </div>
 
+        <div
+          className={styles.projectImage}
+          style={{ backgroundImage: `url(${project.cover})` }}
+        />
+
         <svg className={styles.svg}>
           {['grey', 'white'].map(lineColor => (
             <polyline

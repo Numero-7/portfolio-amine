@@ -10,6 +10,7 @@ $rectangle-height: 324px;
 
 .rectangle {
   position: relative;
+  z-index: 1;
   width: $rectangle-width;
   height: $rectangle-height;
 }
@@ -41,6 +42,18 @@ $rectangle-height: 324px;
   left: 0;
   text-align: left;
   transform: translateY(-50%);
+}
+
+.projectImage {
+  position: absolute;
+  z-index: -1;
+  top:0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 100%;
+  //background-image: url("pages/static/images/anna/anna-cover.png");
+  background-size: cover;
 }
 
 .projectType {

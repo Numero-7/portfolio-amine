@@ -26,6 +26,11 @@ const SliderBreadCrumb = ({ projectsData, handleProjectSwitch, currentIndex }) =
             >
               {getLabel(currentIndex, index, project.title, project.order)}
             </button>
+
+            <div
+              className={`${styles.projectThumbnail} ${currentIndex === index ? styles.activeThumbnail : ''}`}
+              style={{ backgroundImage: `url(${project.cover})` }}
+            />
           </div>
         </li>
       ))}

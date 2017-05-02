@@ -3,7 +3,7 @@
 
 .root {
   position: absolute;
-  bottom: 5em;
+  bottom: 0;
 }
 
 .list {
@@ -42,4 +42,16 @@
       background: $grey;
     }
   }
+}
+
+.projectThumbnail {
+  width: 200px;
+  height: 95px;
+  margin-top: 14px;
+  background-size: cover;
+  display: none;
+}
+
+.activeThumbnail {
+  display: block;
 }
