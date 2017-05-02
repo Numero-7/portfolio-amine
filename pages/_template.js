@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import TransitionGroup from 'preact-transition-group'
 import { config } from 'config'
 import getPageTitle from 'src/utils/get-page-title'
-import getCurrentURL from 'src/utils/get-current-url'
+import getAbsoluteURL from 'src/utils/get-absolute-url'
 import getChildrenPage from 'src/utils/get-children-page'
 import getPagesAssets from 'src/utils/get-pages-assets'
 import getProjectsData from 'src/utils/get-projects-data'
@@ -43,7 +43,7 @@ class Template extends Component {
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
     const { skipLoader, hideHeader } = childrenPage.data
-    const currentURL = getCurrentURL(route)
+    const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle()
 
     return (

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { config } from 'config'
+import getAbsoluteURL from 'src/utils/get-absolute-url'
 
 const BUILD_TIME = new Date().getTime()
 
@@ -37,7 +37,7 @@ const HTML = ({ body }) => {
 
         {head.title.toComponent()}
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={`${config.siteURL}/static/images/og-image.png`} />
+        <meta property="og:image" content={getAbsoluteURL('/static/images/og-image.png')} />
         {head.meta.toComponent()}
         <link rel="icon" href={prefixLink('/static/images/favicon.ico')} />
         {head.link.toComponent()}

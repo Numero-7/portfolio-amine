@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
 import getPageTitle from 'src/utils/get-page-title'
-import getCurrentURL from 'src/utils/get-current-url'
+import getAbsoluteURL from 'src/utils/get-absolute-url'
 import ZIndexLayer from 'src/components/ZIndexLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
@@ -65,7 +65,7 @@ class About extends Component {
   render () {
     const { route, previousPath } = this.props
     const columnPosition = (previousPath === '/projects/' ? 'left' : 'right')
-    const currentURL = getCurrentURL(route)
+    const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle('About')
 
     return (

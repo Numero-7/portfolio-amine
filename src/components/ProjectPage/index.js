@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
 import getPageTitle from 'src/utils/get-page-title'
-import getCurrentURL from 'src/utils/get-current-url'
+import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
 import ScrollIndicator from '../ScrollIndicator'
 import ProjectIntro from '../ProjectIntro'
@@ -48,7 +48,7 @@ class ProjectPage extends Component {
   render () {
     const { hideScrollIndicator } = this.state
     const { route, project, projectsData } = this.props
-    const currentURL = getCurrentURL(route)
+    const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle(project.title)
 
     return (
