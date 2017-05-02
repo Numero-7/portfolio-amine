@@ -1,9 +1,11 @@
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
+@import 'src/sass/variables/layout';
 
 .root {
   position: absolute;
   bottom: 0;
+  height: $slider-breadcrumb-height;
 }
 
 .list {
@@ -22,6 +24,7 @@
   background: none;
   border: 0;
   outline: none;
+  transition: color 0.4s;
 
   &::after {
     display: block;
@@ -33,6 +36,7 @@
   }
 
   &.active,
+  &:hover,
   &:focus {
     color: $grey;
 
