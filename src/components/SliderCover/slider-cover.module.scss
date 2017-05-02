@@ -7,6 +7,11 @@ $gradient-light-grey: rgb(32, 32, 32);
 $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-light-grey 100%);
 $rectangle-width: 724px;
 $rectangle-height: 324px;
+$rectangle-perimeter: ($rectangle-width * 2) + ($rectangle-height * 2);
+
+:export {
+  rectanglePerimeter: $rectangle-perimeter;
+}
 
 .rectangle {
   position: relative;
@@ -76,6 +81,7 @@ $rectangle-height: 324px;
 .white {
   fill: none;
   stroke-width: 2px;
+  stroke-dasharray: $rectangle-perimeter;
   shape-rendering: crispEdges; /* 1 */
 }
 

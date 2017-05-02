@@ -10,6 +10,7 @@ class Slider extends Component {
 
   constructor (props) {
     super(props)
+    this.animating = true
     this.state = { currentIndex: 0 }
     this.keyDownListener = e => this.handleKeyDown(e)
     this.mouseWheelListener = e => this.handleMouseWheel(e)
@@ -51,16 +52,19 @@ class Slider extends Component {
   }
 
   handleProjectSwitch (newIndex) {
-    const projectsDataCount = this.props.projectsData.length - 1
-    let index = newIndex
+    if (!this.animating) {
+      const projectsDataCount = this.props.projectsData.length - 1
+      let index = newIndex
 
-    if (index > projectsDataCount) {
-      index = 0
-    } else if (index < 0) {
-      index = projectsDataCount
+      if (index > projectsDataCount) {
+        index = 0
+      } else if (index < 0) {
+        index = projectsDataCount
+      }
+
+      this.animating = true
+      this.setState({ currentIndex: index })
     }
-
-    this.setState({ currentIndex: index })
   }
 
   render () {
@@ -69,10 +73,13 @@ class Slider extends Component {
 
     return (
       <section className={styles.root}>
-        <SliderCover project={projectsData[currentIndex]} />
+        <SliderCover
+          project={projectsData[currentIndex]}
+          onAnimationComplete={(animating) => { this.animating = animating }}
+        />
         <SliderBreadCrumb
           projectsData={projectsData}
-          handleProjectSwitch={index => this.handleProjectSwitch(index)}
+          handleProjectSwitch={newIndex => this.handleProjectSwitch(newIndex)}
           currentIndex={currentIndex}
         />
       </section>

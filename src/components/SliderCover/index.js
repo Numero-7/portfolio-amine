@@ -1,49 +1,101 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
+import { TimelineLite, Power2 } from 'gsap'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
 
-const SliderCover = ({ project }) => {
-  const { shortTitle, type, title, path } = project
+class SliderCover extends Component {
+  static propTypes = {
+    project: PropTypes.object.isRequired,
+    onAnimationComplete: PropTypes.func.isRequired
+  }
 
-  return (
-    <div>
-      <div className={styles.rectangle}>
-        <h1 className={styles.title}>{shortTitle}</h1>
+  constructor (props) {
+    super(props)
+    this.rectangles = {}
+  }
 
-        <div className={styles.projectInfo}>
-          <span className={styles.projectType}>{type}</span>
-          <span className={styles.projectName}>{title}</span>
+  componentDidMount () {
+    this.animate()
+  }
+
+  componentDidUpdate () {
+    this.animate()
+  }
+
+  animate () {
+    const { onAnimationComplete } = this.props
+    const invisible = { autoAlpha: 0 }
+    const visible = { autoAlpha: 1 }
+    const tl = new TimelineLite({
+      onComplete: () => onAnimationComplete(false)
+    })
+
+    tl
+      .fromTo(this.image, 1, invisible, visible)
+      .fromTo(this.info, 1, invisible, visible)
+      .fromTo(
+        this.rectangles.grey,
+        2.5,
+        { strokeDashoffset: `-${styles.rectanglePerimeter}` },
+        { strokeDashoffset: 0, ease: Power2.easeOut }
+      )
+      .fromTo(this.title, 1, invisible, visible)
+      .fromTo(this.button, 1, invisible, visible)
+  }
+
+  render () {
+    const { project } = this.props
+    const { shortTitle, type, title, path } = project
+
+    return (
+      <div>
+        <div className={styles.rectangle}>
+          <h1
+            ref={(component) => { this.title = component }}
+            className={styles.title}
+          >
+            {shortTitle}
+          </h1>
+
+          <div
+            ref={(component) => { this.info = component }}
+            className={styles.projectInfo}
+          >
+            <span className={styles.projectType}>{type}</span>
+            <span className={styles.projectName}>{title}</span>
+          </div>
+
+          <div
+            ref={(component) => { this.image = component }}
+            className={styles.projectImage}
+            style={{ backgroundImage: `url(${project.cover})` }}
+          />
+
+          <svg className={styles.svg}>
+            {['grey', 'white'].map(lineColor => (
+              <polyline
+                ref={(component) => { this.rectangles[lineColor] = component }}
+                key={lineColor}
+                className={styles[lineColor]}
+                points="1,208 1,318 721,318 721,1 1,1 1,110"
+              />
+            ))}
+          </svg>
         </div>
 
         <div
-          className={styles.projectImage}
-          style={{ backgroundImage: `url(${project.cover})` }}
-        />
-
-        <svg className={styles.svg}>
-          {['grey', 'white'].map(lineColor => (
-            <polyline
-              key={lineColor}
-              className={styles[lineColor]}
-              points="1,208 1,318 721,318 721,1 1,1 1,110"
-            />
-          ))}
-        </svg>
+          ref={(component) => { this.button = component }}
+          className={styles.buttonWrapper}
+        >
+          <SwagButton
+            href={prefixLink(path)}
+            text="View project"
+          />
+        </div>
       </div>
-
-      <div className={styles.buttonWrapper}>
-        <SwagButton
-          href={prefixLink(path)}
-          text="View project"
-        />
-      </div>
-    </div>
-  )
-}
-
-SliderCover.propTypes = {
-  project: PropTypes.object.isRequired
+    )
+  }
 }
 
 export default SliderCover
