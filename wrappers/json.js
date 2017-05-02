@@ -31,6 +31,7 @@ class JSONWrapper extends Component {
         ref={(component) => { this.root = component }}
         projectsData={projectsData}
         project={project}
+        {...this.props}
       />
     )
   }
