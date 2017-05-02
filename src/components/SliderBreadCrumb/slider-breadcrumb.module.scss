@@ -3,7 +3,7 @@
 
 .root {
   position: absolute;
-  bottom: 5em;
+  bottom: 0;
 }
 
 .list {
@@ -11,9 +11,7 @@
 }
 
 .item {
-  &:not(:last-child) {
-    margin-right: 90px;
-  }
+  width: 200px;
 }
 
 .number {
@@ -42,4 +40,18 @@
       background: $grey;
     }
   }
+}
+
+.projectThumbnail {
+  width: 0;
+  height: 95px;
+  margin-top: 14px;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.activeThumbnail {
+  width: 100%;
+  opacity: 1;
 }

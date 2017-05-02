@@ -43,6 +43,7 @@ rules:
       contentPadding,
       aboutPageZIndex,
       projectsPageZIndex,
+      projectCoverPerimeter,
       buttonWidth,
       buttonHeight
     ]
