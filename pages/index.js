@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
+import { TweenLite, TimelineLite, Power2 } from 'gsap'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
+import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
 
 class Index extends Component {
   static propTypes = {
@@ -26,7 +28,27 @@ class Index extends Component {
 
   componentWillLeave (callback) {
     // LEAVE ANIMATION GOES HERE
-    setTimeout(callback, this.animationTime)
+    const tl = new TimelineLite({
+      onComplete: callback
+    })
+
+    if (this.projectClicked) {
+      tl.fromTo(
+        this.projectCover,
+        2.5,
+        { strokeDashoffset: `-${projectCoverPerimeter}` },
+        { strokeDashoffset: 0, ease: Power2.easeOut }
+      )
+    }
+  }
+
+  componentDidLeave () {
+    // Always undraw the white rectangle when leaving the page.
+    TweenLite.to(
+      this.projectCover,
+      0,
+      { strokeDashoffset: `-${projectCoverPerimeter}` }
+    )
   }
 
   render () {
@@ -39,7 +61,13 @@ class Index extends Component {
           text="About me."
         />
 
-        <Slider projectsData={projectsData} />
+        <Slider
+          projectsData={projectsData}
+          handleProjectClicked={(projectClicked, projectCover) => {
+            this.projectClicked = projectClicked
+            this.projectCover = projectCover
+          }}
+        />
 
         <LinkColumn
           href={prefixLink('/projects/')}

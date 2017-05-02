@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite, Power2 } from 'gsap'
+import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
 
 class SliderCover extends Component {
   static propTypes = {
     project: PropTypes.object.isRequired,
+    handleProjectClicked: PropTypes.func.isRequired,
     onAnimationComplete: PropTypes.func.isRequired
   }
 
@@ -17,6 +19,10 @@ class SliderCover extends Component {
 
   componentDidMount () {
     this.animate()
+  }
+
+  shouldComponentUpdate (nextProps) {
+    return nextProps.project.title !== this.props.project.title
   }
 
   componentDidUpdate () {
@@ -37,11 +43,18 @@ class SliderCover extends Component {
       .fromTo(
         this.rectangles.grey,
         2.5,
-        { strokeDashoffset: `-${styles.rectanglePerimeter}` },
+        { strokeDashoffset: `-${projectCoverPerimeter}` },
         { strokeDashoffset: 0, ease: Power2.easeOut }
       )
       .fromTo(this.title, 1, invisible, visible)
       .fromTo(this.button, 1, invisible, visible)
+  }
+
+  handleProjectClicked (active) {
+    // Hacky way to detect if the user is leaving the page by clicking on the Swagbutton, used in
+    // the `componentWillLeave` method for the page leave animation.
+    // We simply set a flag depending on if the user hovers/focuses or leaves/blurs the link.
+    this.props.handleProjectClicked(active, this.rectangles.white)
   }
 
   render () {
@@ -87,6 +100,10 @@ class SliderCover extends Component {
         <div
           ref={(component) => { this.button = component }}
           className={styles.buttonWrapper}
+          onMouseOver={() => this.handleProjectClicked(true)}
+          onFocus={() => this.handleProjectClicked(true)}
+          onMouseLeave={() => this.handleProjectClicked(false)}
+          onBlur={() => this.handleProjectClicked(false)}
         >
           <SwagButton
             href={prefixLink(path)}

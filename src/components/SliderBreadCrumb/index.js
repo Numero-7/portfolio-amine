@@ -17,7 +17,7 @@ const SliderBreadCrumb = ({ projectsData, handleProjectSwitch, currentIndex }) =
       {projectsData.map((project, index) => (
         <li
           key={project.shortTitle}
-          className={styles.item}
+          className={`${styles.item} ${currentIndex === index ? styles.active : ''}`}
         >
           <div>
             <button
@@ -28,6 +28,7 @@ const SliderBreadCrumb = ({ projectsData, handleProjectSwitch, currentIndex }) =
             </button>
 
             <div
+              ref={(component) => { this.thumbnail = component }}
               className={`${styles.projectThumbnail} ${currentIndex === index ? styles.activeThumbnail : ''}`}
               style={{ backgroundImage: `url(${project.cover})` }}
             />

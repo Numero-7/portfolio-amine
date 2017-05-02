@@ -1,23 +1,17 @@
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
+@import 'src/sass/variables/layout';
 
 $grey-stroke: rgb(56, 56, 56);
 $gradient-dark-grey: rgb(19, 19, 19);
 $gradient-light-grey: rgb(32, 32, 32);
 $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-light-grey 100%);
-$rectangle-width: 724px;
-$rectangle-height: 324px;
-$rectangle-perimeter: ($rectangle-width * 2) + ($rectangle-height * 2);
-
-:export {
-  rectanglePerimeter: $rectangle-perimeter;
-}
 
 .rectangle {
   position: relative;
   z-index: 1;
-  width: $rectangle-width;
-  height: $rectangle-height;
+  width: $project-cover-width;
+  height: $project-cover-height;
 }
 
 .svg {
@@ -57,7 +51,6 @@ $rectangle-perimeter: ($rectangle-width * 2) + ($rectangle-height * 2);
   transform: translateX(-50%);
   width: 80%;
   height: 100%;
-  //background-image: url("pages/static/images/anna/anna-cover.png");
   background-size: cover;
 }
 
@@ -81,7 +74,7 @@ $rectangle-perimeter: ($rectangle-width * 2) + ($rectangle-height * 2);
 .white {
   fill: none;
   stroke-width: 2px;
-  stroke-dasharray: $rectangle-perimeter;
+  stroke-dasharray: $project-cover-perimeter;
   shape-rendering: crispEdges; /* 1 */
 }
 
@@ -90,7 +83,8 @@ $rectangle-perimeter: ($rectangle-width * 2) + ($rectangle-height * 2);
 }
 
 .white {
-  // stroke: $white;
+  stroke-dashoffset: -$project-cover-perimeter;
+  stroke: $white;
 }
 
 .buttonWrapper {

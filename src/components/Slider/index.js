@@ -76,6 +76,7 @@ class Slider extends Component {
         <SliderCover
           project={projectsData[currentIndex]}
           onAnimationComplete={(animating) => { this.animating = animating }}
+          {...this.props}
         />
         <SliderBreadCrumb
           projectsData={projectsData}
