@@ -45,13 +45,13 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 
 .projectImage {
   position: absolute;
-  z-index: -1;
-  top:0;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  z-index: -1;
   width: 80%;
   height: 100%;
   background-size: cover;
+  transform: translateX(-50%);
 }
 
 .projectType {
