@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import styles from './link-column.module.scss'
 
-const LinkColumn = ({ text, href, pull, icon }) => (
+const LinkColumn = ({ handleClick, text, href, pull, icon }) => (
   <div className={`${styles.root} ${styles[pull]}`}>
     <Link
+      onClick={handleClick}
       className={styles.link}
       to={href}
     >
@@ -33,6 +34,7 @@ const LinkColumn = ({ text, href, pull, icon }) => (
 )
 
 LinkColumn.propTypes = {
+  handleClick: PropTypes.func,
   text: PropTypes.string,
   icon: PropTypes.bool,
   href: PropTypes.string.isRequired,
@@ -40,6 +42,7 @@ LinkColumn.propTypes = {
 }
 
 LinkColumn.defaultProps = {
+  handleClick: () => {},
   pull: 'left',
   text: '',
   icon: false

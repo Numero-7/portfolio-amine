@@ -8,7 +8,7 @@ import styles from './slider-cover.module.scss'
 class SliderCover extends Component {
   static propTypes = {
     project: PropTypes.object.isRequired,
-    handleProjectClicked: PropTypes.func.isRequired,
+    handleProjectLinkClick: PropTypes.func.isRequired,
     onAnimationComplete: PropTypes.func.isRequired
   }
 
@@ -50,15 +50,8 @@ class SliderCover extends Component {
       .fromTo(this.button, 1, invisible, visible)
   }
 
-  handleProjectClicked (active) {
-    // Hacky way to detect if the user is leaving the page by clicking on the Swagbutton, used in
-    // the `componentWillLeave` method for the page leave animation.
-    // We simply set a flag depending on if the user hovers/focuses or leaves/blurs the link.
-    this.props.handleProjectClicked(active, this.rectangles.white)
-  }
-
   render () {
-    const { project } = this.props
+    const { project, handleProjectLinkClick } = this.props
     const { shortTitle, type, title, path } = project
 
     return (
@@ -100,12 +93,9 @@ class SliderCover extends Component {
         <div
           ref={(component) => { this.button = component }}
           className={styles.buttonWrapper}
-          onMouseOver={() => this.handleProjectClicked(true)}
-          onFocus={() => this.handleProjectClicked(true)}
-          onMouseLeave={() => this.handleProjectClicked(false)}
-          onBlur={() => this.handleProjectClicked(false)}
         >
           <SwagButton
+            handleClick={() => { handleProjectLinkClick(this.rectangles.white) }}
             href={prefixLink(path)}
             text="View project"
           />

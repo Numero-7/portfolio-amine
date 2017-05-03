@@ -32,7 +32,7 @@ class Index extends Component {
       onComplete: callback
     })
 
-    if (this.projectClicked) {
+    if (this.projectLinkClicked) {
       tl.fromTo(
         this.projectCover,
         2.5,
@@ -63,8 +63,10 @@ class Index extends Component {
 
         <Slider
           projectsData={projectsData}
-          handleProjectClicked={(projectClicked, projectCover) => {
-            this.projectClicked = projectClicked
+          handleProjectLinkClick={(projectCover) => {
+            this.projectLinkClicked = true
+            // Pass the project cover back to the page so that the leave animation logic is handled
+            // there.
             this.projectCover = projectCover
           }}
         />
