@@ -5,28 +5,36 @@ import styles from './swag-button.module.scss'
 
 class SwagButton extends Component {
   static propTypes = {
+    handleClick: PropTypes.func,
     text: PropTypes.string.isRequired,
     href: PropTypes.string,
     external: PropTypes.bool
   }
 
   static defaultProps = {
+    handleClick: () => {},
     external: false,
     href: '#'
   }
 
   constructor (props) {
     super(props)
-
     this.rectLength =
       `${(parseInt(styles.buttonWidth, 10) * 2) + (parseInt(styles.buttonHeight, 10) * 2)}px`
     this.state = { dashOffset: this.rectLength }
   }
 
   createLinkProps () {
-    const { href, external } = this.props
+    const { handleClick, href, external } = this.props
+    const onActive = () => this.handleActive()
+    const onLeave = () => this.handleLeave()
 
     return ({
+      onClick: handleClick,
+      onMouseOver: onActive,
+      onFocus: onActive,
+      onMouseLeave: onLeave,
+      onBlur: onLeave,
       [external ? 'href' : 'to']: prefixLink(href) || '#',
       target: external ? '_blank' : null,
       rel: external ? 'noopener noreferrer' : null
@@ -49,10 +57,6 @@ class SwagButton extends Component {
       <Link
         className={styles.root}
         {...this.createLinkProps()}
-        onMouseOver={() => this.handleActive()}
-        onFocus={() => this.handleActive()}
-        onMouseLeave={() => this.handleLeave()}
-        onBlur={() => this.handleLeave()}
       >
         <span className={styles.text}>{text}</span>
 

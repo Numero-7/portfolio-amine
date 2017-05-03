@@ -45,7 +45,7 @@ class Projects extends Component {
 
   componentWillLeave (callback) {
     // LEAVE ANIMATION GOES HERE
-    if (this.aboutClicked) {
+    if (this.aboutLinkClicked) {
       setTimeout(callback, this.animationTime * 1000)
     } else {
       TweenLite.fromTo(
@@ -55,13 +55,6 @@ class Projects extends Component {
         { x: parseInt(window.innerWidth, 10) - this.contentPadding, onComplete: callback }
       )
     }
-  }
-
-  handleAboutLink (active) {
-    // Hacky way to detect if the user is leaving the page by clicking on the aboutPage, used in
-    // the `componentWillLeave` method for the page leave animation.
-    // We simply set a flag depending on if the user hovers/focuses or leaves/blurs the about link.
-    this.aboutClicked = active
   }
 
   render () {
@@ -93,18 +86,12 @@ class Projects extends Component {
 
           <ProjectsGrid projects={projectsData} />
 
-          <div
-            onMouseOver={() => this.handleAboutLink(true)}
-            onFocus={() => this.handleAboutLink(true)}
-            onMouseLeave={() => this.handleAboutLink(false)}
-            onBlur={() => this.handleAboutLink(false)}
-          >
-            <LinkColumn
-              text="About me."
-              href={prefixLink('/about/')}
-              pull="right"
-            />
-          </div>
+          <LinkColumn
+            handleClick={() => { this.aboutLinkClicked = true }}
+            text="About me."
+            href={prefixLink('/about/')}
+            pull="right"
+          />
         </StretchedContainer>
       </ZIndexLayer>
     )
