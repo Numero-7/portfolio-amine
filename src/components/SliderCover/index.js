@@ -8,8 +8,7 @@ import styles from './slider-cover.module.scss'
 class SliderCover extends Component {
   static propTypes = {
     project: PropTypes.object.isRequired,
-    handleProjectLinkClick: PropTypes.func.isRequired,
-    onAnimationComplete: PropTypes.func.isRequired
+    handleProjectLinkClick: PropTypes.func.isRequired
   }
 
   constructor (props) {
@@ -18,11 +17,12 @@ class SliderCover extends Component {
   }
 
   componentDidMount () {
+    this.timeline = this.getTimeline()
     this.animate()
   }
 
   shouldComponentUpdate (nextProps) {
-    return nextProps.project.title !== this.props.project.title
+    return (nextProps.project.title !== this.props.project.title)
   }
 
   componentDidUpdate () {
@@ -30,24 +30,29 @@ class SliderCover extends Component {
   }
 
   animate () {
-    const { onAnimationComplete } = this.props
+    this.timeline.restart()
+  }
+
+  getTimeline () {
     const invisible = { autoAlpha: 0 }
     const visible = { autoAlpha: 1 }
-    const tl = new TimelineLite({
-      onComplete: () => onAnimationComplete(false)
-    })
+    // Create the timeline, paused by default, so that we can re-use the same timeline and restart
+    // it everytime we need it.
+    const timeline = new TimelineLite({ paused: true })
 
-    tl
-      .fromTo(this.image, 1, invisible, visible)
-      .fromTo(this.info, 1, invisible, visible)
-      .fromTo(
-        this.rectangles.grey,
-        2.5,
-        { strokeDashoffset: `-${projectCoverPerimeter}` },
-        { strokeDashoffset: 0, ease: Power2.easeOut }
-      )
-      .fromTo(this.title, 1, invisible, visible)
-      .fromTo(this.button, 1, invisible, visible)
+    return (
+      timeline
+        .fromTo(this.image, 1, invisible, visible)
+        .fromTo(this.info, 1, invisible, visible)
+        .fromTo(
+          this.rectangles.grey,
+          2.5,
+          { strokeDashoffset: `-${projectCoverPerimeter}` },
+          { strokeDashoffset: 0, ease: Power2.easeOut }
+        )
+        .fromTo(this.title, 1, invisible, visible)
+        .fromTo(this.button, 1, invisible, visible)
+    )
   }
 
   render () {
@@ -75,7 +80,7 @@ class SliderCover extends Component {
           <div
             ref={(component) => { this.image = component }}
             className={styles.projectImage}
-            style={{ backgroundImage: `url(${project.cover})` }}
+            style={{ backgroundImage: `url(${prefixLink(project.cover)})` }}
           />
 
           <svg className={styles.svg}>

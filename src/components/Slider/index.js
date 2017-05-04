@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import debounce from 'lodash/debounce'
 import SliderCover from '../SliderCover'
 import SliderBreadCrumb from '../SliderBreadCrumb'
 import styles from './slider.module.scss'
@@ -10,7 +11,6 @@ class Slider extends Component {
 
   constructor (props) {
     super(props)
-    this.animating = true
     this.state = { currentIndex: 0 }
     this.keyDownListener = e => this.handleKeyDown(e)
     this.mouseWheelListener = e => this.handleMouseWheel(e)
@@ -51,21 +51,18 @@ class Slider extends Component {
     this.handleProjectSwitch(newIndex)
   }
 
-  handleProjectSwitch (newIndex) {
-    if (!this.animating) {
-      const projectsDataCount = this.props.projectsData.length - 1
-      let index = newIndex
+  handleProjectSwitch = debounce((newIndex) => {
+    const projectsDataCount = this.props.projectsData.length - 1
+    let index = newIndex
 
-      if (index > projectsDataCount) {
-        index = 0
-      } else if (index < 0) {
-        index = projectsDataCount
-      }
-
-      this.animating = true
-      this.setState({ currentIndex: index })
+    if (index > projectsDataCount) {
+      index = 0
+    } else if (index < 0) {
+      index = projectsDataCount
     }
-  }
+
+    this.setState({ currentIndex: index })
+  }, 200)
 
   render () {
     const { currentIndex } = this.state
@@ -75,7 +72,6 @@ class Slider extends Component {
       <section className={styles.root}>
         <SliderCover
           project={projectsData[currentIndex]}
-          onAnimationComplete={(animating) => { this.animating = animating }}
           {...this.props}
         />
         <SliderBreadCrumb
