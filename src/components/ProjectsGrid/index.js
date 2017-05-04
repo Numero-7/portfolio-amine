@@ -31,7 +31,7 @@ class ProjectsGrid extends Component {
     return (
       <div className={styles.root}>
         <div
-          style={{ backgroundImage: `url(${activeProject.cover})` }}
+          style={{ backgroundImage: `url(${prefixLink(activeProject.cover)})` }}
           className={`${styles.background} ${showBackground ? styles.active : ''}`}
         />
 

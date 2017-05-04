@@ -34,7 +34,7 @@ class SliderCover extends Component {
     const invisible = { autoAlpha: 0 }
     const visible = { autoAlpha: 1 }
     const tl = new TimelineLite({
-      onComplete: () => onAnimationComplete(false)
+      onComplete: () => onAnimationComplete()
     })
 
     tl
@@ -75,7 +75,7 @@ class SliderCover extends Component {
           <div
             ref={(component) => { this.image = component }}
             className={styles.projectImage}
-            style={{ backgroundImage: `url(${project.cover})` }}
+            style={{ backgroundImage: `url(${prefixLink(project.cover)})` }}
           />
 
           <svg className={styles.svg}>

@@ -75,7 +75,7 @@ class Slider extends Component {
       <section className={styles.root}>
         <SliderCover
           project={projectsData[currentIndex]}
-          onAnimationComplete={(animating) => { this.animating = animating }}
+          onAnimationComplete={() => { this.animating = false }}
           {...this.props}
         />
         <SliderBreadCrumb
