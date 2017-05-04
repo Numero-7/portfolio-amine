@@ -65,8 +65,8 @@ class Index extends Component {
           projectsData={projectsData}
           handleProjectLinkClick={(projectCover) => {
             this.projectLinkClicked = true
-            // Pass the project cover back to the page so that the leave animation logic is handled
-            // there.
+            // Pass the project cover ref back to the page so that the leave animation logic is
+            // handled there.
             this.projectCover = projectCover
           }}
         />
