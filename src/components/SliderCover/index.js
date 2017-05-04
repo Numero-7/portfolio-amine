@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite, Power2 } from 'gsap'
 import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
+import Smoke from '../Smoke'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
 
@@ -95,6 +96,8 @@ class SliderCover extends Component {
               />
             ))}
           </svg>
+
+          <Smoke />
         </div>
 
         <div
