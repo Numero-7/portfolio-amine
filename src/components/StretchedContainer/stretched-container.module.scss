@@ -9,7 +9,7 @@
 }
 
 .pushed {
-  padding-top: calc(#{$header-top-padding} + #{$header-height});
+  padding-top: calc(#{$header-top-margin} + #{$header-height});
 }
 
 .left {

@@ -52,7 +52,10 @@
   justify-content: center;
 }
 
+/**
+ * 1. Centers properly the text on the page by counteracting the shadow’s position.
+ */
 .topShadowWrapper {
   position: relative;
-  top: 15px;
+  top: $text-shadow-offset; /* 1 */
 }

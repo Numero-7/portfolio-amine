@@ -6,9 +6,9 @@ $breakpoints: (
 );
 
 $content-padding: 50px;
-$header-top-padding: 3em;
+$header-top-margin: 3em;
 $header-height: 45px;
-$header-padding: calc(#{$header-top-padding} + #{$header-height});
+$header-padding: calc(#{$header-top-margin} + #{$header-height});
 $project-cover-width: 724px;
 $project-cover-height: 324px;
 $project-cover-perimeter: ($project-cover-width * 2) + ($project-cover-height * 2);
