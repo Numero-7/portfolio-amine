@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
-import { TimelineLite, Power2 } from 'gsap'
+import { TweenLite, TimelineLite, Power2 } from 'gsap'
 import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
@@ -27,6 +27,19 @@ class SliderCover extends Component {
 
   componentDidUpdate () {
     this.animate()
+  }
+
+  componentWillUnmount () {
+    // Always clear the timeline to avoid multiple timeline running at the same time if coming back
+    // to the page.
+    this.timeline.clear()
+    // Always undraw the white rectangle when unmounting the component. We use TweenLite instead of
+    // manually setting the attribute so that it properly overrides TweenLite’s CSS.
+    TweenLite.to(
+      this.rectangles.white,
+      0,
+      { strokeDashoffset: `-${projectCoverPerimeter}` }
+    )
   }
 
   animate () {
