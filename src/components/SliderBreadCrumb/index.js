@@ -1,16 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import styles from './slider-breadcrumb.module.scss'
 
-const getLabel = (currentIndex, index, title, order) => {
-  let label = title
-
-  if (currentIndex !== index) {
-    label = (order < 10 ? `0${order}` : order)
-  }
-
-  return label
-}
-
 class SliderBreadCrumb extends Component {
   static propTypes = {
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -18,8 +8,25 @@ class SliderBreadCrumb extends Component {
     currentIndex: PropTypes.number.isRequired
   }
 
+  getLabel (index) {
+    const { projectsData, currentIndex } = this.props
+    const { title, order } = projectsData[index]
+    let label = title
+
+    if (currentIndex !== index) {
+      label = (order < 10 ? `0${order}` : order)
+    }
+
+    return label
+  }
+
+  getClassName (index, className, modifier = 'active') {
+    const { currentIndex } = this.props
+    return `${styles[className]} ${currentIndex === index ? styles[modifier] : ''}`
+  }
+
   render () {
-    const { projectsData, handleProjectSwitch, currentIndex } = this.props
+    const { projectsData, handleProjectSwitch } = this.props
 
     return (
       <div className={styles.root}>
@@ -27,19 +34,19 @@ class SliderBreadCrumb extends Component {
           {projectsData.map((project, index) => (
             <li
               key={project.shortTitle}
-              className={`${styles.item} ${currentIndex === index ? styles.active : ''}`}
+              className={this.getClassName(index, 'item')}
             >
               <div>
                 <button
-                  className={`${styles.number} ${currentIndex === index ? styles.active : ''}`}
+                  className={this.getClassName(index, 'number')}
                   onClick={() => handleProjectSwitch(index)}
                 >
-                  {getLabel(currentIndex, index, project.title, project.order)}
+                  {this.getLabel(index)}
                 </button>
 
                 <div
                   ref={(component) => { this.thumbnail = component }}
-                  className={`${styles.projectThumbnail} ${currentIndex === index ? styles.activeThumbnail : ''}`}
+                  className={this.getClassName(index, 'thumbnail', 'visible')}
                   style={{ backgroundImage: `url(${project.cover})` }}
                 />
               </div>

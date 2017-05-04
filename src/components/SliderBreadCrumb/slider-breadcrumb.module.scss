@@ -46,7 +46,7 @@
   }
 }
 
-.projectThumbnail {
+.thumbnail {
   width: 0;
   height: 95px;
   margin-top: 14px;
@@ -55,7 +55,7 @@
   transition: opacity 1s;
 }
 
-.activeThumbnail {
+.visible {
   width: 100%;
   opacity: 1;
 }
