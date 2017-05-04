@@ -1,0 +1,10 @@
+@import 'src/sass/variables/colors';
+@import 'src/sass/variables/typography';
+
+.root {
+  font-family: $serif-font-stack;
+  line-height: 2;
+  letter-spacing: 1px;
+  color: $white;
+  text-align: center;
+}

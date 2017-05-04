@@ -1,5 +1,6 @@
 import React from 'react'
 import TextShadow from '../TextShadow'
+import Text from '../Text'
 import SocialNetworks from '../SocialNetworks'
 import styles from './about-content.module.scss'
 
@@ -9,8 +10,8 @@ const AboutContent = () => (
       <TextShadow text="About" />
     </div>
 
-    <div className={styles.content}>
-      <p>
+    <div className={styles.contentWrapper}>
+      <Text>
         Yo, I’m Amine, a 21 years old French designer and freelancer based in Paris.
         <br />
         I am in 4th year at&nbsp;
@@ -45,7 +46,7 @@ const AboutContent = () => (
         &nbsp;in my spare time.
         <br />
         <span className={styles.gold}>I am looking for a 6-month internship…</span>
-      </p>
+      </Text>
 
       <div className={styles.socialNetworksWrapper}>
         <SocialNetworks />
