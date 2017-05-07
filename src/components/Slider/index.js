@@ -62,7 +62,7 @@ class Slider extends Component {
     }
 
     this.setState({ currentIndex: index })
-  }, 200)
+  }, 350, { leading: true, trailing: false })
 
   render () {
     const { currentIndex } = this.state
