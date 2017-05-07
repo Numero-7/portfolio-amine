@@ -10,8 +10,8 @@ class ProjectsGrid extends Component {
 
   constructor (props) {
     super(props)
-    // Default to first activeProject so that there is always a background-image for the hover
-    // animation.
+    // Default activeProject to the first project so that there is always a background-image for the
+    // hover animation.
     this.state = { activeProject: props.projects[0], showBackground: false }
   }
 

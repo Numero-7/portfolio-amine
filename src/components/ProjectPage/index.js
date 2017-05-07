@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite } from 'gsap'
-import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
+import { HOME_PAGE_LEAVE_DURATION, PAGE_FADE_DURATION } from 'src/values/animations'
 import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
@@ -34,15 +34,11 @@ class ProjectPage extends Component {
   }
 
   componentWillEnter (callback) {
-    // Scroll back to the top of the page when the component appears. This fixes a problem when
-    // switching project using the grid at the bottom of the page.
-    this.root.base.scrollIntoView(true)
-
     const { previousPath } = this.props
     const timeline = new TimelineLite({ onComplete: callback })
     fadeElement(this.columns, timeline, { duration: 0 })
     fadeElement(this.content, timeline, {
-      delay: (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : 0)
+      delay: (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : PAGE_FADE_DURATION)
     })
   }
 
@@ -50,6 +46,9 @@ class ProjectPage extends Component {
     const timeline = new TimelineLite({ onComplete: callback })
     fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
     fadeElement(this.content, timeline, { fadeOut: true })
+    // Scroll back to the top of the page when leaving. This fixes a problem when
+    // switching project using the grid at the bottom of the page.
+    timeline.add(() => this.root.base.scrollIntoView(true))
   }
 
   handleScrollIndicator ({ currentPosition }) {
