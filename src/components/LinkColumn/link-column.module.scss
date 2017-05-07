@@ -49,9 +49,10 @@ $border: 2px solid $contrast-grey;
 }
 
 .icon {
+  overflow: visible;
   transition: stroke 350ms ease-in-out;
-  stroke: rgba($white, 0.3);
-  stroke-width: 1;
+  stroke: rgba($white, 0.5);
+  stroke-width: 2;
 }
 
 // sass-lint:disable force-pseudo-nesting

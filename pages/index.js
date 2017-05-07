@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite, TimelineLite, Power2 } from 'gsap'
+import { TimelineLite, Power2 } from 'gsap'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
@@ -28,11 +28,9 @@ class Index extends Component {
 
   componentWillLeave (callback) {
     // LEAVE ANIMATION GOES HERE
-    const tl = new TimelineLite({
-      onComplete: callback
-    })
+    const tl = new TimelineLite({ onComplete: callback })
 
-    if (this.projectClicked) {
+    if (this.projectLinkClicked) {
       tl.fromTo(
         this.projectCover,
         2.5,
@@ -40,15 +38,6 @@ class Index extends Component {
         { strokeDashoffset: 0, ease: Power2.easeOut }
       )
     }
-  }
-
-  componentDidLeave () {
-    // Always undraw the white rectangle when leaving the page.
-    TweenLite.to(
-      this.projectCover,
-      0,
-      { strokeDashoffset: `-${projectCoverPerimeter}` }
-    )
   }
 
   render () {
@@ -63,8 +52,10 @@ class Index extends Component {
 
         <Slider
           projectsData={projectsData}
-          handleProjectClicked={(projectClicked, projectCover) => {
-            this.projectClicked = projectClicked
+          handleProjectLinkClick={(projectCover) => {
+            this.projectLinkClicked = true
+            // Pass the project cover ref back to the page so that the leave animation logic is
+            // handled there.
             this.projectCover = projectCover
           }}
         />

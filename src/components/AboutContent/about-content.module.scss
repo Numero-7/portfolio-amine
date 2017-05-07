@@ -13,13 +13,8 @@
   background-repeat: no-repeat;
 }
 
-.content {
+.contentWrapper {
   margin: 9% 0;
-  font-family: $serif-font-stack;
-  line-height: 2;
-  letter-spacing: 1px;
-  color: $white;
-  text-align: center;
 }
 
 .gold {
@@ -37,14 +32,8 @@
   }
 }
 
-.buttonsContainer {
-  display: flex;
-  justify-content: center;
+.socialNetworksWrapper {
   margin-top: 3em;
-}
-
-.buttonsContainer > :nth-child(2) {
-  margin: 0 2em;
 }
 
 .shadowWrapper {
@@ -52,7 +41,10 @@
   justify-content: center;
 }
 
+/**
+ * 1. Centers properly the text on the page by counteracting the shadow’s position.
+ */
 .topShadowWrapper {
   position: relative;
-  top: 15px;
+  top: $text-shadow-offset; /* 1 */
 }

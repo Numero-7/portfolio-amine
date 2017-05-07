@@ -1,7 +1,7 @@
 import React from 'react'
-import { config } from 'config'
 import TextShadow from '../TextShadow'
-import SwagButton from '../SwagButton'
+import Text from '../Text'
+import SocialNetworks from '../SocialNetworks'
 import styles from './about-content.module.scss'
 
 const AboutContent = () => (
@@ -10,8 +10,8 @@ const AboutContent = () => (
       <TextShadow text="About" />
     </div>
 
-    <div className={styles.content}>
-      <p>
+    <div className={styles.contentWrapper}>
+      <Text>
         Yo, I’m Amine, a 21 years old French designer and freelancer based in Paris.
         <br />
         I am in 4th year at&nbsp;
@@ -26,46 +26,30 @@ const AboutContent = () => (
         .
         <br />
         Formerly part of&nbsp;
-          <a
-            href="https://boldbeyond.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.link}
-          >
-            Bold+Beyond
-          </a>
-          &nbsp;and currently working for&nbsp;
-          <a
-            href="https://pureemaison.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.link}
-          >
-            Purée Maison
-          </a>
-          &nbsp;in my spare time.
+        <a
+          href="https://boldbeyond.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          Bold+Beyond
+        </a>
+        &nbsp;and currently working for&nbsp;
+        <a
+          href="https://pureemaison.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          Purée Maison
+        </a>
+        &nbsp;in my spare time.
         <br />
         <span className={styles.gold}>I am looking for a 6-month internship…</span>
-      </p>
+      </Text>
 
-      <div className={styles.buttonsContainer}>
-        <SwagButton
-          text="Linkedin"
-          href={config.linkedIn}
-          external={true}
-        />
-
-        <SwagButton
-          text="Behance"
-          external={true}
-          href={config.behance}
-        />
-
-        <SwagButton
-          text="Mail"
-          external={true}
-          href={`mailto:${config.mail}`}
-        />
+      <div className={styles.socialNetworksWrapper}>
+        <SocialNetworks />
       </div>
     </div>
 

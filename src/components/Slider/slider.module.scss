@@ -5,5 +5,5 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(100vh - #{$slider-breadcrumb-height} - (#{$header-top-padding} + #{$header-height}));
+  min-height: calc(100vh - #{$slider-breadcrumb-height} - (#{$header-top-margin} + #{$header-height}));
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import NotFoundContent from 'src/components/NotFoundContent'
 import getPageTitle from 'src/utils/get-page-title'
 
 const notFound = () => (
@@ -10,12 +11,13 @@ const notFound = () => (
         { name: 'robots', content: 'noindex' }
       ]}
     />
-    <h1>404 not found.</h1>
+    <NotFoundContent />
   </div>
 )
 
 export default notFound
 exports.data = {
   path: '/404.html',
-  skipLoader: true
+  skipLoader: true,
+  hideHeader: true
 }

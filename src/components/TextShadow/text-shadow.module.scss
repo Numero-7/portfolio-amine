@@ -19,8 +19,7 @@ $about-text-letter-spacing: 200px;
 
   &::before {
     position: absolute;
-    top: -15px;
-    left: 0;
+    top: -$text-shadow-offset;
     content: attr(data-content);
   }
 }
