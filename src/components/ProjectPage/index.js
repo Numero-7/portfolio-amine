@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
+import { TimelineLite } from 'gsap'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
@@ -24,21 +25,36 @@ class ProjectPage extends Component {
   }
 
   componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    const timeline = new TimelineLite({ onComplete: callback })
+    this.fadeContent(timeline)
   }
 
   componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
     // Scroll back to the top of the page when the component appears. This fixes a problem when
     // switching project using the grid at the bottom of the page.
     this.root.base.scrollIntoView(true)
-    callback()
+    const timeline = new TimelineLite({
+      delay: 4,
+      onComplete: callback
+    })
+    this.fadeContent(timeline)
   }
 
   componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    const timeline = new TimelineLite({ onComplete: callback })
+    this.fadeContent(timeline, true)
+  }
+
+  fadeContent (timeline, fadeOut) {
+    const invisible = { autoAlpha: 0 }
+    const visible = { autoAlpha: 1 }
+
+    timeline.fromTo(
+      this.content,
+      1.5,
+      fadeOut ? visible : invisible,
+      fadeOut ? invisible : visible
+    )
   }
 
   handleScrollIndicator ({ currentPosition }) {
@@ -72,26 +88,30 @@ class ProjectPage extends Component {
           pull="left"
         />
 
-        <ScrollIndicator hidden={hideScrollIndicator} />
+        <div ref={(component) => { this.content = component }}>
+          <ScrollIndicator hidden={hideScrollIndicator} />
 
-        <ProjectIntro project={project} />
-        <section>
-          {project.images.map(link => (
-            <ProjectImage
-              src={link}
-              title={project.title}
-            />
-          ))}
-        </section>
-
-        <Waypoint
-          onEnter={e => this.handleScrollIndicator(e)}
-          onLeave={e => this.handleScrollIndicator(e)}
-        >
+          <ProjectIntro project={project} />
           <section>
-            <ProjectsGrid projects={projectsData.filter(({ order }) => order !== project.order)} />
+            {project.images.map(link => (
+              <ProjectImage
+                src={link}
+                title={project.title}
+              />
+            ))}
           </section>
-        </Waypoint>
+
+          <Waypoint
+            onEnter={e => this.handleScrollIndicator(e)}
+            onLeave={e => this.handleScrollIndicator(e)}
+          >
+            <section>
+              <ProjectsGrid
+                projects={projectsData.filter(({ order }) => order !== project.order)}
+              />
+            </section>
+          </Waypoint>
+        </div>
 
         <LinkColumn
           icon={true}

@@ -1,0 +1,9 @@
+// All pages
+export const PAGE_FADE_DURATION = 1.5
+
+// Homepage
+export const HOME_PAGE_COVER_FILL_DURATION = 2.5
+export const HOME_PAGE_LEAVE_DURATION = HOME_PAGE_COVER_FILL_DURATION + PAGE_FADE_DURATION
+
+// Project page
+export const PROJECT_PAGE_ENTER_DURATION = 1.5

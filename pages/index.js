@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite, Power2 } from 'gsap'
+import {
+  PAGE_FADE_DURATION,
+  HOME_PAGE_COVER_FILL_DURATION
+} from 'src/values/animations'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
@@ -12,40 +16,51 @@ class Index extends Component {
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.animationTime = 2000
-  }
-
   componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    const timeline = new TimelineLite({ onComplete: callback })
+    this.fadeSlider(timeline)
   }
 
   componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
-    setTimeout(callback, this.animationTime)
+    const timeline = new TimelineLite({
+      delay: PAGE_FADE_DURATION,
+      onComplete: callback
+    })
+    this.fadeSlider(timeline)
   }
 
   componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    const tl = new TimelineLite({ onComplete: callback })
+    const timeline = new TimelineLite({ onComplete: callback })
 
     if (this.projectLinkClicked) {
-      tl.fromTo(
+      timeline.fromTo(
         this.projectCover,
-        2.5,
+        HOME_PAGE_COVER_FILL_DURATION,
         { strokeDashoffset: `-${projectCoverPerimeter}` },
         { strokeDashoffset: 0, ease: Power2.easeOut }
       )
+
+      this.fadeSlider(timeline, true)
     }
+  }
+
+  fadeSlider (timeline, fadeOut) {
+    const invisible = { autoAlpha: 0 }
+    const visible = { autoAlpha: 1 }
+
+    timeline.fromTo(
+      this.slider.base,
+      PAGE_FADE_DURATION,
+      fadeOut ? visible : invisible,
+      fadeOut ? invisible : visible
+    )
   }
 
   render () {
     const { projectsData } = this.props
 
     return (
-      <StretchedContainer ref={(component) => { this.root = component }}>
+      <StretchedContainer>
         <Helmet
           htmlAttributes={{
             class: 'unscrollable'
@@ -58,6 +73,7 @@ class Index extends Component {
         />
 
         <Slider
+          ref={(component) => { this.slider = component }}
           projectsData={projectsData}
           handleProjectLinkClick={(projectCover) => {
             this.projectLinkClicked = true
