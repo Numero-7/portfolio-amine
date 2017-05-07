@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite, Power2 } from 'gsap'
 import StretchedContainer from 'src/components/StretchedContainer'
@@ -45,6 +46,12 @@ class Index extends Component {
 
     return (
       <StretchedContainer ref={(component) => { this.root = component }}>
+        <Helmet
+          htmlAttributes={{
+            class: 'unscrollable'
+          }}
+        />
+
         <LinkColumn
           href={prefixLink('/about/')}
           text="About me."

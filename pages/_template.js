@@ -60,6 +60,7 @@ class Template extends Component {
             { property: 'og:url', content: currentURL }
           ]}
         />
+
         {!hideHeader && assetsReady && <Header showCloseButton={isProjectPage(childrenPage)} />}
 
         <Container>
