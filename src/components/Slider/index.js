@@ -15,7 +15,7 @@ class Slider extends Component {
     this.keyDownListener = e => this.handleKeyDown(e)
     this.mouseWheelListener = e => this.handleMouseWheel(e)
     window.addEventListener('keydown', this.keyDownListener)
-    window.addEventListener('wheel', this.mouseWheelListener)
+    window.addEventListener('wheel', this.mouseWheelListener, { passive: true })
   }
 
   componentWillUnmount () {
