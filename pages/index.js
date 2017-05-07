@@ -6,6 +6,7 @@ import {
   PAGE_FADE_DURATION,
   HOME_PAGE_COVER_FILL_DURATION
 } from 'src/values/animations'
+import fadeElement from 'src/utils/fade-element'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
@@ -16,21 +17,25 @@ class Index extends Component {
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
+  constructor (props) {
+    super(props)
+    this.columns = []
+  }
+
   componentWillAppear (callback) {
     const timeline = new TimelineLite({ onComplete: callback })
-    this.fadeSlider(timeline)
+    fadeElement(this.slider.base, timeline, {})
   }
 
   componentWillEnter (callback) {
-    const timeline = new TimelineLite({
-      delay: PAGE_FADE_DURATION,
-      onComplete: callback
-    })
-    this.fadeSlider(timeline)
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.columns, timeline, { duration: 0 })
+    fadeElement(this.slider.base, timeline, { delay: PAGE_FADE_DURATION })
   }
 
   componentWillLeave (callback) {
     const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
 
     if (this.projectLinkClicked) {
       timeline.fromTo(
@@ -40,20 +45,8 @@ class Index extends Component {
         { strokeDashoffset: 0, ease: Power2.easeOut }
       )
 
-      this.fadeSlider(timeline, true)
+      fadeElement(this.slider.base, timeline, { fadeOut: true })
     }
-  }
-
-  fadeSlider (timeline, fadeOut) {
-    const invisible = { autoAlpha: 0 }
-    const visible = { autoAlpha: 1 }
-
-    timeline.fromTo(
-      this.slider.base,
-      PAGE_FADE_DURATION,
-      fadeOut ? visible : invisible,
-      fadeOut ? invisible : visible
-    )
   }
 
   render () {
@@ -68,6 +61,7 @@ class Index extends Component {
         />
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           href={prefixLink('/about/')}
           text="About me."
         />
@@ -77,13 +71,14 @@ class Index extends Component {
           projectsData={projectsData}
           handleProjectLinkClick={(projectCover) => {
             this.projectLinkClicked = true
-            // Pass the project cover ref back to the page so that the leave animation logic is
-            // handled there.
+            // Pass the ProjectCover ref back to the page so that the leave animation logic is
+            // handled here.
             this.projectCover = projectCover
           }}
         />
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           href={prefixLink('/projects/')}
           icon={true}
           text="All projects."

@@ -3,6 +3,8 @@ import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite } from 'gsap'
+import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
+import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
@@ -15,6 +17,7 @@ import StretchedContainer from '../StretchedContainer'
 class ProjectPage extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
+    previousPath: PropTypes.string.isRequired,
     project: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
@@ -22,39 +25,31 @@ class ProjectPage extends Component {
   constructor (props) {
     super(props)
     this.state = { hideScrollIndicator: false }
+    this.columns = []
   }
 
   componentWillAppear (callback) {
     const timeline = new TimelineLite({ onComplete: callback })
-    this.fadeContent(timeline)
+    fadeElement(this.content, timeline, {})
   }
 
   componentWillEnter (callback) {
     // Scroll back to the top of the page when the component appears. This fixes a problem when
     // switching project using the grid at the bottom of the page.
     this.root.base.scrollIntoView(true)
-    const timeline = new TimelineLite({
-      delay: 4,
-      onComplete: callback
+
+    const { previousPath } = this.props
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.columns, timeline, { duration: 0 })
+    fadeElement(this.content, timeline, {
+      delay: (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : 0)
     })
-    this.fadeContent(timeline)
   }
 
   componentWillLeave (callback) {
     const timeline = new TimelineLite({ onComplete: callback })
-    this.fadeContent(timeline, true)
-  }
-
-  fadeContent (timeline, fadeOut) {
-    const invisible = { autoAlpha: 0 }
-    const visible = { autoAlpha: 1 }
-
-    timeline.fromTo(
-      this.content,
-      1.5,
-      fadeOut ? visible : invisible,
-      fadeOut ? invisible : visible
-    )
+    fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
+    fadeElement(this.content, timeline, { fadeOut: true })
   }
 
   handleScrollIndicator ({ currentPosition }) {
@@ -83,6 +78,7 @@ class ProjectPage extends Component {
         />
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           text="About me."
           href={prefixLink('/about/')}
           pull="left"
@@ -114,6 +110,7 @@ class ProjectPage extends Component {
         </div>
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           icon={true}
           text="All projects."
           href={prefixLink('/projects/')}
