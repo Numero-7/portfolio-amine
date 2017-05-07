@@ -20,7 +20,7 @@ class ProjectImage extends Component {
 
     return (
       <Waypoint
-        bottomOffset="15%"
+        topOffset="-10%"
         onEnter={() => this.setState({ visible: true })}
       >
         <img
