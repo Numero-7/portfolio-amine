@@ -5,10 +5,10 @@ import { TimelineLite, TweenLite } from 'gsap'
 import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
-import ZIndexLayer from 'src/components/ZIndexLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import AboutContent from 'src/components/AboutContent'
+import PageTransitionLayer from 'src/components/PageTransitionLayer'
 import { contentPadding, aboutPageZIndex } from 'src/sass/variables/exports.module.scss'
 
 class About extends Component {
@@ -29,21 +29,12 @@ class About extends Component {
     fadeElement(this.content.base, timeline, {})
   }
 
-  componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
-    const { previousPath } = this.props
-    const initialPosition = (
-      previousPath === '/projects/'
-        ? parseInt(window.innerWidth, 10) - this.contentPadding
-        : parseInt(-window.innerWidth, 10) + this.contentPadding
-    )
-
-    TweenLite.fromTo(
-      this.root.base,
-      this.animationTime,
-      { x: initialPosition },
-      { x: 0, onComplete: callback }
-    )
+  componentWillEnter (onComplete) {
+    const timeline = new TimelineLite({ onComplete })
+    fadeElement(this.column, timeline, { duration: 0, fadeOut: true })
+    this.transitionLayer.animateLayer(timeline, () => {
+      fadeElement(this.column, timeline, { duration: 0 })
+    })
   }
 
   componentWillLeave (callback) {
@@ -70,10 +61,7 @@ class About extends Component {
     const pageTitle = getPageTitle('About')
 
     return (
-      <ZIndexLayer
-        ref={(component) => { this.root = component }}
-        zIndex={this.aboutPageZIndex}
-      >
+      <div>
         <Helmet
           title={pageTitle}
           link={[
@@ -85,6 +73,8 @@ class About extends Component {
           ]}
         />
 
+        <PageTransitionLayer ref={(component) => { this.transitionLayer = component }} />
+
         <StretchedContainer
           pushed={false}
           paddingSide={columnPosition}
@@ -92,12 +82,13 @@ class About extends Component {
           <AboutContent ref={(component) => { this.content = component }} />
 
           <LinkColumn
+            ref={(component) => { this.column = component.base }}
             href={prefixLink(previousPath) || prefixLink('/')}
             text="Close."
             pull={columnPosition}
           />
         </StretchedContainer>
-      </ZIndexLayer>
+      </div>
     )
   }
 }
