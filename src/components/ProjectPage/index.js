@@ -25,6 +25,7 @@ class ProjectPage extends Component {
   constructor (props) {
     super(props)
     this.state = { hideScrollIndicator: false }
+    this.projectsGridInView = false
     this.columns = []
   }
 
@@ -49,6 +50,13 @@ class ProjectPage extends Component {
     // Scroll back to the top of the page when leaving. This fixes a problem when
     // switching project using the grid at the bottom of the page.
     timeline.add(() => this.root.base.scrollIntoView(true))
+  }
+
+  handleProjectsGridInView () {
+    if (!this.projectsGridInView) {
+      this.projectsGrid.fadeInLinks()
+      this.projectsGridInView = true
+    }
   }
 
   handleScrollIndicator ({ currentPosition }) {
@@ -97,11 +105,15 @@ class ProjectPage extends Component {
           </section>
 
           <Waypoint
-            onEnter={e => this.handleScrollIndicator(e)}
+            onEnter={(e) => {
+              this.handleProjectsGridInView()
+              this.handleScrollIndicator(e)
+            }}
             onLeave={e => this.handleScrollIndicator(e)}
           >
             <section>
               <ProjectsGrid
+                ref={(component) => { this.projectsGrid = component }}
                 projects={projectsData.filter(({ order }) => order !== project.order)}
               />
             </section>

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite } from 'gsap'
+import { TweenLite, TimelineLite } from 'gsap'
 import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {
@@ -14,6 +14,21 @@ class ProjectsGrid extends Component {
     // Default activeProject to the first project so that there is always a background-image for the
     // hover animation.
     this.state = { activeProject: props.projects[0] }
+    // Make a list of all links so that they can be animated.
+    this.links = []
+  }
+
+  fadeInLinks (callback = () => {}) {
+    const invisible = { autoAlpha: 0 }
+    const visible = { autoAlpha: 1 }
+    const timeline = new TimelineLite({ onComplete: callback })
+    timeline.staggerFromTo(
+      this.links,
+      1,
+      invisible,
+      visible,
+      0.5
+    )
   }
 
   handleActiveLink (index) {
@@ -48,6 +63,7 @@ class ProjectsGrid extends Component {
         <ul className={styles.list}>
           {projects.map((project, index) => (
             <li
+              ref={component => this.links.push(component)}
               key={project.title}
               className={styles.item}
             >
