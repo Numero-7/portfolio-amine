@@ -10,6 +10,7 @@ import fadeElement from 'src/utils/fade-element'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
+import PageTransitionLayer from 'src/components/PageTransitionLayer'
 import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
 
 class Index extends Component {
@@ -33,11 +34,12 @@ class Index extends Component {
     fadeElement(this.slider.base, timeline, { delay: PAGE_FADE_DURATION })
   }
 
-  componentWillLeave (callback) {
-    const timeline = new TimelineLite({ onComplete: callback })
-    fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
+  componentWillLeave (onComplete) {
+    const timeline = new TimelineLite()
 
     if (this.projectLinkClicked) {
+      fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
+
       timeline.fromTo(
         this.projectCover,
         HOME_PAGE_COVER_FILL_DURATION,
@@ -46,6 +48,10 @@ class Index extends Component {
       )
 
       fadeElement(this.slider.base, timeline, { fadeOut: true })
+      timeline.add(onComplete)
+    } else {
+      fadeElement(this.columns[0], timeline, { duration: 0, fadeOut: true })
+      setTimeout(onComplete, 1000)
     }
   }
 
@@ -59,6 +65,8 @@ class Index extends Component {
             class: 'unscrollable'
           }}
         />
+
+        <PageTransitionLayer ref={(component) => { this.transitionLayer = component }} />
 
         <LinkColumn
           ref={component => component && this.columns.push(component.base)}
