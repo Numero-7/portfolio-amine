@@ -2,6 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite, Power2 } from 'gsap'
+import {
+  PAGE_FADE_DURATION,
+  HOME_PAGE_COVER_FILL_DURATION
+} from 'src/values/animations'
+import fadeElement from 'src/utils/fade-element'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
@@ -14,30 +19,33 @@ class Index extends Component {
 
   constructor (props) {
     super(props)
-    this.animationTime = 2000
+    this.columns = []
   }
 
   componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.slider.base, timeline, {})
   }
 
   componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
-    setTimeout(callback, this.animationTime)
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.columns, timeline, { duration: 0 })
+    fadeElement(this.slider.base, timeline, { delay: PAGE_FADE_DURATION })
   }
 
   componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    const tl = new TimelineLite({ onComplete: callback })
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
 
     if (this.projectLinkClicked) {
-      tl.fromTo(
+      timeline.fromTo(
         this.projectCover,
-        2.5,
+        HOME_PAGE_COVER_FILL_DURATION,
         { strokeDashoffset: `-${projectCoverPerimeter}` },
         { strokeDashoffset: 0, ease: Power2.easeOut }
       )
+
+      fadeElement(this.slider.base, timeline, { fadeOut: true })
     }
   }
 
@@ -45,7 +53,7 @@ class Index extends Component {
     const { projectsData } = this.props
 
     return (
-      <StretchedContainer ref={(component) => { this.root = component }}>
+      <StretchedContainer>
         <Helmet
           htmlAttributes={{
             class: 'unscrollable'
@@ -53,21 +61,24 @@ class Index extends Component {
         />
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           href={prefixLink('/about/')}
           text="About me."
         />
 
         <Slider
+          ref={(component) => { this.slider = component }}
           projectsData={projectsData}
           handleProjectLinkClick={(projectCover) => {
             this.projectLinkClicked = true
-            // Pass the project cover ref back to the page so that the leave animation logic is
-            // handled there.
+            // Pass the ProjectCover ref back to the page so that the leave animation logic is
+            // handled here.
             this.projectCover = projectCover
           }}
         />
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           href={prefixLink('/projects/')}
           icon={true}
           text="All projects."

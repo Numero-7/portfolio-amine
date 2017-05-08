@@ -28,12 +28,12 @@ class Slider extends Component {
     let newIndex = 0
 
     switch (keyCode) {
-      case 38: // Up
       case 39: // Right
+      case 40: // Down
         newIndex = currentIndex + 1
         break
 
-      case 40: // Bottom
+      case 38: // Up
       case 37: // Left
         newIndex = currentIndex - 1
         break

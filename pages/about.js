@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite } from 'gsap'
+import { TimelineLite, TweenLite } from 'gsap'
+import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import ZIndexLayer from 'src/components/ZIndexLayer'
@@ -24,8 +25,8 @@ class About extends Component {
   }
 
   componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.content.base, timeline, {})
   }
 
   componentWillEnter (callback) {
@@ -88,7 +89,7 @@ class About extends Component {
           pushed={false}
           paddingSide={columnPosition}
         >
-          <AboutContent />
+          <AboutContent ref={(component) => { this.content = component }} />
 
           <LinkColumn
             href={prefixLink(previousPath) || prefixLink('/')}

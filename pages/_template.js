@@ -61,7 +61,12 @@ class Template extends Component {
           ]}
         />
 
-        {!hideHeader && assetsReady && <Header showCloseButton={isProjectPage(childrenPage)} />}
+        {!hideHeader && assetsReady && (
+          <Header
+            previousPath={previousPath}
+            showCloseButton={isProjectPage(childrenPage)}
+          />
+        )}
 
         <Container>
           {(assetsReady || skipLoader)

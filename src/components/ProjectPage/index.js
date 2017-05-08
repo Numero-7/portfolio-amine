@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
+import { TimelineLite } from 'gsap'
+import { HOME_PAGE_LEAVE_DURATION, PAGE_FADE_DURATION } from 'src/values/animations'
+import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
@@ -14,6 +17,7 @@ import StretchedContainer from '../StretchedContainer'
 class ProjectPage extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
+    previousPath: PropTypes.string.isRequired,
     project: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
@@ -21,24 +25,38 @@ class ProjectPage extends Component {
   constructor (props) {
     super(props)
     this.state = { hideScrollIndicator: false }
+    this.projectsGridInView = false
+    this.columns = []
   }
 
   componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.content, timeline, {})
   }
 
   componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
-    // Scroll back to the top of the page when the component appears. This fixes a problem when
-    // switching project using the grid at the bottom of the page.
-    this.root.base.scrollIntoView(true)
-    callback()
+    const { previousPath } = this.props
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.columns, timeline, { duration: 0 })
+    fadeElement(this.content, timeline, {
+      delay: (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : PAGE_FADE_DURATION)
+    })
   }
 
   componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    const timeline = new TimelineLite({ onComplete: callback })
+    fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
+    fadeElement(this.content, timeline, { fadeOut: true })
+    // Scroll back to the top of the page when leaving. This fixes a problem when
+    // switching project using the grid at the bottom of the page.
+    timeline.add(() => this.root.base.scrollIntoView(true))
+  }
+
+  handleProjectsGridInView () {
+    if (!this.projectsGridInView) {
+      this.projectsGrid.fadeInLinks()
+      this.projectsGridInView = true
+    }
   }
 
   handleScrollIndicator ({ currentPosition }) {
@@ -67,33 +85,43 @@ class ProjectPage extends Component {
         />
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           text="About me."
           href={prefixLink('/about/')}
           pull="left"
         />
 
-        <ScrollIndicator hidden={hideScrollIndicator} />
+        <div ref={(component) => { this.content = component }}>
+          <ScrollIndicator hidden={hideScrollIndicator} />
 
-        <ProjectIntro project={project} />
-        <section>
-          {project.images.map(link => (
-            <ProjectImage
-              src={link}
-              title={project.title}
-            />
-          ))}
-        </section>
-
-        <Waypoint
-          onEnter={e => this.handleScrollIndicator(e)}
-          onLeave={e => this.handleScrollIndicator(e)}
-        >
+          <ProjectIntro project={project} />
           <section>
-            <ProjectsGrid projects={projectsData.filter(({ order }) => order !== project.order)} />
+            {project.images.map(link => (
+              <ProjectImage
+                src={link}
+                title={project.title}
+              />
+            ))}
           </section>
-        </Waypoint>
+
+          <Waypoint
+            onEnter={(e) => {
+              this.handleProjectsGridInView()
+              this.handleScrollIndicator(e)
+            }}
+            onLeave={e => this.handleScrollIndicator(e)}
+          >
+            <section>
+              <ProjectsGrid
+                ref={(component) => { this.projectsGrid = component }}
+                projects={projectsData.filter(({ order }) => order !== project.order)}
+              />
+            </section>
+          </Waypoint>
+        </div>
 
         <LinkColumn
+          ref={component => component && this.columns.push(component.base)}
           icon={true}
           text="All projects."
           href={prefixLink('/projects/')}

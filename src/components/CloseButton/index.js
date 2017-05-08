@@ -1,18 +1,42 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
+import { TweenLite } from 'gsap'
 import { Link } from 'react-router'
+import { PAGE_FADE_DURATION, HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
 import styles from './close-button.module.scss'
 
-const CloseButton = ({ href }) => (
-  <Link
-    className={styles.link}
-    to={href}
-  >
-    Close.
-  </Link>
-)
+class CloseButton extends Component {
+  static propTypes = {
+    previousPath: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired
+  }
 
-CloseButton.propTypes = {
-  href: PropTypes.string.isRequired
+  componentDidMount () {
+    const { previousPath } = this.props
+
+    TweenLite.fromTo(
+      this.root.base,
+      PAGE_FADE_DURATION,
+      { autoAlpha: 0 },
+      {
+        autoAlpha: 1,
+        delay: (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : 0)
+      }
+    )
+  }
+
+  render () {
+    const { href } = this.props
+
+    return (
+      <Link
+        ref={(component) => { this.root = component }}
+        className={styles.link}
+        to={href}
+      >
+        Close.
+      </Link>
+    )
+  }
 }
 
 export default CloseButton

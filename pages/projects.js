@@ -25,8 +25,7 @@ class Projects extends Component {
   }
 
   componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+    this.projectsGrid.fadeInLinks(callback)
   }
 
   componentWillEnter (callback) {
@@ -84,7 +83,10 @@ class Projects extends Component {
             href={(previousPath !== '/about/' && prefixLink(previousPath)) || prefixLink('/')}
           />
 
-          <ProjectsGrid projects={projectsData} />
+          <ProjectsGrid
+            ref={(component) => { this.projectsGrid = component }}
+            projects={projectsData}
+          />
 
           <LinkColumn
             handleClick={() => { this.aboutLinkClicked = true }}
