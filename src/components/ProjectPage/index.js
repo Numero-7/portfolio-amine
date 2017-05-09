@@ -86,6 +86,7 @@ class ProjectPage extends Component {
 
         <LinkColumn
           ref={component => component && this.columns.push(component.base)}
+          transparent={true}
           text="About me."
           href={prefixLink('/about/')}
           pull="left"
@@ -122,6 +123,7 @@ class ProjectPage extends Component {
 
         <LinkColumn
           ref={component => component && this.columns.push(component.base)}
+          transparent={true}
           icon={true}
           text="All projects."
           href={prefixLink('/projects/')}

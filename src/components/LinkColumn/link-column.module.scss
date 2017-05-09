@@ -10,6 +10,11 @@ $border: 2px solid $contrast-grey;
   z-index: 3;
   width: $content-padding;
   height: 100vh;
+  background: $black;
+}
+
+.transparent {
+  background: none;
 }
 
 .left {
