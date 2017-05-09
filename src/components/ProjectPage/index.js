@@ -3,7 +3,6 @@ import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite } from 'gsap'
-import { HOME_PAGE_LEAVE_DURATION, PAGE_FADE_DURATION } from 'src/values/animations'
 import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
@@ -17,39 +16,37 @@ import StretchedContainer from '../StretchedContainer'
 class ProjectPage extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
-    previousPath: PropTypes.string.isRequired,
     project: PropTypes.object.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    handlePageTransitionEnd: PropTypes.func.isRequired
   }
 
   constructor (props) {
     super(props)
     this.state = { hideScrollIndicator: false }
     this.projectsGridInView = false
-    this.columns = []
   }
 
-  componentWillAppear (callback) {
-    const timeline = new TimelineLite({ onComplete: callback })
+  componentWillAppear (onComplete) {
+    const timeline = new TimelineLite({ onComplete })
     fadeElement(this.content, timeline, {})
   }
 
-  componentWillEnter (callback) {
-    const { previousPath } = this.props
-    const timeline = new TimelineLite({ onComplete: callback })
-    fadeElement(this.columns, timeline, { duration: 0 })
-    fadeElement(this.content, timeline, {
-      delay: (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : PAGE_FADE_DURATION)
-    })
+  componentWillEnter (onComplete) {
+    const timeline = new TimelineLite({ onComplete })
+    fadeElement(this.content, timeline, {})
   }
 
-  componentWillLeave (callback) {
-    const timeline = new TimelineLite({ onComplete: callback })
-    fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
+  componentWillLeave (onComplete) {
+    const timeline = new TimelineLite({ onComplete })
     fadeElement(this.content, timeline, { fadeOut: true })
     // Scroll back to the top of the page when leaving. This fixes a problem when
     // switching project using the grid at the bottom of the page.
     timeline.add(() => this.root.base.scrollIntoView(true))
+  }
+
+  componentWillUnmount () {
+    this.props.handlePageTransitionEnd(true)
   }
 
   handleProjectsGridInView () {
@@ -85,7 +82,6 @@ class ProjectPage extends Component {
         />
 
         <LinkColumn
-          ref={component => component && this.columns.push(component.base)}
           transparent={true}
           text="About me."
           href={prefixLink('/about/')}
@@ -122,7 +118,6 @@ class ProjectPage extends Component {
         </div>
 
         <LinkColumn
-          ref={component => component && this.columns.push(component.base)}
           transparent={true}
           icon={true}
           text="All projects."

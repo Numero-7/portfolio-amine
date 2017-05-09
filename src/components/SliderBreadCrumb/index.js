@@ -46,7 +46,6 @@ class SliderBreadCrumb extends Component {
                 </button>
 
                 <div
-                  ref={(component) => { this.thumbnail = component }}
                   className={this.getClassName(index, 'thumbnail', 'visible')}
                   style={{ backgroundImage: `url(${prefixLink(project.cover)})` }}
                 />
