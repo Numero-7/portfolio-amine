@@ -35,9 +35,8 @@ class SliderCover extends Component {
     this.timeline.clear()
     // Always undraw the white rectangle when unmounting the component. We use TweenLite instead of
     // manually setting the attribute so that it properly overrides TweenLite’s CSS.
-    TweenLite.to(
+    TweenLite.set(
       this.rectangles.white,
-      0,
       { strokeDashoffset: `-${projectCoverPerimeter}` }
     )
   }
