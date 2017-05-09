@@ -83,21 +83,19 @@ class Template extends Component {
         <Container>
           {(assetsReady || skipLoader)
             ? (
-              <div>
-                <TransitionGroup component="div">
-                  {transitionEnded && (
-                    passDataToChildren(children, {
-                      projectsData,
-                      previousPath,
-                      // Pass the handlePageTransitionEnd method so that children page can notify
-                      // when they have finished transitioning out.
-                      handlePageTransitionEnd: ended => this.handlePageTransitionEnd(ended),
-                      // Add a unique key on the children page so that TransitionGroup works.
-                      key: childrenPage.path
-                    })
-                  )}
-                </TransitionGroup>
-              </div>
+              <TransitionGroup component="div">
+                {transitionEnded && (
+                  passDataToChildren(children, {
+                    projectsData,
+                    previousPath,
+                    // Pass the handlePageTransitionEnd method so that children page can notify when
+                    // they have finished transitioning out.
+                    handlePageTransitionEnd: ended => this.handlePageTransitionEnd(ended),
+                    // Add a unique key on the children page so that TransitionGroup works.
+                    key: childrenPage.path
+                  })
+                )}
+              </TransitionGroup>
             )
             : (
               <Loader

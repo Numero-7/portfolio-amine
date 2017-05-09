@@ -9,20 +9,12 @@ import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import AboutContent from 'src/components/AboutContent'
 import PageTransitionLayer from 'src/components/PageTransitionLayer'
-import { contentPadding, aboutPageZIndex } from 'src/sass/variables/exports.module.scss'
 
 class About extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
     previousPath: PropTypes.string.isRequired,
     handlePageTransitionEnd: PropTypes.func.isRequired
-  }
-
-  constructor (props) {
-    super(props)
-    this.animationTime = 2
-    this.contentPadding = parseInt(contentPadding, 10)
-    this.aboutPageZIndex = parseInt(aboutPageZIndex, 10)
   }
 
   componentWillAppear (onComplete) {
@@ -71,7 +63,6 @@ class About extends Component {
           <AboutContent ref={(component) => { this.content = component }} />
 
           <LinkColumn
-            ref={(component) => { this.column = component.base }}
             href={prefixLink(previousPath) || prefixLink('/')}
             text="Close."
             pull={columnPosition}

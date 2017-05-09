@@ -14,7 +14,7 @@ class CloseButton extends Component {
     const { previousPath } = this.props
 
     TweenLite.fromTo(
-      this.root.base,
+      this.base,
       PAGE_FADE_DURATION,
       { autoAlpha: 0 },
       {
@@ -29,7 +29,6 @@ class CloseButton extends Component {
 
     return (
       <Link
-        ref={(component) => { this.root = component }}
         className={styles.link}
         to={href}
       >

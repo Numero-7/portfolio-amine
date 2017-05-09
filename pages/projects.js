@@ -1,59 +1,34 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite } from 'gsap'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
-import ZIndexLayer from 'src/components/ZIndexLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import ProjectsGrid from 'src/components/ProjectsGrid'
-import { contentPadding, projectsPageZIndex } from 'src/sass/variables/exports.module.scss'
 
 class Projects extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    previousPath: PropTypes.string.isRequired
+    previousPath: PropTypes.string.isRequired,
+    handlePageTransitionEnd: PropTypes.func.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.animationTime = 2
-    this.contentPadding = parseInt(contentPadding, 10)
-    this.projectsPageZIndex = parseInt(projectsPageZIndex, 10)
+  componentWillAppear (onComplete) {
+    this.projectsGrid.fadeInLinks(onComplete)
   }
 
-  componentWillAppear (callback) {
-    this.projectsGrid.fadeInLinks(callback)
+  componentWillEnter (onComplete) {
+    onComplete(this) // this = ignore eslint
   }
 
-  componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
-    if (this.props.previousPath === '/about/') {
-      callback()
-    } else {
-      TweenLite.fromTo(
-        this.root.base,
-        this.animationTime,
-        { x: parseInt(window.innerWidth, 10) - this.contentPadding },
-        { x: 0, onComplete: callback }
-      )
-    }
+  componentWillLeave (onComplete) {
+    onComplete(this) // this = ignore eslint
   }
 
-  componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    if (this.aboutLinkClicked) {
-      setTimeout(callback, this.animationTime * 1000)
-    } else {
-      TweenLite.fromTo(
-        this.root.base,
-        this.animationTime,
-        { x: 0 },
-        { x: parseInt(window.innerWidth, 10) - this.contentPadding, onComplete: callback }
-      )
-    }
+  componentWillUnmount () {
+    this.props.handlePageTransitionEnd(true)
   }
 
   render () {
@@ -62,10 +37,7 @@ class Projects extends Component {
     const pageTitle = getPageTitle('Projects')
 
     return (
-      <ZIndexLayer
-        ref={(component) => { this.root = component }}
-        zIndex={this.projectsPageZIndex}
-      >
+      <div>
         <Helmet
           title={pageTitle}
           meta={[
@@ -95,7 +67,7 @@ class Projects extends Component {
             pull="right"
           />
         </StretchedContainer>
-      </ZIndexLayer>
+      </div>
     )
   }
 }
