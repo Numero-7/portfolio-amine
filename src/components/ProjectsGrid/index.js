@@ -18,10 +18,10 @@ class ProjectsGrid extends Component {
     this.links = []
   }
 
-  fadeInLinks (callback = () => {}) {
+  fadeInLinks (onComplete = () => {}) {
     const invisible = { autoAlpha: 0 }
     const visible = { autoAlpha: 1 }
-    const timeline = new TimelineLite({ onComplete: callback })
+    const timeline = new TimelineLite({ onComplete })
     timeline.staggerFromTo(
       this.links,
       1,

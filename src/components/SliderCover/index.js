@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite, TimelineLite, Power2 } from 'gsap'
-import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
 
@@ -37,7 +36,7 @@ class SliderCover extends Component {
     // manually setting the attribute so that it properly overrides TweenLite’s CSS.
     TweenLite.set(
       this.rectangles.white,
-      { strokeDashoffset: `-${projectCoverPerimeter}` }
+      { strokeDashoffset: `-${styles.projectCoverPerimeter}` }
     )
   }
 
@@ -59,7 +58,7 @@ class SliderCover extends Component {
         .fromTo(
           this.rectangles.grey,
           2.5,
-          { strokeDashoffset: `-${projectCoverPerimeter}` },
+          { strokeDashoffset: `-${styles.projectCoverPerimeter}` },
           { strokeDashoffset: 0, ease: Power2.easeOut }
         )
         .fromTo(this.title, 1, invisible, visible)
@@ -112,7 +111,9 @@ class SliderCover extends Component {
           className={styles.buttonWrapper}
         >
           <SwagButton
-            handleClick={() => { handleProjectLinkClick(this.rectangles.white) }}
+            handleClick={() => {
+              handleProjectLinkClick(this.rectangles.white, styles.projectCoverPerimeter)
+            }}
             href={prefixLink(path)}
             text="View project"
           />

@@ -10,16 +10,16 @@ class JSONWrapper extends Component {
   // To handle the animations on the project page, we use its instance methods through a ref.
   // This allows us to have the react-transition-group lifecycle methods in the ProjectPage
   // component instead of handling the logic here.
-  componentWillAppear (callback) {
-    this.root.componentWillAppear(callback)
+  componentWillAppear (onComplete) {
+    this.root.componentWillAppear(onComplete)
   }
 
-  componentWillEnter (callback) {
-    this.root.componentWillEnter(callback)
+  componentWillEnter (onComplete) {
+    this.root.componentWillEnter(onComplete)
   }
 
-  componentWillLeave (callback) {
-    this.root.componentWillLeave(callback)
+  componentWillLeave (onComplete) {
+    this.root.componentWillLeave(onComplete)
   }
 
   render () {

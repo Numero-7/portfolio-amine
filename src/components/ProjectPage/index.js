@@ -42,7 +42,7 @@ class ProjectPage extends Component {
     fadeElement(this.content, timeline, { fadeOut: true })
     // Scroll back to the top of the page when leaving. This fixes a problem when
     // switching project using the grid at the bottom of the page.
-    timeline.add(() => this.root.base.scrollIntoView(true))
+    timeline.add(() => this.base.scrollIntoView(true))
   }
 
   componentWillUnmount () {
@@ -67,7 +67,7 @@ class ProjectPage extends Component {
     const pageTitle = getPageTitle(project.title)
 
     return (
-      <StretchedContainer ref={(component) => { this.root = component }}>
+      <StretchedContainer>
         <Helmet
           title={pageTitle}
           link={[

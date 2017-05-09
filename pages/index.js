@@ -8,7 +8,6 @@ import PageTransitionLayer from 'src/components/PageTransitionLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
-import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
 
 class Index extends Component {
   static propTypes = {
@@ -33,7 +32,7 @@ class Index extends Component {
       timeline.fromTo(
         this.projectCover,
         HOME_PAGE_COVER_FILL_DURATION,
-        { strokeDashoffset: `-${projectCoverPerimeter}` },
+        { strokeDashoffset: `-${this.projectCoverPerimeter}` },
         { strokeDashoffset: 0, ease: Power2.easeOut }
       )
       fadeElement(this.slider.base, timeline, { fadeOut: true })
@@ -67,11 +66,12 @@ class Index extends Component {
         <Slider
           ref={(component) => { this.slider = component }}
           projectsData={projectsData}
-          handleProjectLinkClick={(projectCover) => {
+          handleProjectLinkClick={(projectCover, projectCoverPerimeter) => {
             this.projectLinkClicked = true
-            // Pass the ProjectCover ref back to the page so that the leave animation logic is
-            // handled here.
+            // Pass the ProjectCover ref back to the page along with its perimeter so that the leave
+            // animation logic is fully handled here.
             this.projectCover = projectCover
+            this.projectCoverPerimeter = projectCoverPerimeter
           }}
         />
 

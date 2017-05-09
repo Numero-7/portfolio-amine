@@ -7,6 +7,10 @@ $gradient-dark-grey: rgb(19, 19, 19);
 $gradient-light-grey: rgb(32, 32, 32);
 $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-light-grey 100%);
 
+:export {
+  projectCoverPerimeter: $project-cover-perimeter;
+}
+
 .rectangle {
   position: relative;
   z-index: 1;
