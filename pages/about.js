@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { TimelineLite, TweenLite } from 'gsap'
+import { TimelineLite } from 'gsap'
 import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
@@ -14,7 +14,8 @@ import { contentPadding, aboutPageZIndex } from 'src/sass/variables/exports.modu
 class About extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
-    previousPath: PropTypes.string.isRequired
+    previousPath: PropTypes.string.isRequired,
+    handlePageTransitionEnd: PropTypes.func.isRequired
   }
 
   constructor (props) {
@@ -24,34 +25,22 @@ class About extends Component {
     this.aboutPageZIndex = parseInt(aboutPageZIndex, 10)
   }
 
-  componentWillAppear (callback) {
-    const timeline = new TimelineLite({ onComplete: callback })
+  componentWillAppear (onComplete) {
+    const timeline = new TimelineLite({ onComplete })
     fadeElement(this.content.base, timeline, {})
   }
 
   componentWillEnter (onComplete) {
     const timeline = new TimelineLite({ onComplete })
-    fadeElement(this.column, timeline, { duration: 0, fadeOut: true })
-    this.transitionLayer.animateLayer(timeline, () => {
-      fadeElement(this.column, timeline, { duration: 0 })
-    })
+    this.transitionLayer.animateIn(timeline)
   }
 
-  componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    const { previousPath } = this.props
-    const initialPosition = (
-      previousPath === '/projects/'
-      ? parseInt(window.innerWidth, 10) - this.contentPadding
-      : parseInt(-window.innerWidth, 10) + this.contentPadding
-    )
+  componentWillLeave (onComplete) {
+    onComplete(this) // this = ignore eslint
+  }
 
-    TweenLite.fromTo(
-      this.root.base,
-      this.animationTime,
-      { x: 0 },
-      { x: initialPosition, onComplete: callback }
-    )
+  componentWillUnmount () {
+    this.props.handlePageTransitionEnd(true)
   }
 
   render () {

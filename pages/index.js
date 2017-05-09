@@ -2,57 +2,48 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite, Power2 } from 'gsap'
-import {
-  PAGE_FADE_DURATION,
-  HOME_PAGE_COVER_FILL_DURATION
-} from 'src/values/animations'
+import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
 import fadeElement from 'src/utils/fade-element'
+import PageTransitionLayer from 'src/components/PageTransitionLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
-import PageTransitionLayer from 'src/components/PageTransitionLayer'
 import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
 
 class Index extends Component {
   static propTypes = {
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    handlePageTransitionEnd: PropTypes.func.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.columns = []
-  }
-
-  componentWillAppear (callback) {
-    const timeline = new TimelineLite({ onComplete: callback })
+  componentWillAppear (onComplete) {
+    const timeline = new TimelineLite({ onComplete })
     fadeElement(this.slider.base, timeline, {})
   }
 
-  componentWillEnter (callback) {
-    const timeline = new TimelineLite({ onComplete: callback })
-    fadeElement(this.columns, timeline, { duration: 0 })
-    fadeElement(this.slider.base, timeline, { delay: PAGE_FADE_DURATION })
+  componentWillEnter (onComplete) {
+    const timeline = new TimelineLite({ onComplete })
+    fadeElement(this.slider.base, timeline, {})
   }
 
   componentWillLeave (onComplete) {
-    const timeline = new TimelineLite()
+    const timeline = new TimelineLite({ onComplete })
 
     if (this.projectLinkClicked) {
-      fadeElement(this.columns, timeline, { duration: 0, fadeOut: true })
-
       timeline.fromTo(
         this.projectCover,
         HOME_PAGE_COVER_FILL_DURATION,
         { strokeDashoffset: `-${projectCoverPerimeter}` },
         { strokeDashoffset: 0, ease: Power2.easeOut }
       )
-
       fadeElement(this.slider.base, timeline, { fadeOut: true })
-      timeline.add(onComplete)
     } else {
-      fadeElement(this.columns[0], timeline, { duration: 0, fadeOut: true })
-      setTimeout(onComplete, 1000)
+      this.transitionLayer.animateOut(timeline)
     }
+  }
+
+  componentWillUnmount () {
+    this.props.handlePageTransitionEnd(true)
   }
 
   render () {
@@ -69,7 +60,6 @@ class Index extends Component {
         <PageTransitionLayer ref={(component) => { this.transitionLayer = component }} />
 
         <LinkColumn
-          ref={component => component && this.columns.push(component.base)}
           href={prefixLink('/about/')}
           text="About me."
         />
@@ -86,7 +76,6 @@ class Index extends Component {
         />
 
         <LinkColumn
-          ref={component => component && this.columns.push(component.base)}
           href={prefixLink('/projects/')}
           icon={true}
           text="All projects."

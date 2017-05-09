@@ -29,17 +29,29 @@ class Template extends Component {
     this.state = {
       assetsReady: false,
       projectsData: getProjectsData(props.route.pages),
-      previousPath: ''
+      previousPath: '',
+      transitionEnded: true
     }
   }
 
-  componentWillReceiveProps () {
-    // We store the previous path before it changes so that we can pass it down to the child page.
-    this.setState({ previousPath: this.props.location.pathname })
+  componentWillReceiveProps (nextProps) {
+    if (this.props.location.pathname !== nextProps.location.pathname) {
+      this.setState({
+        // We store the previous path before it changes so that we can pass it down to the children.
+        previousPath: this.props.location.pathname,
+        // Flag needed to wait for the end of the old page’s exit transition before rendering the
+        // new child.
+        transitionEnded: false
+      })
+    }
+  }
+
+  handlePageTransitionEnd (transitionEnded) {
+    this.setState({ transitionEnded })
   }
 
   render () {
-    const { assetsReady, projectsData, previousPath } = this.state
+    const { assetsReady, projectsData, previousPath, transitionEnded } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
     const { skipLoader, hideHeader } = childrenPage.data
@@ -71,16 +83,21 @@ class Template extends Component {
         <Container>
           {(assetsReady || skipLoader)
             ? (
-              <TransitionGroup component="div">
-                {(
-                  passDataToChildren(children, {
-                    projectsData,
-                    previousPath,
-                    // Add a unique key on the children page so that TransitionGroup works.
-                    key: childrenPage.path
-                  })
-                )}
-              </TransitionGroup>
+              <div>
+                <TransitionGroup component="div">
+                  {transitionEnded && (
+                    passDataToChildren(children, {
+                      projectsData,
+                      previousPath,
+                      // Pass the handlePageTransitionEnd method so that children page can notify
+                      // when they have finished transitioning out.
+                      handlePageTransitionEnd: ended => this.handlePageTransitionEnd(ended),
+                      // Add a unique key on the children page so that TransitionGroup works.
+                      key: childrenPage.path
+                    })
+                  )}
+                </TransitionGroup>
+              </div>
             )
             : (
               <Loader

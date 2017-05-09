@@ -48,7 +48,7 @@ class SliderCover extends Component {
   getTimeline () {
     const invisible = { autoAlpha: 0 }
     const visible = { autoAlpha: 1 }
-    // Create the timeline, paused by default, so that we can re-use the same timeline and restart
+    // Create the timeline, paused by default, so that we can re-use the same timeline by restarting
     // it everytime we need it.
     const timeline = new TimelineLite({ paused: true })
 
