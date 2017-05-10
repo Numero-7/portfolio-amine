@@ -52,15 +52,23 @@ $item-offset: 10%;
   }
 }
 
+$link-grey: rgb(37, 37, 37);
+
 .link {
   letter-spacing: 12px;
-  color: $white;
+  color: $link-grey;
   text-decoration: none;
   opacity: 0.2;
+  visibility: hidden;
   transition: opacity 1s;
 
   &:hover,
   &:focus {
     opacity: 1;
   }
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
 }

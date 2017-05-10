@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite, TimelineLite } from 'gsap'
+import { TweenLite } from 'gsap'
 import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {
@@ -9,82 +9,86 @@ class ProjectsGrid extends Component {
     projects: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
-  constructor (props) {
-    super(props)
-    // Default activeProject to the first project so that there is always a background-image for the
-    // hover animation.
-    this.state = { activeProject: props.projects[0] }
-    // Make a list of all links so that they can be animated.
-    this.links = []
+  getInitialState () {
+    return {
+      activeProject: {},
+      linksDisplayedCount: 0,
+      backgroundImageOpacity: 0
+    }
   }
 
-  componentDidMount () {
-    this.timeline = this.getTimeline()
+  componentWillMount () {
+    // Default activeProject to the first project so that there is always a background-image for the
+    // hover animation.
+    this.setState({ activeProject: this.props.projects[0] })
   }
 
   componentWillUnmount () {
-    // Always clear the timeline to avoid multiple timelines running at the same time if coming back
-    // to the same page.
-    this.timeline.set(this.timeline.getChildren(), { clearProps: 'all' })
-  }
-
-  getTimeline () {
-    const timeline = new TimelineLite({ paused: true })
-    timeline.staggerFromTo(
-      this.links,
-      1,
-      { autoAlpha: 0 },
-      { autoAlpha: 1 },
-      0.5
-    )
-    return timeline
+    this.backgroundImageTween.kill()
   }
 
   animate () {
-    this.timeline.restart()
+    const interval = setInterval(
+      () => {
+        const { linksDisplayedCount } = this.state
+        this.setState({ linksDisplayedCount: linksDisplayedCount + 1 })
+
+        if (linksDisplayedCount > this.props.projects.length) {
+          clearInterval(interval)
+        }
+      },
+      500
+    )
   }
 
-  handleActiveLink (index) {
-    TweenLite.to(
-      this.backgroundImage,
-      2.5,
-      { autoAlpha: 1 }
+  handleEnterLink (index) {
+    this.backgroundImageTween = (
+      TweenLite.to(
+        this,
+        2.5,
+        { state: { backgroundImageOpacity: 1 } }
+      )
     )
     this.setState({ activeProject: this.props.projects[index] })
   }
 
   handleLeaveLink () {
-    TweenLite.to(
-      this.backgroundImage,
-      2.5,
-      { autoAlpha: 0 }
+    // Clear the enter timeline that could still be running.
+    this.backgroundImageTween.kill()
+    this.backgroundImageTween = (
+      TweenLite.to(
+        this,
+        2.5,
+        { state: { backgroundImageOpacity: 0 } }
+      )
     )
   }
 
   render () {
-    const { activeProject } = this.state
+    const { activeProject, linksDisplayedCount, backgroundImageOpacity } = this.state
     const { projects } = this.props
 
     return (
       <div className={styles.root}>
         <div
-          ref={(component) => { this.backgroundImage = component }}
-          style={{ backgroundImage: `url(${prefixLink(activeProject.cover)})` }}
+          style={{
+            backgroundImage: `url(${prefixLink(activeProject.cover)})`,
+            opacity: backgroundImageOpacity
+          }}
           className={styles.background}
         />
 
         <ul className={styles.list}>
           {projects.map((project, index) => (
             <li
-              ref={component => this.links.push(component)}
               key={project.title}
               className={styles.item}
             >
               <Link
-                className={styles.link}
+                className={`${styles.link} ${index < linksDisplayedCount ? styles.visible : ''}`}
                 to={prefixLink(project.path)}
-                onMouseOver={() => this.handleActiveLink(index)}
-                onFocus={() => this.handleActiveLink(index)}
+                onMouseOver={() => this.handleEnterLink(index)}
+                onFocus={() => this.handleEnterLink(index)}
                 onMouseLeave={() => this.handleLeaveLink()}
                 onBlur={() => this.handleLeaveLink()}
               >
