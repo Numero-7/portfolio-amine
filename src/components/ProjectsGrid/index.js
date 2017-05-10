@@ -24,7 +24,9 @@ class ProjectsGrid extends Component {
   }
 
   componentWillUnmount () {
-    this.backgroundImageTween.kill()
+    if (this.backgroundImageTween) {
+      this.backgroundImageTween.kill()
+    }
   }
 
   animate () {

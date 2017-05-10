@@ -31,7 +31,8 @@ class Template extends Component {
     this.state = {
       assetsReady: false,
       projectsData: getProjectsData(props.route.pages),
-      previousPath: ''
+      previousPath: '',
+      transitionEnded: true
     }
   }
 
@@ -39,13 +40,16 @@ class Template extends Component {
     if (this.props.location.pathname !== nextProps.location.pathname) {
       this.setState({
         // We store the previous path before it changes so that we can pass it down to the children.
-        previousPath: this.props.location.pathname
+        previousPath: this.props.location.pathname,
+        // Flag needed to wait for the end of the old page’s exit transition before rendering the
+        // new child.
+        transitionEnded: false
       })
     }
   }
 
   render () {
-    const { assetsReady, projectsData, previousPath } = this.state
+    const { assetsReady, projectsData, previousPath, transitionEnded } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
     const { skipLoader, hideHeader } = childrenPage.data
@@ -67,7 +71,7 @@ class Template extends Component {
           ]}
         />
 
-        {!hideHeader && assetsReady && (
+        {(transitionEnded || previousPath !== '/about/') && !hideHeader && assetsReady && (
           <Header
             previousPath={previousPath}
             showCloseButton={isProjectPage(childrenPage)}
@@ -80,14 +84,17 @@ class Template extends Component {
               <div>
                 <PageTransitionLayer ref={(component) => { this.transitionLayer = component }} />
                 <TransitionGroup component="div">
-                  {passDataToChildren(children, {
-                    projectsData,
-                    previousPath,
-                    triggerPageTransition:
-                    (onComplete, reverse) => this.transitionLayer.animate(onComplete, reverse),
-                    // Add a unique key on the children page so that TransitionGroup works.
-                    key: childrenPage.path
-                  })}
+                  {transitionEnded && (
+                    passDataToChildren(children, {
+                      projectsData,
+                      previousPath,
+                      notifyPageTransitionEnded: () => this.setState({ transitionEnded: true }),
+                      transitionPage: (direction, onComplete, reverse) =>
+                        this.transitionLayer.animate(direction, onComplete, reverse),
+                      // Add a unique key on the children page so that TransitionGroup works.
+                      key: childrenPage.path
+                    })
+                  )}
                 </TransitionGroup>
               </div>
             )

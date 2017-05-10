@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { TimelineLite } from 'gsap'
-import { TRANSITION_LAYER_DURATION } from 'src/values/animations'
-import fadeElement from 'src/utils/fade-element'
+import { TweenLite } from 'gsap'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import StretchedContainer from 'src/components/StretchedContainer'
@@ -14,25 +12,39 @@ class About extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
     previousPath: PropTypes.string.isRequired,
-    triggerPageTransition: PropTypes.func.isRequired
+    transitionPage: PropTypes.func.isRequired,
+    notifyPageTransitionEnded: PropTypes.func.isRequired
+  }
+
+  getInitialState () {
+    return {
+      contentOpacity: 1
+    }
   }
 
   componentWillAppear (onComplete) {
-    const timeline = new TimelineLite({ onComplete })
-    fadeElement(this.content.base, timeline, {})
+    TweenLite.fromTo(
+      this,
+      1,
+      { state: { contentOpacity: 0 } },
+      { state: { contentOpacity: 1 }, onComplete }
+    )
   }
 
   componentWillEnter (onComplete) {
-    this.props.triggerPageTransition(onComplete)
+    this.props.transitionPage('in', onComplete)
   }
 
-  /* eslint-disable class-methods-use-this */
   componentWillLeave (onComplete) {
-    setTimeout(onComplete, TRANSITION_LAYER_DURATION * 1000)
+    this.props.transitionPage('out', onComplete, true)
   }
-  /* eslint-enable class-methods-use-this */
+
+  componentWillUnmount () {
+    this.props.notifyPageTransitionEnded()
+  }
 
   render () {
+    const { contentOpacity } = this.state
     const { route, previousPath } = this.props
     const columnPosition = 'right'
     const currentURL = getAbsoluteURL(route.path)
@@ -55,7 +67,9 @@ class About extends Component {
           pushed={false}
           paddingSide={columnPosition}
         >
-          <AboutContent ref={(component) => { this.content = component }} />
+          <div style={{ opacity: contentOpacity }}>
+            <AboutContent />
+          </div>
 
           <LinkColumn
             href={prefixLink(previousPath) || prefixLink('/')}
