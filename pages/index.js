@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite, TimelineLite, Power2 } from 'gsap'
-import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
+import { HOME_PAGE_COVER_FILL_DURATION, PAGE_FADE_DURATION } from 'src/values/animations'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
@@ -24,7 +24,7 @@ class Index extends Component {
   componentWillAppear (onComplete) {
     TweenLite.fromTo(
       this,
-      1,
+      PAGE_FADE_DURATION,
       { state: { sliderOpacity: 0 } },
       { state: { sliderOpacity: 1 }, onComplete }
     )
@@ -47,7 +47,7 @@ class Index extends Component {
 
   componentWillLeave (onComplete) {
     if (this.projectLinkClicked) {
-      this.slider.blockAnimation()
+      this.slider.animatingOut = true
       const timeline = new TimelineLite({ onComplete })
       timeline
         .fromTo(
@@ -58,7 +58,7 @@ class Index extends Component {
         )
         .fromTo(
           this,
-          1,
+          PAGE_FADE_DURATION,
           { state: { sliderOpacity: 1 } },
           { state: { sliderOpacity: 0 } }
         )

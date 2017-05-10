@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
+import { PAGE_FADE_DURATION } from 'src/values/animations'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
@@ -32,7 +33,7 @@ class ProjectPage extends Component {
   componentWillAppear (onComplete) {
     TweenLite.fromTo(
       this,
-      1,
+      PAGE_FADE_DURATION,
       { state: { contentOpacity: 0 } },
       { state: { contentOpacity: 1 }, onComplete }
     )
@@ -46,7 +47,7 @@ class ProjectPage extends Component {
     } else {
       TweenLite.fromTo(
         this,
-        1,
+        PAGE_FADE_DURATION,
         { state: { contentOpacity: 0 } },
         { state: { contentOpacity: 1 }, onComplete }
       )
@@ -59,7 +60,7 @@ class ProjectPage extends Component {
     } else {
       TweenLite.fromTo(
         this,
-        1,
+        PAGE_FADE_DURATION,
         { state: { contentOpacity: 1 } },
         {
           state: { contentOpacity: 0 },

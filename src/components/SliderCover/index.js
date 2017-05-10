@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite, TimelineLite, Power2 } from 'gsap'
+import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
 
@@ -60,7 +61,7 @@ class SliderCover extends Component {
         .fromTo(this, 1, { state: { infoOpacity: 0 } }, { state: { infoOpacity: 1 } })
         .fromTo(
           this,
-          2.5,
+          HOME_PAGE_COVER_FILL_DURATION,
           { state: { rectangleStrokeDashoffset: `-${styles.projectCoverPerimeter}` } },
           { state: { rectangleStrokeDashoffset: 0, ease: Power2.easeOut } }
         )

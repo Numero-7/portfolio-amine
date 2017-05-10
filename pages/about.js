@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
+import { PAGE_FADE_DURATION } from 'src/values/animations'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import StretchedContainer from 'src/components/StretchedContainer'
@@ -25,7 +26,7 @@ class About extends Component {
   componentWillAppear (onComplete) {
     TweenLite.fromTo(
       this,
-      1,
+      PAGE_FADE_DURATION,
       { state: { contentOpacity: 0 } },
       { state: { contentOpacity: 1 }, onComplete }
     )

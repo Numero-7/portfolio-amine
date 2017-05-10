@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import debounce from 'lodash/debounce'
+import throttle from 'lodash/throttle'
 import SliderCover from '../SliderCover'
 import SliderBreadCrumb from '../SliderBreadCrumb'
 import styles from './slider.module.scss'
@@ -12,9 +13,12 @@ class Slider extends Component {
   constructor (props) {
     super(props)
     this.state = { currentIndex: 0 }
-    this.animatingOut = false
     this.keyDownListener = e => this.handleKeyDown(e)
-    this.mouseWheelListener = e => this.handleMouseWheel(e)
+    this.mouseWheelListener = throttle(
+      e => this.handleMouseWheel(e),
+      2000,
+      { leading: true, trailing: false }
+    )
     window.addEventListener('keydown', this.keyDownListener)
     window.addEventListener('wheel', this.mouseWheelListener, { passive: true })
   }
@@ -22,10 +26,6 @@ class Slider extends Component {
   componentWillUnmount () {
     window.removeEventListener('keydown', this.keyDownListener)
     window.removeEventListener('wheel', this.mouseWheelListener)
-  }
-
-  blockAnimation () {
-    this.animatingOut = true
   }
 
   handleKeyDown ({ keyCode }) {
