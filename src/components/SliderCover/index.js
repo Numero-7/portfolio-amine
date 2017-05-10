@@ -29,7 +29,7 @@ class SliderCover extends Component {
   }
 
   componentWillUnmount () {
-    // Always clear the timeline to avoid multiple timeline running at the same time if coming back
+    // Always clear the timeline to avoid multiple timelines running at the same time if coming back
     // to the page.
     this.timeline.clear()
     // Always undraw the white rectangle when unmounting the component. We use TweenLite instead of
@@ -38,10 +38,6 @@ class SliderCover extends Component {
       this.rectangles.white,
       { strokeDashoffset: `-${styles.projectCoverPerimeter}` }
     )
-  }
-
-  animate () {
-    this.timeline.restart()
   }
 
   getTimeline () {
@@ -64,6 +60,10 @@ class SliderCover extends Component {
         .fromTo(this.title, 1, invisible, visible)
         .fromTo(this.button, 1, invisible, visible)
     )
+  }
+
+  animate () {
+    this.timeline.restart()
   }
 
   render () {

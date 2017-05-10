@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
+import { TRANSITION_LAYER_DURATION } from 'src/values/animations'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import StretchedContainer from 'src/components/StretchedContainer'
@@ -12,24 +13,29 @@ class Projects extends Component {
     route: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
     previousPath: PropTypes.string.isRequired,
-    handlePageTransitionEnd: PropTypes.func.isRequired
+    triggerPageTransition: PropTypes.func.isRequired
   }
 
+  /* eslint-disable class-methods-use-this */
   componentWillAppear (onComplete) {
-    this.projectsGrid.fadeInLinks(onComplete)
+    onComplete()
   }
+  /* eslint-enable class-methods-use-this */
 
   componentWillEnter (onComplete) {
-    onComplete(this) // this = ignore eslint
+    const { previousPath, triggerPageTransition } = this.props
+    triggerPageTransition(onComplete, previousPath === '/about/')
   }
 
+  componentDidMount () {
+    this.projectsGrid.animate()
+  }
+
+  /* eslint-disable class-methods-use-this */
   componentWillLeave (onComplete) {
-    onComplete(this) // this = ignore eslint
+    setTimeout(onComplete, TRANSITION_LAYER_DURATION * 1000)
   }
-
-  componentWillUnmount () {
-    this.props.handlePageTransitionEnd(true)
-  }
+  /* eslint-enable class-methods-use-this */
 
   render () {
     const { route, projectsData, previousPath } = this.props
@@ -51,8 +57,8 @@ class Projects extends Component {
 
         <StretchedContainer>
           <LinkColumn
-            text="Go back."
-            href={(previousPath !== '/about/' && prefixLink(previousPath)) || prefixLink('/')}
+            text="About me."
+            href={prefixLink('/about/')}
           />
 
           <ProjectsGrid
@@ -61,9 +67,8 @@ class Projects extends Component {
           />
 
           <LinkColumn
-            handleClick={() => { this.aboutLinkClicked = true }}
-            text="About me."
-            href={prefixLink('/about/')}
+            text="Go back."
+            href={(previousPath !== '/about/' && prefixLink(previousPath)) || prefixLink('/')}
             pull="right"
           />
         </StretchedContainer>
