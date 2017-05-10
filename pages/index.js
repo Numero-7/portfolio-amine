@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite, TimelineLite, Power2 } from 'gsap'
-import { HOME_PAGE_COVER_FILL_DURATION, PAGE_FADE_DURATION } from 'src/values/animations'
+import { TweenLite, TimelineLite } from 'gsap'
+import { PAGE_FADE_DURATION } from 'src/values/animations'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
@@ -49,19 +49,16 @@ class Index extends Component {
     if (this.projectLinkClicked) {
       this.slider.animatingOut = true
       const timeline = new TimelineLite({ onComplete })
-      timeline
-        .fromTo(
-          this.projectCover,
-          HOME_PAGE_COVER_FILL_DURATION,
-          { strokeDashoffset: `-${this.projectCoverPerimeter}` },
-          { strokeDashoffset: 0, ease: Power2.easeOut }
-        )
-        .fromTo(
-          this,
-          PAGE_FADE_DURATION,
-          { state: { sliderOpacity: 1 } },
-          { state: { sliderOpacity: 0 } }
-        )
+      timeline.add(() => {
+        this.projectCoverCallback(timeline, () => {
+          timeline.fromTo(
+            this,
+            PAGE_FADE_DURATION,
+            { state: { sliderOpacity: 1 } },
+            { state: { sliderOpacity: 0 } }
+          )
+        })
+      })
     } else {
       this.props.transitionPage('out', onComplete)
     }
@@ -92,12 +89,11 @@ class Index extends Component {
           <Slider
             ref={(component) => { this.slider = component }}
             projectsData={projectsData}
-            handleProjectLinkClick={(projectCover, projectCoverPerimeter) => {
+            handleProjectLinkClick={(projectCoverCallback) => {
               this.projectLinkClicked = true
-              // Pass the ProjectCover ref back to the page along with its perimeter so that the
-              // leave animation logic is fully handled here.
-              this.projectCover = projectCover
-              this.projectCoverPerimeter = projectCoverPerimeter
+              // Pass a callback to the page so that we can pass back the leave animation timeline
+              // to the SliderCover component when transitioning the page out.
+              this.projectCoverCallback = projectCoverCallback
             }}
           />
         </div>
