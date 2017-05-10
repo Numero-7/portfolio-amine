@@ -60,11 +60,11 @@ $link-grey: rgb(37, 37, 37);
   text-decoration: none;
   opacity: 0.2;
   visibility: hidden;
-  transition: opacity 1s;
+  transition: color 2s, opacity 1s;
 
   &:hover,
   &:focus {
-    opacity: 1;
+    color: $white;
   }
 }
 

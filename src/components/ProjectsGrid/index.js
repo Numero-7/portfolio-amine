@@ -52,9 +52,11 @@ class ProjectsGrid extends Component {
     this.setState({ activeProject: this.props.projects[index] })
   }
 
-  handleLeaveLink () {
-    // Clear the enter timeline that could still be running.
-    this.backgroundImageTween.kill()
+  handleLeaveLink (focusOut) {
+    if (focusOut) {
+      this.backgroundImageTween.kill()
+    }
+
     this.backgroundImageTween = (
       TweenLite.to(
         this,
@@ -90,7 +92,7 @@ class ProjectsGrid extends Component {
                 onMouseOver={() => this.handleEnterLink(index)}
                 onFocus={() => this.handleEnterLink(index)}
                 onMouseLeave={() => this.handleLeaveLink()}
-                onBlur={() => this.handleLeaveLink()}
+                onBlur={() => this.handleLeaveLink(true)}
               >
                 {project.title}
               </Link>
