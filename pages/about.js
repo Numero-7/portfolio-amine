@@ -2,19 +2,19 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite } from 'gsap'
+import { TRANSITION_LAYER_DURATION } from 'src/values/animations'
 import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import AboutContent from 'src/components/AboutContent'
-import PageTransitionLayer from 'src/components/PageTransitionLayer'
 
 class About extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
     previousPath: PropTypes.string.isRequired,
-    handlePageTransitionEnd: PropTypes.func.isRequired
+    triggerPageTransition: PropTypes.func.isRequired
   }
 
   componentWillAppear (onComplete) {
@@ -23,21 +23,18 @@ class About extends Component {
   }
 
   componentWillEnter (onComplete) {
-    const timeline = new TimelineLite({ onComplete })
-    this.transitionLayer.animateIn(timeline)
+    this.props.triggerPageTransition(onComplete)
   }
 
+  /* eslint-disable class-methods-use-this */
   componentWillLeave (onComplete) {
-    onComplete(this) // this = ignore eslint
+    setTimeout(onComplete, TRANSITION_LAYER_DURATION * 1000)
   }
-
-  componentWillUnmount () {
-    this.props.handlePageTransitionEnd(true)
-  }
+  /* eslint-enable class-methods-use-this */
 
   render () {
     const { route, previousPath } = this.props
-    const columnPosition = (previousPath === '/projects/' ? 'left' : 'right')
+    const columnPosition = 'right'
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle('About')
 
@@ -53,8 +50,6 @@ class About extends Component {
             { property: 'og:url', content: currentURL }
           ]}
         />
-
-        <PageTransitionLayer ref={(component) => { this.transitionLayer = component }} />
 
         <StretchedContainer
           pushed={false}

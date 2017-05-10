@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { TimelineLite } from 'gsap'
+import { TRANSITION_LAYER_DURATION } from 'src/values/animations'
 import styles from './page-transition-layer.module.scss'
 
 class PageTransitionLayer extends Component {
@@ -9,14 +11,20 @@ class PageTransitionLayer extends Component {
   }
   /* eslint-enable no-useless-constructor */
 
-  animateOut (timeline) {
-    timeline.set(this.base, { width: '0' })
-    timeline.to(this.base, 1, { width: '100%' })
-  }
+  animate (onComplete, reverse) {
+    const timeline = new TimelineLite({ onComplete })
+    const initialProperties = { width: '0' }
+    if (reverse) {
+      initialProperties.right = 0
+    }
 
-  animateIn (timeline) {
-    timeline.set(this.base, { width: '100%', right: '0' })
-    timeline.to(this.base, 1, { width: '0' })
+    const endProperties = reverse ? { right: 'initial' } : { right: 0 }
+    timeline.set(this.base, initialProperties)
+    timeline.to(this.base, TRANSITION_LAYER_DURATION, { width: '115%' })
+    timeline.set(this.base, endProperties)
+    timeline.to(this.base, TRANSITION_LAYER_DURATION, { width: 0 })
+    // Reset all props
+    timeline.set(this.base, { clearProps: 'all' })
   }
 
   render () {

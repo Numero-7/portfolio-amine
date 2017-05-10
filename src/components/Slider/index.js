@@ -12,6 +12,7 @@ class Slider extends Component {
   constructor (props) {
     super(props)
     this.state = { currentIndex: 0 }
+    this.animatingOut = false
     this.keyDownListener = e => this.handleKeyDown(e)
     this.mouseWheelListener = e => this.handleMouseWheel(e)
     window.addEventListener('keydown', this.keyDownListener)
@@ -21,6 +22,10 @@ class Slider extends Component {
   componentWillUnmount () {
     window.removeEventListener('keydown', this.keyDownListener)
     window.removeEventListener('wheel', this.mouseWheelListener)
+  }
+
+  blockAnimation () {
+    this.animatingOut = true
   }
 
   handleKeyDown ({ keyCode }) {
@@ -52,16 +57,18 @@ class Slider extends Component {
   }
 
   handleProjectSwitch = debounce((newIndex) => {
-    const projectsDataCount = this.props.projectsData.length - 1
-    let index = newIndex
+    if (!this.animatingOut) {
+      const projectsDataCount = this.props.projectsData.length - 1
+      let index = newIndex
 
-    if (index > projectsDataCount) {
-      index = 0
-    } else if (index < 0) {
-      index = projectsDataCount
+      if (index > projectsDataCount) {
+        index = 0
+      } else if (index < 0) {
+        index = projectsDataCount
+      }
+
+      this.setState({ currentIndex: index })
     }
-
-    this.setState({ currentIndex: index })
   }, 350, { leading: true, trailing: false })
 
   render () {

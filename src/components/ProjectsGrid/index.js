@@ -18,17 +18,30 @@ class ProjectsGrid extends Component {
     this.links = []
   }
 
-  fadeInLinks (onComplete = () => {}) {
-    const invisible = { autoAlpha: 0 }
-    const visible = { autoAlpha: 1 }
-    const timeline = new TimelineLite({ onComplete })
+  componentDidMount () {
+    this.timeline = this.getTimeline()
+  }
+
+  componentWillUnmount () {
+    // Always clear the timeline to avoid multiple timelines running at the same time if coming back
+    // to the same page.
+    this.timeline.set(this.timeline.getChildren(), { clearProps: 'all' })
+  }
+
+  getTimeline () {
+    const timeline = new TimelineLite({ paused: true })
     timeline.staggerFromTo(
       this.links,
       1,
-      invisible,
-      visible,
+      { autoAlpha: 0 },
+      { autoAlpha: 1 },
       0.5
     )
+    return timeline
+  }
+
+  animate () {
+    this.timeline.restart()
   }
 
   handleActiveLink (index) {

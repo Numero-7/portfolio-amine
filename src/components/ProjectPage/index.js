@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite } from 'gsap'
+import { PAGE_FADE_DURATION, HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
 import fadeElement from 'src/utils/fade-element'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
@@ -16,9 +17,10 @@ import StretchedContainer from '../StretchedContainer'
 class ProjectPage extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
+    previousPath: PropTypes.string.isRequired,
+    triggerPageTransition: PropTypes.func.isRequired,
     project: PropTypes.object.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    handlePageTransitionEnd: PropTypes.func.isRequired
+    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
   constructor (props) {
@@ -33,8 +35,15 @@ class ProjectPage extends Component {
   }
 
   componentWillEnter (onComplete) {
-    const timeline = new TimelineLite({ onComplete })
-    fadeElement(this.content, timeline, {})
+    const { previousPath, triggerPageTransition } = this.props
+
+    if (previousPath === '/about/' || previousPath === '/projects/') {
+      triggerPageTransition(onComplete, true)
+    } else {
+      const delay = (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : PAGE_FADE_DURATION)
+      const timeline = new TimelineLite({ onComplete, delay })
+      fadeElement(this.content, timeline, {})
+    }
   }
 
   componentWillLeave (onComplete) {
@@ -45,13 +54,9 @@ class ProjectPage extends Component {
     timeline.add(() => this.base.scrollIntoView(true))
   }
 
-  componentWillUnmount () {
-    this.props.handlePageTransitionEnd(true)
-  }
-
   handleProjectsGridInView () {
     if (!this.projectsGridInView) {
-      this.projectsGrid.fadeInLinks()
+      this.projectsGrid.animate()
       this.projectsGridInView = true
     }
   }
