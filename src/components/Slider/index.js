@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import debounce from 'lodash/debounce'
+import throttle from 'lodash/throttle'
 import SliderCover from '../SliderCover'
 import SliderBreadCrumb from '../SliderBreadCrumb'
 import styles from './slider.module.scss'
@@ -9,13 +10,21 @@ class Slider extends Component {
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.state = { currentIndex: 0 }
+  getInitialState () {
+    return {
+      currentIndex: 0
+    }
+  }
+
+  componentDidMount () {
     this.keyDownListener = e => this.handleKeyDown(e)
-    this.mouseWheelListener = e => this.handleMouseWheel(e)
+    this.mouseWheelListener = throttle(
+      e => this.handleMouseWheel(e),
+      2000,
+      { leading: true, trailing: false }
+    )
     window.addEventListener('keydown', this.keyDownListener)
-    window.addEventListener('wheel', this.mouseWheelListener)
+    window.addEventListener('wheel', this.mouseWheelListener, { passive: true })
   }
 
   componentWillUnmount () {
@@ -28,12 +37,12 @@ class Slider extends Component {
     let newIndex = 0
 
     switch (keyCode) {
-      case 38: // Up
       case 39: // Right
+      case 40: // Down
         newIndex = currentIndex + 1
         break
 
-      case 40: // Bottom
+      case 38: // Up
       case 37: // Left
         newIndex = currentIndex - 1
         break
@@ -52,17 +61,19 @@ class Slider extends Component {
   }
 
   handleProjectSwitch = debounce((newIndex) => {
-    const projectsDataCount = this.props.projectsData.length - 1
-    let index = newIndex
+    if (!this.animatingOut) {
+      const projectsDataCount = this.props.projectsData.length - 1
+      let index = newIndex
 
-    if (index > projectsDataCount) {
-      index = 0
-    } else if (index < 0) {
-      index = projectsDataCount
+      if (index > projectsDataCount) {
+        index = 0
+      } else if (index < 0) {
+        index = projectsDataCount
+      }
+
+      this.setState({ currentIndex: index })
     }
-
-    this.setState({ currentIndex: index })
-  }, 200)
+  }, 350, { leading: true, trailing: false })
 
   render () {
     const { currentIndex } = this.state

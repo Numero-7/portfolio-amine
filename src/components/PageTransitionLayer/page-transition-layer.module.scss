@@ -1,0 +1,9 @@
+@import 'src/sass/variables/colors';
+
+.root {
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  height: 100vh;
+  background-color: $black;
+}

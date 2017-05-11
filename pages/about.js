@@ -2,77 +2,57 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
+import { PAGE_FADE_DURATION } from 'src/values/animations'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
-import ZIndexLayer from 'src/components/ZIndexLayer'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import AboutContent from 'src/components/AboutContent'
-import { contentPadding, aboutPageZIndex } from 'src/sass/variables/exports.module.scss'
 
 class About extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
-    previousPath: PropTypes.string.isRequired
+    previousPath: PropTypes.string.isRequired,
+    transitionPage: PropTypes.func.isRequired,
+    notifyPageTransitionEnded: PropTypes.func.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.animationTime = 2
-    this.contentPadding = parseInt(contentPadding, 10)
-    this.aboutPageZIndex = parseInt(aboutPageZIndex, 10)
+  getInitialState () {
+    return {
+      contentOpacity: 1
+    }
   }
 
-  componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
-  }
-
-  componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
-    const { previousPath } = this.props
-    const initialPosition = (
-      previousPath === '/projects/'
-        ? parseInt(window.innerWidth, 10) - this.contentPadding
-        : parseInt(-window.innerWidth, 10) + this.contentPadding
-    )
-
+  componentWillAppear (onComplete) {
     TweenLite.fromTo(
-      this.root.base,
-      this.animationTime,
-      { x: initialPosition },
-      { x: 0, onComplete: callback }
+      this,
+      PAGE_FADE_DURATION,
+      { state: { contentOpacity: 0 } },
+      { state: { contentOpacity: 1 }, onComplete }
     )
   }
 
-  componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    const { previousPath } = this.props
-    const initialPosition = (
-      previousPath === '/projects/'
-      ? parseInt(window.innerWidth, 10) - this.contentPadding
-      : parseInt(-window.innerWidth, 10) + this.contentPadding
-    )
+  componentWillEnter (onComplete) {
+    this.props.transitionPage('in', onComplete)
+  }
 
-    TweenLite.fromTo(
-      this.root.base,
-      this.animationTime,
-      { x: 0 },
-      { x: initialPosition, onComplete: callback }
-    )
+  componentWillLeave (onComplete) {
+    this.props.transitionPage('out', onComplete, true)
+  }
+
+  componentWillUnmount () {
+    this.props.notifyPageTransitionEnded()
   }
 
   render () {
+    const { contentOpacity } = this.state
     const { route, previousPath } = this.props
-    const columnPosition = (previousPath === '/projects/' ? 'left' : 'right')
+    const columnPosition = 'right'
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle('About')
 
     return (
-      <ZIndexLayer
-        ref={(component) => { this.root = component }}
-        zIndex={this.aboutPageZIndex}
-      >
+      <div>
         <Helmet
           title={pageTitle}
           link={[
@@ -88,7 +68,9 @@ class About extends Component {
           pushed={false}
           paddingSide={columnPosition}
         >
-          <AboutContent />
+          <div style={{ opacity: contentOpacity }}>
+            <AboutContent />
+          </div>
 
           <LinkColumn
             href={prefixLink(previousPath) || prefixLink('/')}
@@ -96,7 +78,7 @@ class About extends Component {
             pull={columnPosition}
           />
         </StretchedContainer>
-      </ZIndexLayer>
+      </div>
     )
   }
 }

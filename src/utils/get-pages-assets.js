@@ -1,8 +1,8 @@
-import flatten from './flatten'
+import flattenDeep from 'lodash/flattenDeep'
 import isProjectPage from './is-project-page'
 
 const getPagesAssets = pages => (
-  flatten(
+  flattenDeep(
     pages
       .map(page => (
         isProjectPage(page)

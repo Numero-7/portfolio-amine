@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite, TimelineLite, Power2 } from 'gsap'
-import { projectCoverPerimeter } from 'src/sass/variables/exports.module.scss'
+import { TimelineLite, Power2 } from 'gsap'
+import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
 import Smoke from '../Smoke'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
@@ -12,9 +12,16 @@ class SliderCover extends Component {
     handleProjectLinkClick: PropTypes.func.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.rectangles = {}
+  getInitialState () {
+    return {
+      imageOpacity: 0,
+      infoOpacity: 0,
+      greyStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
+      whiteStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
+      titleOpacity: 0,
+      buttonIsVisible: false,
+      buttonOpacity: 0
+    }
   }
 
   componentDidMount () {
@@ -22,24 +29,36 @@ class SliderCover extends Component {
     this.animate()
   }
 
-  shouldComponentUpdate (nextProps) {
-    return (nextProps.project.title !== this.props.project.title)
-  }
-
-  componentDidUpdate () {
-    this.animate()
+  componentWillReceiveProps (nextProps) {
+    if (this.props.project.title !== nextProps.project.title) {
+      this.setState(this.getInitialState(), () => { this.animate() })
+    }
   }
 
   componentWillUnmount () {
-    // Always clear the timeline to avoid multiple timeline running at the same time if coming back
+    // Always clear the timeline to avoid multiple timelines running at the same time if coming back
     // to the page.
     this.timeline.clear()
-    // Always undraw the white rectangle when unmounting the component. We use TweenLite instead of
-    // manually setting the attribute so that it properly overrides TweenLite’s CSS.
-    TweenLite.to(
-      this.rectangles.white,
-      0,
-      { strokeDashoffset: `-${projectCoverPerimeter}` }
+  }
+
+  getTimeline () {
+    // Create the timeline, paused by default, so that we can re-use the same timeline by restarting
+    // it everytime we need it.
+    const timeline = new TimelineLite({ paused: true })
+
+    return (
+      timeline
+        .fromTo(this, 1, { state: { imageOpacity: 0 } }, { state: { imageOpacity: 1 } })
+        .fromTo(this, 1, { state: { infoOpacity: 0 } }, { state: { infoOpacity: 1 } })
+        .fromTo(
+          this,
+          HOME_PAGE_COVER_FILL_DURATION,
+          { state: { greyStrokeDashoffset: `-${styles.projectCoverPerimeter}` } },
+          { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } }
+        )
+        .fromTo(this, 1, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
+        .set(this, { state: { buttonIsVisible: true } })
+        .fromTo(this, 1, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } })
     )
   }
 
@@ -47,76 +66,86 @@ class SliderCover extends Component {
     this.timeline.restart()
   }
 
-  getTimeline () {
-    const invisible = { autoAlpha: 0 }
-    const visible = { autoAlpha: 1 }
-    // Create the timeline, paused by default, so that we can re-use the same timeline and restart
-    // it everytime we need it.
-    const timeline = new TimelineLite({ paused: true })
-
-    return (
+  handleProjectLinkClick () {
+    this.props.handleProjectLinkClick((timeline, onComplete) => (
       timeline
-        .fromTo(this.image, 1, invisible, visible)
-        .fromTo(this.info, 1, invisible, visible)
         .fromTo(
-          this.rectangles.grey,
-          2.5,
-          { strokeDashoffset: `-${projectCoverPerimeter}` },
-          { strokeDashoffset: 0, ease: Power2.easeOut }
+          this,
+          HOME_PAGE_COVER_FILL_DURATION,
+          { state: { whiteStrokeDashoffset: `-${styles.projectCoverPerimeter}` } },
+          { state: { whiteStrokeDashoffset: 0, ease: Power2.easeOut } }
         )
-        .fromTo(this.title, 1, invisible, visible)
-        .fromTo(this.button, 1, invisible, visible)
-    )
+        .add(onComplete)
+    ))
   }
 
   render () {
-    const { project, handleProjectLinkClick } = this.props
+    const {
+      imageOpacity,
+      infoOpacity,
+      greyStrokeDashoffset,
+      whiteStrokeDashoffset,
+      titleOpacity,
+      buttonIsVisible,
+      buttonOpacity
+    } = this.state
+    const { project } = this.props
     const { shortTitle, type, title, path } = project
 
     return (
       <div>
         <div className={styles.rectangle}>
           <h1
-            ref={(component) => { this.title = component }}
             className={styles.title}
+            style={{ opacity: titleOpacity }}
           >
             {shortTitle}
           </h1>
 
           <div
-            ref={(component) => { this.info = component }}
             className={styles.projectInfo}
+            style={{ opacity: infoOpacity }}
           >
             <span className={styles.projectType}>{type}</span>
             <span className={styles.projectName}>{title}</span>
           </div>
 
           <div
-            ref={(component) => { this.image = component }}
             className={styles.projectImage}
-            style={{ backgroundImage: `url(${prefixLink(project.cover)})` }}
+            style={{
+              backgroundImage: `url(${prefixLink(project.cover)})`,
+              opacity: imageOpacity
+            }}
           />
 
           <svg className={styles.svg}>
-            {['grey', 'white'].map(lineColor => (
-              <polyline
-                ref={(component) => { this.rectangles[lineColor] = component }}
-                key={lineColor}
-                className={styles[lineColor]}
-                points="1,208 1,318 721,318 721,1 1,1 1,110"
-              />
-            ))}
+            <polyline
+              key="grey"
+              className={styles.grey}
+              strokeDashoffset={greyStrokeDashoffset}
+              points="1,208 1,318 721,318 721,1 1,1 1,110"
+            />
+
+            <polyline
+              key="white"
+              className={styles.white}
+              strokeDashoffset={whiteStrokeDashoffset}
+              points="1,208 1,318 721,318 721,1 1,1 1,110"
+            />
           </svg>
 
           <Smoke />
         </div>
 
         <div
-          ref={(component) => { this.button = component }}
           className={styles.buttonWrapper}
+          style={{
+            opacity: buttonOpacity,
+            visibility: buttonIsVisible ? 'visible' : 'hidden'
+          }}
         >
           <SwagButton
-            handleClick={() => { handleProjectLinkClick(this.rectangles.white) }}
+            handleClick={() => this.handleProjectLinkClick()}
             href={prefixLink(path)}
             text="View project"
           />

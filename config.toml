@@ -1,8 +1,9 @@
+linkPrefix="/portfolio-amine"
 siteTitle="Amine Bouneggar"
 siteDescription="I’m Amine, a 21 years old French designer and freelancer based in Paris."
 siteURL="http://www.amine-bouneggar.com"
 socialNetworks = [
-  { name = "Linkedin", href = "https://linkedin.com/in/aminebouneggar" },
-  { name = "Behance", href = "https://behance.net" },
+  { name = "Linkedin", href = "https://www.linkedin.com/in/aminebouneggar" },
+  { name = "Behance", href = "https://www.behance.net/" },
   { name = "Mail", href = "mailto:amine.bouneggar7@gmail.com" }
 ]

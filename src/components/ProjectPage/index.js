@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
+import { TweenLite } from 'gsap'
+import { PAGE_FADE_DURATION } from 'src/values/animations'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
@@ -14,31 +16,72 @@ import StretchedContainer from '../StretchedContainer'
 class ProjectPage extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
+    previousPath: PropTypes.string.isRequired,
+    transitionPage: PropTypes.func.isRequired,
+    notifyPageTransitionEnded: PropTypes.func.isRequired,
     project: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.state = { hideScrollIndicator: false }
+  getInitialState () {
+    return {
+      hideScrollIndicator: false,
+      contentOpacity: 1
+    }
   }
 
-  componentWillAppear (callback) {
-    // INITIAL RENDER ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+  componentWillAppear (onComplete) {
+    TweenLite.fromTo(
+      this,
+      PAGE_FADE_DURATION,
+      { state: { contentOpacity: 0 } },
+      { state: { contentOpacity: 1 }, onComplete }
+    )
   }
 
-  componentWillEnter (callback) {
-    // SUBSEQUENT ENTER ANIMATIONS GO HERE
-    // Scroll back to the top of the page when the component appears. This fixes a problem when
-    // switching project using the grid at the bottom of the page.
-    this.root.base.scrollIntoView(true)
-    callback()
+  componentWillEnter (onComplete) {
+    const { previousPath, transitionPage } = this.props
+
+    if (previousPath === '/about/' || previousPath === '/projects/') {
+      transitionPage('in', onComplete, true)
+    } else {
+      TweenLite.fromTo(
+        this,
+        PAGE_FADE_DURATION,
+        { state: { contentOpacity: 0 } },
+        { state: { contentOpacity: 1 }, onComplete }
+      )
+    }
   }
 
-  componentWillLeave (callback) {
-    // LEAVE ANIMATION GOES HERE
-    callback(this) // (this = temporarily ignore eslint)
+  componentWillLeave (onComplete) {
+    if (this.columnClicked) {
+      this.props.transitionPage('out', onComplete)
+    } else {
+      TweenLite.fromTo(
+        this,
+        PAGE_FADE_DURATION,
+        { state: { contentOpacity: 1 } },
+        {
+          state: { contentOpacity: 0 },
+          onComplete: () => {
+            this.base.scrollIntoView(true)
+            onComplete()
+          }
+        }
+      )
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.notifyPageTransitionEnded()
+  }
+
+  handleProjectsGridInView () {
+    if (!this.projectsGridInView) {
+      this.projectsGrid.animate()
+      this.projectsGridInView = true
+    }
   }
 
   handleScrollIndicator ({ currentPosition }) {
@@ -46,13 +89,13 @@ class ProjectPage extends Component {
   }
 
   render () {
-    const { hideScrollIndicator } = this.state
+    const { hideScrollIndicator, contentOpacity } = this.state
     const { route, project, projectsData } = this.props
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle(project.title)
 
     return (
-      <StretchedContainer ref={(component) => { this.root = component }}>
+      <StretchedContainer>
         <Helmet
           title={pageTitle}
           link={[
@@ -67,33 +110,45 @@ class ProjectPage extends Component {
         />
 
         <LinkColumn
+          handleClick={() => { this.columnClicked = true }}
+          transparent={true}
           text="About me."
           href={prefixLink('/about/')}
           pull="left"
         />
 
-        <ScrollIndicator hidden={hideScrollIndicator} />
+        <div style={{ opacity: contentOpacity }}>
+          <ScrollIndicator hidden={hideScrollIndicator} />
 
-        <ProjectIntro project={project} />
-        <section>
-          {project.images.map(link => (
-            <ProjectImage
-              src={link}
-              title={project.title}
-            />
-          ))}
-        </section>
-
-        <Waypoint
-          onEnter={e => this.handleScrollIndicator(e)}
-          onLeave={e => this.handleScrollIndicator(e)}
-        >
+          <ProjectIntro project={project} />
           <section>
-            <ProjectsGrid projects={projectsData.filter(({ order }) => order !== project.order)} />
+            {project.images.map(link => (
+              <ProjectImage
+                src={link}
+                title={project.title}
+              />
+            ))}
           </section>
-        </Waypoint>
+
+          <Waypoint
+            onEnter={(e) => {
+              this.handleProjectsGridInView()
+              this.handleScrollIndicator(e)
+            }}
+            onLeave={e => this.handleScrollIndicator(e)}
+          >
+            <section>
+              <ProjectsGrid
+                ref={(component) => { this.projectsGrid = component }}
+                projects={projectsData.filter(({ order }) => order !== project.order)}
+              />
+            </section>
+          </Waypoint>
+        </div>
 
         <LinkColumn
+          handleClick={() => { this.columnClicked = true }}
+          transparent={true}
           icon={true}
           text="All projects."
           href={prefixLink('/projects/')}

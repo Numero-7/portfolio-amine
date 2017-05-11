@@ -64,8 +64,8 @@
             "shouldComponentUpdate",
             "componentWillUpdate",
             "componentDidUpdate",
-            "componentWillUnmount",
-            "componentWillLeave"
+            "componentWillLeave",
+            "componentWillUnmount"
           ]
         }
       }

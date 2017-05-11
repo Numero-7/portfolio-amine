@@ -40,9 +40,6 @@ rules:
   no-misspelled-properties:
     - 1
     - extra-properties: [
-      contentPadding,
-      aboutPageZIndex,
-      projectsPageZIndex,
       projectCoverPerimeter,
       buttonWidth,
       buttonHeight

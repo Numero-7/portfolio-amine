@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
+import { TweenLite } from 'gsap'
 import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {
@@ -8,31 +9,77 @@ class ProjectsGrid extends Component {
     projects: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
-  constructor (props) {
-    super(props)
-    // Default to first activeProject so that there is always a background-image for the hover
-    // animation.
-    this.state = { activeProject: props.projects[0], showBackground: false }
+  getInitialState () {
+    return {
+      activeProject: {},
+      linksDisplayedCount: 0,
+      backgroundImageOpacity: 0
+    }
   }
 
-  handleActiveLink (index) {
-    const activeProject = this.props.projects[index]
-    this.setState({ activeProject, showBackground: true })
+  componentWillMount () {
+    // Default activeProject to the first project so that there is always a background-image for the
+    // hover animation.
+    this.setState({ activeProject: this.props.projects[0] })
   }
 
-  handleLeaveLink () {
-    this.setState({ showBackground: false })
+  componentWillUnmount () {
+    if (this.backgroundImageTween) {
+      this.backgroundImageTween.kill()
+    }
+  }
+
+  animate () {
+    const interval = setInterval(
+      () => {
+        const { linksDisplayedCount } = this.state
+        this.setState({ linksDisplayedCount: linksDisplayedCount + 1 })
+
+        if (linksDisplayedCount > this.props.projects.length) {
+          clearInterval(interval)
+        }
+      },
+      500
+    )
+  }
+
+  handleEnterLink (index) {
+    this.backgroundImageTween = (
+      TweenLite.to(
+        this,
+        2.5,
+        { state: { backgroundImageOpacity: 1 } }
+      )
+    )
+    this.setState({ activeProject: this.props.projects[index] })
+  }
+
+  handleLeaveLink (focusOut) {
+    if (focusOut) {
+      this.backgroundImageTween.kill()
+    }
+
+    this.backgroundImageTween = (
+      TweenLite.to(
+        this,
+        2.5,
+        { state: { backgroundImageOpacity: 0 } }
+      )
+    )
   }
 
   render () {
-    const { activeProject, showBackground } = this.state
+    const { activeProject, linksDisplayedCount, backgroundImageOpacity } = this.state
     const { projects } = this.props
 
     return (
       <div className={styles.root}>
         <div
-          style={{ backgroundImage: `url(${prefixLink(activeProject.cover)})` }}
-          className={`${styles.background} ${showBackground ? styles.active : ''}`}
+          style={{
+            backgroundImage: `url(${prefixLink(activeProject.cover)})`,
+            opacity: backgroundImageOpacity
+          }}
+          className={styles.background}
         />
 
         <ul className={styles.list}>
@@ -42,12 +89,12 @@ class ProjectsGrid extends Component {
               className={styles.item}
             >
               <Link
-                className={styles.link}
+                className={`${styles.link} ${index < linksDisplayedCount ? styles.visible : ''}`}
                 to={prefixLink(project.path)}
-                onMouseOver={() => this.handleActiveLink(index)}
-                onFocus={() => this.handleActiveLink(index)}
+                onMouseOver={() => this.handleEnterLink(index)}
+                onFocus={() => this.handleEnterLink(index)}
                 onMouseLeave={() => this.handleLeaveLink()}
-                onBlur={() => this.handleLeaveLink()}
+                onBlur={() => this.handleLeaveLink(true)}
               >
                 {project.title}
               </Link>
