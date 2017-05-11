@@ -4,7 +4,7 @@ import { TweenLite } from 'gsap'
 // import Particle from './Particle'
 import Scene from './Scene'
 import Emitter from './Emitter'
-// import styles from './smoke.module.scss'
+import styles from './smoke.module.scss'
 
 class Smoke extends Component {
   componentDidMount () {
@@ -12,27 +12,6 @@ class Smoke extends Component {
   }
 
   init () {
-    // this.app = new PIXI.Application(800, 250)
-    // this.root.appendChild(this.app.view)
-
-    // const sprites = new PIXI.particles.ParticleContainer(100, {
-    //   scale: true,
-    //   position: true,
-    //   rotation: true,
-    //   uvs: true,
-    //   alpha: true
-    // })
-
-    // this.app.stage.addChild(sprites)
-
-    // const particles = []
-
-    // for (let i = 0; i < 100; i++) {
-    //   const p = new Particle()
-    //   particles.push(p)
-    //   sprites.addChild(p)
-    // }
-
     this.scene = new Scene()
     this.root.appendChild(this.scene.renderer.view)
     this.emitter = new Emitter(this.scene)
@@ -51,7 +30,10 @@ class Smoke extends Component {
 
   render () {
     return (
-      <div ref={(component) => { this.root = component }} />
+      <div
+        className={styles.root}
+        ref={(component) => { this.root = component }}
+      />
     )
   }
 }

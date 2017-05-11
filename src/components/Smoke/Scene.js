@@ -2,8 +2,8 @@ import { WebGLRenderer, Container } from 'pixi.js'
 
 class Scene {
   constructor () {
-    this.width = 800
-    this.height = 150
+    this.width = 1200
+    this.height = 300
     this.renderer = new WebGLRenderer(
       this.width,
       this.height,
