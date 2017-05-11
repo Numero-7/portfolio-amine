@@ -11,19 +11,39 @@ class PageTransitionLayer extends Component {
   }
   /* eslint-enable no-useless-constructor */
 
-  animate (onComplete, reverse) {
+  animateOut (onComplete, reverse) {
     const timeline = new TimelineLite({ onComplete })
-    const initialProperties = { width: '0' }
+    const initialProperties = { width: 0 }
+
     if (reverse) {
       initialProperties.right = 0
     }
 
-    const endProperties = reverse ? { right: 'initial' } : { right: 0 }
     timeline.set(this.base, initialProperties)
-    timeline.to(this.base, TRANSITION_LAYER_DURATION, { width: '115%' })
-    timeline.set(this.base, endProperties)
+    timeline.to(this.base, TRANSITION_LAYER_DURATION, { width: '100%' })
+    this.resetTimelineProperties(timeline)
+  }
+
+  animateIn (onComplete, reverse) {
+    const timeline = new TimelineLite({ onComplete })
+    const initialProperties = { width: '100%', [reverse ? 'left' : 'right']: 0 }
+
+    timeline.set(this.base, initialProperties)
     timeline.to(this.base, TRANSITION_LAYER_DURATION, { width: 0 })
-    // Reset all props
+    this.resetTimelineProperties(timeline)
+  }
+
+  animate (direction, onComplete, reverse) {
+    if (direction === 'in') {
+      this.animateIn(onComplete, reverse)
+    } else if (direction === 'out') {
+      this.animateOut(onComplete, reverse)
+    }
+  }
+
+  resetTimelineProperties (timeline) {
+    // Always reset timelines properties after they have finished animating so that we don’t have
+    // to manually reset styles everytime.
     timeline.set(this.base, { clearProps: 'all' })
   }
 

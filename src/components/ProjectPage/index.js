@@ -2,9 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
-import { TimelineLite } from 'gsap'
-import { PAGE_FADE_DURATION, HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
-import fadeElement from 'src/utils/fade-element'
+import { TweenLite } from 'gsap'
+import { PAGE_FADE_DURATION } from 'src/values/animations'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
@@ -18,40 +17,64 @@ class ProjectPage extends Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
     previousPath: PropTypes.string.isRequired,
-    triggerPageTransition: PropTypes.func.isRequired,
+    transitionPage: PropTypes.func.isRequired,
+    notifyPageTransitionEnded: PropTypes.func.isRequired,
     project: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.state = { hideScrollIndicator: false }
-    this.projectsGridInView = false
+  getInitialState () {
+    return {
+      hideScrollIndicator: false,
+      contentOpacity: 1
+    }
   }
 
   componentWillAppear (onComplete) {
-    const timeline = new TimelineLite({ onComplete })
-    fadeElement(this.content, timeline, {})
+    TweenLite.fromTo(
+      this,
+      PAGE_FADE_DURATION,
+      { state: { contentOpacity: 0 } },
+      { state: { contentOpacity: 1 }, onComplete }
+    )
   }
 
   componentWillEnter (onComplete) {
-    const { previousPath, triggerPageTransition } = this.props
+    const { previousPath, transitionPage } = this.props
 
     if (previousPath === '/about/' || previousPath === '/projects/') {
-      triggerPageTransition(onComplete, true)
+      transitionPage('in', onComplete, true)
     } else {
-      const delay = (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : PAGE_FADE_DURATION)
-      const timeline = new TimelineLite({ onComplete, delay })
-      fadeElement(this.content, timeline, {})
+      TweenLite.fromTo(
+        this,
+        PAGE_FADE_DURATION,
+        { state: { contentOpacity: 0 } },
+        { state: { contentOpacity: 1 }, onComplete }
+      )
     }
   }
 
   componentWillLeave (onComplete) {
-    const timeline = new TimelineLite({ onComplete })
-    fadeElement(this.content, timeline, { fadeOut: true })
-    // Scroll back to the top of the page when leaving. This fixes a problem when
-    // switching project using the grid at the bottom of the page.
-    timeline.add(() => this.base.scrollIntoView(true))
+    if (this.columnClicked) {
+      this.props.transitionPage('out', onComplete)
+    } else {
+      TweenLite.fromTo(
+        this,
+        PAGE_FADE_DURATION,
+        { state: { contentOpacity: 1 } },
+        {
+          state: { contentOpacity: 0 },
+          onComplete: () => {
+            this.base.scrollIntoView(true)
+            onComplete()
+          }
+        }
+      )
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.notifyPageTransitionEnded()
   }
 
   handleProjectsGridInView () {
@@ -66,7 +89,7 @@ class ProjectPage extends Component {
   }
 
   render () {
-    const { hideScrollIndicator } = this.state
+    const { hideScrollIndicator, contentOpacity } = this.state
     const { route, project, projectsData } = this.props
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle(project.title)
@@ -87,13 +110,14 @@ class ProjectPage extends Component {
         />
 
         <LinkColumn
+          handleClick={() => { this.columnClicked = true }}
           transparent={true}
           text="About me."
           href={prefixLink('/about/')}
           pull="left"
         />
 
-        <div ref={(component) => { this.content = component }}>
+        <div style={{ opacity: contentOpacity }}>
           <ScrollIndicator hidden={hideScrollIndicator} />
 
           <ProjectIntro project={project} />
@@ -123,6 +147,7 @@ class ProjectPage extends Component {
         </div>
 
         <LinkColumn
+          handleClick={() => { this.columnClicked = true }}
           transparent={true}
           icon={true}
           text="All projects."

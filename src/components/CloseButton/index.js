@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { TweenLite } from 'gsap'
 import { Link } from 'react-router'
-import { PAGE_FADE_DURATION, HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
+import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
 import styles from './close-button.module.scss'
 
 class CloseButton extends Component {
@@ -12,14 +12,15 @@ class CloseButton extends Component {
 
   componentDidMount () {
     const { previousPath } = this.props
+    const delay = (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : 0)
 
     TweenLite.fromTo(
       this.base,
-      PAGE_FADE_DURATION,
+      1,
       { autoAlpha: 0 },
       {
         autoAlpha: 1,
-        delay: (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : 0)
+        delay
       }
     )
   }

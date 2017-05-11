@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { TRANSITION_LAYER_DURATION } from 'src/values/animations'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import StretchedContainer from 'src/components/StretchedContainer'
@@ -13,31 +12,39 @@ class Projects extends Component {
     route: PropTypes.object.isRequired,
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
     previousPath: PropTypes.string.isRequired,
-    triggerPageTransition: PropTypes.func.isRequired
+    transitionPage: PropTypes.func.isRequired,
+    notifyPageTransitionEnded: PropTypes.func.isRequired
   }
 
-  /* eslint-disable class-methods-use-this */
-  componentWillAppear (onComplete) {
-    onComplete()
+  getInitialState () {
+    return {
+      contentOpacity: 1
+    }
   }
-  /* eslint-enable class-methods-use-this */
 
   componentWillEnter (onComplete) {
-    const { previousPath, triggerPageTransition } = this.props
-    triggerPageTransition(onComplete, previousPath === '/about/')
+    const { previousPath, transitionPage } = this.props
+    transitionPage('in', onComplete, previousPath === '/about/')
   }
 
   componentDidMount () {
     this.projectsGrid.animate()
   }
 
-  /* eslint-disable class-methods-use-this */
   componentWillLeave (onComplete) {
-    setTimeout(onComplete, TRANSITION_LAYER_DURATION * 1000)
+    this.props.transitionPage(
+      'out',
+      onComplete,
+      this.goBackLinkClicked || (!this.goBackLinkClicked && !this.aboutLinkClicked)
+    )
   }
-  /* eslint-enable class-methods-use-this */
+
+  componentWillUnmount () {
+    this.props.notifyPageTransitionEnded()
+  }
 
   render () {
+    const { contentOpacity } = this.state
     const { route, projectsData, previousPath } = this.props
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle('Projects')
@@ -57,16 +64,20 @@ class Projects extends Component {
 
         <StretchedContainer>
           <LinkColumn
+            handleClick={() => { this.aboutLinkClicked = true }}
             text="About me."
             href={prefixLink('/about/')}
           />
 
-          <ProjectsGrid
-            ref={(component) => { this.projectsGrid = component }}
-            projects={projectsData}
-          />
+          <div style={{ opacity: contentOpacity }}>
+            <ProjectsGrid
+              ref={(component) => { this.projectsGrid = component }}
+              projects={projectsData}
+            />
+          </div>
 
           <LinkColumn
+            handleClick={() => { this.goBackLinkClicked = true }}
             text="Go back."
             href={(previousPath !== '/about/' && prefixLink(previousPath)) || prefixLink('/')}
             pull="right"
