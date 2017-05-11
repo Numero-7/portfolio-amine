@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import TransitionGroup from 'preact-transition-group'
 import { config } from 'config'
-import 'gsap-react-plugin' // Allow GSAP to tween components’ state.
+import 'src/utils/browser/gsap-react-plugin'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import getChildrenPage from 'src/utils/get-children-page'
