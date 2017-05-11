@@ -19,6 +19,7 @@ class SliderCover extends Component {
       greyStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
       whiteStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
       titleOpacity: 0,
+      smokeOpacity: 0,
       buttonIsVisible: false,
       buttonOpacity: 0
     }
@@ -57,8 +58,9 @@ class SliderCover extends Component {
           { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } }
         )
         .fromTo(this, 1, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
-        .set(this, { state: { buttonIsVisible: true } })
-        .fromTo(this, 1, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } })
+        .fromTo(this, 5, { state: { smokeOpacity: 0 } }, { state: { smokeOpacity: 1 } })
+        .set(this, { state: { buttonIsVisible: true } }, '-=3')
+        .fromTo(this, 1, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } }, '-=3')
     )
   }
 
@@ -86,6 +88,7 @@ class SliderCover extends Component {
       greyStrokeDashoffset,
       whiteStrokeDashoffset,
       titleOpacity,
+      smokeOpacity,
       buttonIsVisible,
       buttonOpacity
     } = this.state
@@ -134,7 +137,7 @@ class SliderCover extends Component {
             />
           </svg>
 
-          <Smoke />
+          <Smoke opacity={smokeOpacity} />
         </div>
 
         <div
