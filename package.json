@@ -26,6 +26,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.3.3",
+    "copy": "^0.3.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
