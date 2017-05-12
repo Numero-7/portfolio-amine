@@ -44,7 +44,7 @@ class PageTransitionLayer extends Component {
   resetTimelineProperties (timeline) {
     // Always reset timelines properties after they have finished animating so that we don’t have
     // to manually reset styles everytime.
-    timeline.set(this.base, { clearProps: 'all' })
+    timeline.set(this.base, { clearProps: 'left,right' })
   }
 
   render () {
