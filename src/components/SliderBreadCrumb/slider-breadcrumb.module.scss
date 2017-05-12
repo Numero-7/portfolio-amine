@@ -4,12 +4,15 @@
 
 .root {
   position: absolute;
+  left: 0;
   bottom: 0;
+  width: 100%;
   height: $slider-breadcrumb-height;
 }
 
 .list {
   display: flex;
+  justify-content: center;
 }
 
 .item {
