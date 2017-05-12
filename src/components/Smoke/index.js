@@ -26,7 +26,7 @@ class Smoke extends Component {
       // By default, the opacity is set to 0. If we start having an opacity superior to 0, it means
       // that we should start animating the smoke.
       this.startTicker()
-    } else {
+    } else if (!nextProps.opacity) {
       // The opacity will be reset to 0 only before switching project in the slider. If this is the
       // case, we should pause the ticker for performance reasons.
       this.removeTicker()

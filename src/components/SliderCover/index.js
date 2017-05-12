@@ -49,18 +49,18 @@ class SliderCover extends Component {
 
     return (
       timeline
-        .fromTo(this, 1, { state: { imageOpacity: 0 } }, { state: { imageOpacity: 1 } })
-        .fromTo(this, 1, { state: { infoOpacity: 0 } }, { state: { infoOpacity: 1 } })
+        .fromTo(this, 0.85, { state: { imageOpacity: 0 } }, { state: { imageOpacity: 1 } })
+        .fromTo(this, 0.85, { state: { infoOpacity: 0 } }, { state: { infoOpacity: 1 } })
         .fromTo(
           this,
           HOME_PAGE_COVER_FILL_DURATION,
           { state: { greyStrokeDashoffset: `-${styles.projectCoverPerimeter}` } },
           { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } }
         )
-        .fromTo(this, 1, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
-        .fromTo(this, 5, { state: { smokeOpacity: 0 } }, { state: { smokeOpacity: 1 } })
-        .set(this, { state: { buttonIsVisible: true } }, '-=3')
-        .fromTo(this, 1, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } }, '-=3')
+        .fromTo(this, 0.85, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
+        .fromTo(this, 3, { state: { smokeOpacity: 0 } }, { state: { smokeOpacity: 1 } })
+        .set(this, { state: { buttonIsVisible: true } }, '-=2')
+        .fromTo(this, 0.85, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } }, '-=2')
     )
   }
 

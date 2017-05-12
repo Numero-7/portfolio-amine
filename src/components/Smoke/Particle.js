@@ -16,8 +16,8 @@ class Particle extends Sprite {
     this.y = getRandomBetween(100, 200, true)
     this.rotationDirection = Math.round(Math.random())
 
-    this.tint = 0x616161
-    this.alpha = getRandomBetween(0.15, 0.2, true)
+    this.tint = 0x2E2E2E
+    this.alpha = getRandomBetween(0.2, 0.25, true)
     this.blendMode = BLEND_MODES.NORMAL
 
     const smokeNumber = Math.floor(getRandomBetween(1, 3, true))
@@ -36,9 +36,9 @@ class Particle extends Sprite {
     const randomRotate = Math.round(Math.random())
 
     if (this.rotationDirection) {
-      this.rotation -= randomRotate ? 0.003 : 0.002
+      this.rotation -= randomRotate ? 0.004 : 0.003
     } else {
-      this.rotation += randomRotate ? 0.003 : 0.002
+      this.rotation += randomRotate ? 0.004 : 0.003
     }
   }
 }
