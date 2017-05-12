@@ -21,7 +21,7 @@ class Particle extends Sprite {
     this.blendMode = BLEND_MODES.NORMAL
 
     const smokeNumber = Math.floor(getRandomBetween(1, 3, true))
-    this.texture = Texture.fromImage(`http://martingoutry.com/smoke-${smokeNumber}.png`)
+    this.texture = Texture.fromImage(`/static/images/smoke-${smokeNumber}.png`)
 
     if (smokeNumber === 1) {
       this.pivot.x = 82.5
