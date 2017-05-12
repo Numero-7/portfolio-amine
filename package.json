@@ -16,6 +16,7 @@
     "gsap": "^1.19.1",
     "gsap-react-plugin": "^1.0.2",
     "lodash": "^4.17.4",
+    "pixi.js": "^4.5.1",
     "preact": "^7.2.1",
     "preact-compat": "^3.14.3",
     "preact-transition-group": "^1.1.0",

@@ -57,7 +57,7 @@ $border: 2px solid $contrast-grey;
   overflow: visible;
   transition: stroke 350ms ease-in-out;
   stroke: rgba($white, 0.5);
-  stroke-width: 2;
+  stroke-width: 1;
 }
 
 // sass-lint:disable force-pseudo-nesting

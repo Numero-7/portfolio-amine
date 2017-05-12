@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
 import { TimelineLite, Power2 } from 'gsap'
 import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
+import Smoke from '../Smoke'
 import SwagButton from '../SwagButton'
 import styles from './slider-cover.module.scss'
 
@@ -18,6 +19,7 @@ class SliderCover extends Component {
       greyStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
       whiteStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
       titleOpacity: 0,
+      smokeOpacity: 0,
       buttonIsVisible: false,
       buttonOpacity: 0
     }
@@ -47,17 +49,18 @@ class SliderCover extends Component {
 
     return (
       timeline
-        .fromTo(this, 1, { state: { imageOpacity: 0 } }, { state: { imageOpacity: 1 } })
-        .fromTo(this, 1, { state: { infoOpacity: 0 } }, { state: { infoOpacity: 1 } })
+        .fromTo(this, 0.85, { state: { imageOpacity: 0 } }, { state: { imageOpacity: 1 } })
+        .fromTo(this, 0.85, { state: { infoOpacity: 0 } }, { state: { infoOpacity: 1 } })
         .fromTo(
           this,
           HOME_PAGE_COVER_FILL_DURATION,
           { state: { greyStrokeDashoffset: `-${styles.projectCoverPerimeter}` } },
           { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } }
         )
-        .fromTo(this, 1, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
-        .set(this, { state: { buttonIsVisible: true } })
-        .fromTo(this, 1, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } })
+        .fromTo(this, 0.85, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
+        .fromTo(this, 3, { state: { smokeOpacity: 0 } }, { state: { smokeOpacity: 1 } })
+        .set(this, { state: { buttonIsVisible: true } }, '-=2')
+        .fromTo(this, 0.85, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } }, '-=2')
     )
   }
 
@@ -85,6 +88,7 @@ class SliderCover extends Component {
       greyStrokeDashoffset,
       whiteStrokeDashoffset,
       titleOpacity,
+      smokeOpacity,
       buttonIsVisible,
       buttonOpacity
     } = this.state
@@ -132,6 +136,8 @@ class SliderCover extends Component {
               points="1,208 1,318 721,318 721,1 1,1 1,110"
             />
           </svg>
+
+          <Smoke opacity={smokeOpacity} />
         </div>
 
         <div
