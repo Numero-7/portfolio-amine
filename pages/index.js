@@ -111,7 +111,6 @@ class Index extends Component {
 
 export default Index
 exports.data = {
-  hideHeader: true,
   assets: [
     '/static/images/smoke-1.png',
     '/static/images/smoke-2.png'
