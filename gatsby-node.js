@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const copy = require('copy')
 
 exports.modifyWebpackConfig = function (config, stage) {
   // Requiring the server version of React-dom is hardcoded right now
@@ -38,4 +39,8 @@ exports.modifyWebpackConfig = function (config, stage) {
   })
 
   return config
+}
+
+exports.postBuild = function (pages, callback) {
+  copy('./CNAME', './public/', callback)
 }
