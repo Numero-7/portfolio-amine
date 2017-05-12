@@ -23,6 +23,9 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
   height: 100%;
 }
 
+/**
+ * 1. TranslateZ needed to fix rendering bug with rectangle.
+ */
 .title {
   position: absolute;
   top: -0.85em;
@@ -30,7 +33,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
   font: 700% $sans-serif-title-font-stack;
   color: $gradient-light-grey;
   text-transform: uppercase;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0); /* 1 */
 
   @supports(-webkit-background-clip: text) { // sass-lint:disable-line no-vendor-prefixes
     color: transparent;
