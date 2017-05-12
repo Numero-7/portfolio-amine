@@ -20,7 +20,12 @@ class Smoke extends Component {
     this.base.appendChild(this.scene.renderer.view)
     this.emitter = new Emitter(this.scene)
 
-    TweenLite.ticker.addEventListener('tick', () => this.update())
+    this.tickListener = () => this.update()
+    TweenLite.ticker.addEventListener('tick', this.tickListener)
+  }
+
+  componentWillUnmount () {
+    TweenLite.ticker.removeEventListener('tick', this.tickListener)
   }
 
   update () {
