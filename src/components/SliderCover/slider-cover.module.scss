@@ -6,7 +6,6 @@ $grey-stroke: rgb(56, 56, 56);
 $gradient-dark-grey: rgb(19, 19, 19);
 $gradient-light-grey: rgb(32, 32, 32);
 $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-light-grey 100%);
-$z-index-smoke: 3;
 
 :export {
   projectCoverPerimeter: $project-cover-perimeter;
@@ -44,7 +43,7 @@ $z-index-smoke: 3;
   position: absolute;
   top: 50%;
   left: 0;
-  z-index: $z-index-smoke;
+  z-index: 3;
   text-align: left;
   transform: translateY(-50%);
 }
@@ -91,13 +90,6 @@ $z-index-smoke: 3;
 .white {
   stroke: $white;
 }
-
-// .smokeWrapper {
-//   position: absolute;
-//   bottom: -150px;
-//   left: 50%;
-//   transform: translateX(-50%);
-// }
 
 .buttonWrapper {
   position: relative;

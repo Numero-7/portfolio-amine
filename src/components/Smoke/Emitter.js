@@ -4,22 +4,20 @@ class Emitter {
   constructor (scene) {
     this.scene = scene
     this.particles = []
-    this.particlesNumber = 42
-    this.populate(Particle, this.particlesNumber)
+    this.particlesCount = 42
+    this.populate()
   }
 
-  populate (ClassEl, maxParticles) {
-    for (let i = 0; i < maxParticles; i += 1) {
-      const p = new ClassEl(i)
-      this.particles.push(p)
-      this.scene.addChild(p)
+  populate () {
+    for (let i = 0; i <= this.particlesCount; i += 1) {
+      const particle = new Particle(i, this.particlesCount)
+      this.particles.push(particle)
+      this.scene.addChild(particle)
     }
   }
 
   update () {
-    for (let i = 0; i < this.particles.length; i += 1) {
-      this.particles[i].update()
-    }
+    this.particles.forEach(particle => particle.update())
   }
 }
 

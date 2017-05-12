@@ -16,18 +16,10 @@ class Smoke extends Component {
   }
 
   componentDidMount () {
-    this.init()
-  }
-
-  init () {
     this.scene = new Scene()
-    this.root.appendChild(this.scene.renderer.view)
+    this.base.appendChild(this.scene.renderer.view)
     this.emitter = new Emitter(this.scene)
 
-    this.addListeners()
-  }
-
-  addListeners () {
     TweenLite.ticker.addEventListener('tick', () => this.update())
   }
 
@@ -42,7 +34,6 @@ class Smoke extends Component {
     return (
       <div
         className={styles.root}
-        ref={(component) => { this.root = component }}
         style={{ opacity }}
       />
     )
