@@ -16,8 +16,8 @@ class SliderCover extends Component {
     return {
       imageOpacity: 0,
       infoOpacity: 0,
-      greyStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
-      whiteStrokeDashoffset: `-${styles.projectCoverPerimeter}`,
+      greyStrokeDashoffset: styles.projectCoverPerimeter,
+      whiteStrokeDashoffset: styles.projectCoverPerimeter,
       titleOpacity: 0,
       smokeOpacity: 0,
       buttonIsVisible: false,
@@ -54,7 +54,7 @@ class SliderCover extends Component {
         .fromTo(
           this,
           HOME_PAGE_COVER_FILL_DURATION,
-          { state: { greyStrokeDashoffset: `-${styles.projectCoverPerimeter}` } },
+          { state: { greyStrokeDashoffset: styles.projectCoverPerimeter } },
           { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } }
         )
         .fromTo(this, 0.85, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
@@ -74,7 +74,7 @@ class SliderCover extends Component {
         .fromTo(
           this,
           HOME_PAGE_COVER_FILL_DURATION,
-          { state: { whiteStrokeDashoffset: `-${styles.projectCoverPerimeter}` } },
+          { state: { whiteStrokeDashoffset: styles.projectCoverPerimeter } },
           { state: { whiteStrokeDashoffset: 0, ease: Power2.easeOut } }
         )
         .add(onComplete)
@@ -126,14 +126,18 @@ class SliderCover extends Component {
               key="grey"
               className={styles.grey}
               strokeDashoffset={greyStrokeDashoffset}
+              strokeDasharray={styles.projectCoverPerimeter}
               points="1,208 1,318 721,318 721,1 1,1 1,110"
+              transform="translate(0, 319) scale(1, -1)"
             />
 
             <polyline
               key="white"
               className={styles.white}
               strokeDashoffset={whiteStrokeDashoffset}
+              strokeDasharray={styles.projectCoverPerimeter}
               points="1,208 1,318 721,318 721,1 1,1 1,110"
+              transform="translate(0, 319) scale(1, -1)"
             />
           </svg>
 

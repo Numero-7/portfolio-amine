@@ -79,7 +79,6 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 .white {
   fill: none;
   stroke-width: 2px;
-  stroke-dasharray: $project-cover-perimeter;
   shape-rendering: crispEdges; /* 1 */
 }
 
