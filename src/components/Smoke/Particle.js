@@ -1,7 +1,10 @@
-import { Sprite, Texture, BLEND_MODES } from 'pixi.js'
+import { Sprite, Texture, BLEND_MODES } from 'isomorphic-pixi'
 import getRandomBetween from 'src/utils/get-random-between'
 
-class Particle extends Sprite {
+// Server-side, we extend null instead of PIXI.Sprite so that the super call doesn’t fail.
+const Ancestor = typeof window !== 'undefined' ? Sprite : null
+
+class Particle extends Ancestor {
   constructor (count, totalCount) {
     super()
     this.count = count

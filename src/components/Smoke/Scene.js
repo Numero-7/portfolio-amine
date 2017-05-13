@@ -1,4 +1,4 @@
-import { WebGLRenderer, Container } from 'pixi.js'
+import { WebGLRenderer, Container } from 'isomorphic-pixi'
 
 class Scene {
   constructor () {
