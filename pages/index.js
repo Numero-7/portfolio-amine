@@ -3,14 +3,17 @@ import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite, TimelineLite } from 'gsap'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
+import ShowWhen from 'src/components/ShowWhen'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
 import Slider from 'src/components/Slider'
+import ProjectsList from 'src/components/ProjectsList'
 
 class Index extends Component {
   static propTypes = {
     projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
     previousPath: PropTypes.string.isRequired,
+    isMobile: PropTypes.bool.isRequired,
     transitionPage: PropTypes.func.isRequired,
     notifyPageTransitionEnded: PropTypes.func.isRequired
   }
@@ -70,13 +73,13 @@ class Index extends Component {
 
   render () {
     const { sliderOpacity } = this.state
-    const { projectsData } = this.props
+    const { projectsData, isMobile } = this.props
 
     return (
       <StretchedContainer>
         <Helmet
           htmlAttributes={{
-            class: 'unscrollable'
+            class: isMobile ? '' : 'unscrollable'
           }}
         />
 
@@ -85,18 +88,25 @@ class Index extends Component {
           text="About me."
         />
 
-        <div style={{ opacity: sliderOpacity }}>
-          <Slider
-            ref={(component) => { this.slider = component }}
-            projectsData={projectsData}
-            handleProjectLinkClick={(projectCoverCallback) => {
-              this.projectLinkClicked = true
-              // Pass a callback to the page so that we can pass back the leave animation timeline
-              // to the SliderCover component when transitioning the page out.
-              this.projectCoverCallback = projectCoverCallback
-            }}
-          />
-        </div>
+        <ShowWhen when="desktop">
+          <div style={{ opacity: sliderOpacity }}>
+
+            <Slider
+              ref={(component) => { this.slider = component }}
+              projectsData={projectsData}
+              handleProjectLinkClick={(projectCoverCallback) => {
+                this.projectLinkClicked = true
+                // Pass a callback to the page so that we can pass back the leave animation timeline
+                // to the SliderCover component when transitioning the page out.
+                this.projectCoverCallback = projectCoverCallback
+              }}
+            />
+          </div>
+        </ShowWhen>
+
+        <ShowWhen when="mobile">
+          <ProjectsList projectsData={projectsData} />
+        </ShowWhen>
 
         <LinkColumn
           href={prefixLink('/projects/')}

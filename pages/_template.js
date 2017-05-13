@@ -105,6 +105,7 @@ class Template extends Component {
                     passDataToChildren(children, {
                       projectsData,
                       previousPath,
+                      isMobile,
                       notifyPageTransitionEnded: () => this.setState({ transitionEnded: true }),
                       transitionPage: (direction, onComplete, reverse) =>
                         this.transitionLayer.animate(direction, onComplete, reverse),
