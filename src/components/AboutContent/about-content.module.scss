@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 
@@ -11,10 +12,18 @@
   background-image: url('pages/static/images/about-picture.png');
   background-position: right top;
   background-repeat: no-repeat;
+
+  @include media('<small') {
+    background-image: none;
+  }
 }
 
 .contentWrapper {
   margin: 9% 0;
+
+  @include media('<small') {
+    margin: 2em 0 0;
+  }
 }
 
 .gold {
@@ -34,6 +43,10 @@
 
 .socialNetworksWrapper {
   margin-top: 3em;
+
+  @include media('<small') {
+    margin-top: 2em;
+  }
 }
 
 .shadowWrapper {
@@ -47,4 +60,8 @@
 .topShadowWrapper {
   position: relative;
   top: $text-shadow-offset; /* 1 */
+
+  @include media('<small') {
+    top: 0;
+  }
 }

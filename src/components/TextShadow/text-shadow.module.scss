@@ -1,7 +1,9 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 
 $about-text-letter-spacing: 200px;
+$about-text-letter-spacing-mobile: 50px;
 
 /**
  * 1. Positioning context for before pseudo-element.
@@ -21,5 +23,15 @@ $about-text-letter-spacing: 200px;
     position: absolute;
     top: -$text-shadow-offset;
     content: attr(data-content);
+  }
+
+  @include media('<small') {
+    font-size: $big-font-size;
+    letter-spacing: $about-text-letter-spacing-mobile;
+    margin-right: -$about-text-letter-spacing-mobile;
+
+    &::before {
+      top: -3px;
+    }
   }
 }

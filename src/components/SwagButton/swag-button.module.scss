@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 @import 'src/sass/mixins/stretch';
@@ -23,6 +24,11 @@ $button-height: 55px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+
+  @include media('<small') {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 /**

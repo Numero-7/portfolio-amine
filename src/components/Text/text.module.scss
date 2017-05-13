@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 
@@ -7,4 +8,9 @@
   letter-spacing: 1px;
   color: $white;
   text-align: center;
+
+  @include media('<small') {
+    font-size: $small-font-size;
+    padding: 0 1em;
+  }
 }

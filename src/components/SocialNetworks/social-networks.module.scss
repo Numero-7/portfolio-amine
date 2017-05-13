@@ -1,8 +1,19 @@
+@import 'src/sass/vendors/include-media';
+
 .root {
   display: flex;
   justify-content: center;
 
   & > :not(:last-child) {
     margin-right: 2em;
+  }
+
+  @include media('<small') {
+    flex-direction: column;
+
+    & > :not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 1.5em;
+    }
   }
 }

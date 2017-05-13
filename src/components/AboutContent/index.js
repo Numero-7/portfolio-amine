@@ -1,4 +1,5 @@
 import React from 'react'
+import ShowWhen from '../ShowWhen'
 import TextShadow from '../TextShadow'
 import Text from '../Text'
 import SocialNetworks from '../SocialNetworks'
@@ -53,9 +54,11 @@ const AboutContent = () => (
       </div>
     </div>
 
-    <div className={styles.shadowWrapper}>
-      <TextShadow text="Me" />
-    </div>
+    <ShowWhen when="desktop">
+      <div className={styles.shadowWrapper}>
+        <TextShadow text="Me" />
+      </div>
+    </ShowWhen>
   </div>
 )
 

@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 @import 'src/sass/variables/layout';
@@ -11,6 +12,10 @@ $border: 2px solid $contrast-grey;
   width: $content-padding;
   height: 100vh;
   background: $black;
+
+  @include media('<small') {
+    display: none;
+  }
 }
 
 .transparent {

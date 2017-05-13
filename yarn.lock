@@ -4641,6 +4641,10 @@ mdurl@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
 
+mediaquery@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/mediaquery/-/mediaquery-0.0.4.tgz#4aa7e6bcdca6ce469ac43811afa90dce0004cc91"
+
 memory-fs@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.2.0.tgz#f2bb25368bc121e391c2520de92969caee0a0290"
@@ -6437,6 +6441,12 @@ restore-cursor@^1.0.1:
 retry@^0.10.0:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/retry/-/retry-0.10.1.tgz#e76388d217992c252750241d3d3956fed98d8ff4"
+
+rezponsive@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/rezponsive/-/rezponsive-0.3.0.tgz#72554d63230b82d3bcbc4ac0e8daf74b040a5b4b"
+  dependencies:
+    mediaquery "0.0.4"
 
 rgb-hex@^1.0.0:
   version "1.0.0"

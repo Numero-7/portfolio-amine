@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/layout';
 
@@ -14,8 +15,16 @@
 
 .left {
   padding-left: $content-padding;
+
+  @include media('<small') {
+    padding-left: 0;
+  }
 }
 
 .right {
   padding-right: $content-padding;
+
+  @include media('<small') {
+    padding-right: 0;
+  }
 }
