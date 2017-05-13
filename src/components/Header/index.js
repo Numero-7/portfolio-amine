@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react'
-import { prefixLink } from 'gatsby-helpers'
 import CloseButton from '../CloseButton'
 import styles from './header.module.scss'
 
-const Header = ({ previousPath, showCloseButton }) => (
+const Header = ({ previousPath, currentPath, showCloseButton }) => (
   <header className={styles.root}>
     <div>
       <h2 className={`${styles.text} ${styles.name}`}>Amine Bouneggar</h2>
@@ -13,7 +12,7 @@ const Header = ({ previousPath, showCloseButton }) => (
     {showCloseButton && (
       <CloseButton
         previousPath={previousPath}
-        href={prefixLink('/')}
+        currentPath={currentPath}
       />
     )}
   </header>
@@ -21,6 +20,7 @@ const Header = ({ previousPath, showCloseButton }) => (
 
 Header.propTypes = {
   previousPath: PropTypes.string.isRequired,
+  currentPath: PropTypes.string.isRequired,
   showCloseButton: PropTypes.bool
 }
 

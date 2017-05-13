@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react'
-import { TweenLite } from 'gsap'
 import { Link } from 'react-router'
+import { prefixLink } from 'gatsby-helpers'
+import { TweenLite } from 'gsap'
 import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
 import styles from './close-button.module.scss'
 
 class CloseButton extends Component {
   static propTypes = {
     previousPath: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired
+    currentPath: PropTypes.string.isRequired
   }
 
   componentDidMount () {
@@ -26,14 +27,14 @@ class CloseButton extends Component {
   }
 
   render () {
-    const { href } = this.props
+    const { currentPath } = this.props
 
     return (
       <Link
         className={styles.link}
-        to={href}
+        to={currentPath === '/' ? prefixLink('/about/') : prefixLink('/')}
       >
-        Close.
+        {currentPath === '/' ? 'About me.' : 'Close.'}
       </Link>
     )
   }

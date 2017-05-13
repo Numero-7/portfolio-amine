@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
-import TransitionGroup from 'preact-transition-group'
 import { config } from 'config'
+import TransitionGroup from 'preact-transition-group'
 import 'src/utils/browser/gsap-react-plugin'
+import throttle from 'lodash/throttle'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import getChildrenPage from 'src/utils/get-children-page'
@@ -26,13 +27,24 @@ class Template extends Component {
     location: PropTypes.object.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.state = {
+  getInitialState () {
+    return {
       assetsReady: false,
-      projectsData: getProjectsData(props.route.pages),
-      previousPath: '',
-      transitionEnded: true
+      transitionEnded: true,
+      previousPath: ''
+    }
+  }
+
+  componentWillMount () {
+    if (typeof window !== 'undefined') {
+      this.setState({
+        isMobile: window.innerWidth < 900,
+        projectsData: getProjectsData(this.props.route.pages)
+      })
+
+      window.addEventListener('resize', throttle(() => (
+        this.setState({ isMobile: window.innerWidth < 900 })
+      ), 500))
     }
   }
 
@@ -49,12 +61,16 @@ class Template extends Component {
   }
 
   render () {
-    const { assetsReady, projectsData, previousPath, transitionEnded } = this.state
+    const { isMobile, assetsReady, projectsData, previousPath, transitionEnded } = this.state
     const { children, route } = this.props
     const childrenPage = getChildrenPage(children)
     const { skipLoader, hideHeader } = childrenPage.data
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle()
+
+    const showHeader = (
+      ((transitionEnded || previousPath !== '/about/') && !hideHeader && assetsReady) || (isMobile && assetsReady)
+    )
 
     return (
       <div>
@@ -71,10 +87,11 @@ class Template extends Component {
           ]}
         />
 
-        {(transitionEnded || previousPath !== '/about/') && !hideHeader && assetsReady && (
+        { showHeader && (
           <Header
             previousPath={previousPath}
-            showCloseButton={isProjectPage(childrenPage)}
+            currentPath={childrenPage.path}
+            showCloseButton={isProjectPage(childrenPage) || isMobile}
           />
         )}
 
