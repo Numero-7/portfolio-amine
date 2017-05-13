@@ -1,0 +1,7 @@
+@import 'src/sass/vendors/include-media';
+
+.imagesRoot {
+  @include media('<small') {
+    margin-top: 2em;
+  }
+}

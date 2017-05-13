@@ -16,6 +16,10 @@
 
 .pushed {
   padding-top: calc(#{$header-top-margin} + #{$header-height});
+
+  @include media('<small') {
+    padding-top: 0;
+  }
 }
 
 .left {

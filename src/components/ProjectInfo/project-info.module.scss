@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 
@@ -6,10 +7,20 @@
   font-family: $sans-serif-font-stack;
   color: $light-grey;
   text-align: center;
+
+  @include media('<small') {
+    margin-bottom: 1em;
+  }
 }
 
 .content {
   display: block;
   color: $white;
   text-align: center;
+}
+
+.smallText {
+  @include media('<small') {
+    max-width: 70px;
+  }
 }

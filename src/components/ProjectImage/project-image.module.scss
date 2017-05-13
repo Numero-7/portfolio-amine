@@ -1,9 +1,16 @@
+@import 'src/sass/vendors/include-media';
+
 .image {
   width: 60%;
   margin-bottom: 6em;
   opacity: 0;
   transform: translate3d(0, 10%, 0);
   transition: opacity 1s, transform 1s;
+
+  @include media('<small') {
+    width: 100%;
+    margin-bottom: 3em;
+  }
 }
 
 .visible {

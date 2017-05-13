@@ -12,6 +12,8 @@ import ProjectIntro from '../ProjectIntro'
 import ProjectImage from '../ProjectImage'
 import ProjectsGrid from '../ProjectsGrid'
 import StretchedContainer from '../StretchedContainer'
+import styles from './project-page.module.scss'
+
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -121,7 +123,7 @@ class ProjectPage extends Component {
           <ScrollIndicator hidden={hideScrollIndicator} />
 
           <ProjectIntro project={project} />
-          <section>
+          <section className={styles.imagesRoot}>
             {project.images.map(link => (
               <ProjectImage
                 src={link}

@@ -1,8 +1,10 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 @import 'src/sass/variables/layout';
 
 $project-title-letter-spacing: 18px;
+$project-title-letter-spacing-mobile: 10px;
 
 .root {
   position: relative;
@@ -14,6 +16,26 @@ $project-title-letter-spacing: 18px;
   background-position: 100% center;
   background-repeat: no-repeat;
   background-size: auto 80%;
+
+  /**
+   * 1. Position the section so that the background image can be on the edge of the screen
+   */
+  @include media('<small') {
+    left: 1em; /* 1 */
+    height: initial;
+    background-position: 120% 40%;
+    background-size: auto 40%;
+  }
+}
+
+.content {
+  /**
+   * 1. Counter act the root element offset
+   */
+  @include media('<small') {
+    position: relative;
+    left: -1em; /* 1 */
+  }
 }
 
 .number {
@@ -25,6 +47,11 @@ $project-title-letter-spacing: 18px;
   color: $white;
   opacity: 0.07;
   transform: translateY(-50%);
+
+  @include media('<small') {
+    font-size: 500%;
+    left: -30px;
+  }
 }
 
 .title {
@@ -36,6 +63,12 @@ $project-title-letter-spacing: 18px;
   text-align: center;
   text-shadow: -11px -20px 0 rgba($white, 0.15);
   text-transform: uppercase;
+
+  @include media('<small') {
+    font-size: $root-font-size;
+    letter-spacing: $project-title-letter-spacing-mobile;
+    text-shadow: -8px -10px 0 rgba($white, 0.15);
+  }
 }
 
 .descriptionWrapper {
@@ -49,6 +82,10 @@ $project-title-letter-spacing: 18px;
   justify-content: space-between;
   max-width: 500px;
   margin: 4em auto;
+
+  @include media('<small') {
+    margin: 2em auto;
+  }
 }
 
 .buttonWrapper {

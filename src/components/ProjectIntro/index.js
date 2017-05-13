@@ -9,7 +9,7 @@ const ProjectIntro = ({ project }) => (
     style={{ backgroundImage: `url(${prefixLink(project.intro)})` }}
     className={styles.root}
   >
-    <div>
+    <div className={styles.content}>
       <span className={styles.number}>
         {project.order < 10
           ? `0${project.order}`
@@ -24,9 +24,9 @@ const ProjectIntro = ({ project }) => (
       </div>
 
       <div className={styles.infoWrapper}>
-        <ProjectInfo title="type" content={project.type} />
-        <ProjectInfo title="role" content={project.role} />
-        <ProjectInfo title="date" content={project.date} />
+        <ProjectInfo title="type" content={project.type} isSmallText={true} />
+        <ProjectInfo title="role" content={project.role} isSmallText={true} />
+        <ProjectInfo title="date" content={project.date} isSmallText={true} />
       </div>
 
       <div className={styles.buttonWrapper}>
