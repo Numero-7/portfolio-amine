@@ -1,6 +1,13 @@
+@import 'src/sass/vendors/include-media';
+
 .root {
   position: relative;
   width: 100%;
   min-height: 100vh;
   text-align: center;
+
+  @include media('<small') {
+    padding: 0 1em 1em;
+    min-height: initial;
+  }
 }

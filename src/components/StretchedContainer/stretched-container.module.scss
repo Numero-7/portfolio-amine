@@ -7,6 +7,11 @@
   width: 100%;
   min-height: 100vh;
   background: $black;
+
+  @include media('<small') {
+    position: static;
+    min-height: initial;
+  }
 }
 
 .pushed {

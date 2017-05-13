@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/typography';
 @import 'src/sass/variables/colors';
 
@@ -5,4 +6,8 @@
   font: $big-font-size $serif-font-stack;
   color: $white;
   text-decoration: none;
+
+  @include media('<small') {
+    font-size: 90%;
+  }
 }
