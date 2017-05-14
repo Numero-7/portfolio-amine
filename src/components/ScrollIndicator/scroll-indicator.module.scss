@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 
@@ -22,6 +23,10 @@
     vertical-align: middle;
     background-color: $light-grey;
     content: '';
+  }
+
+  @include media('<small') {
+    opacity: 0;
   }
 }
 
