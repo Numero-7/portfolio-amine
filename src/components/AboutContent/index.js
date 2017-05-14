@@ -17,7 +17,7 @@ const AboutContent = () => (
         <br />
         I am in 4th year at&nbsp;
         <a
-          href="http://hetic.net"
+          href="https://www.hetic.net/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.link}

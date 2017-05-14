@@ -26,6 +26,7 @@ class SwagButton extends Component {
 
   createLinkProps () {
     const { handleClick, href, external } = this.props
+    const formattedHref = external ? href : prefixLink(href)
     const onActive = () => this.handleActive()
     const onLeave = () => this.handleLeave()
 
@@ -35,7 +36,7 @@ class SwagButton extends Component {
       onFocus: onActive,
       onMouseLeave: onLeave,
       onBlur: onLeave,
-      [external ? 'href' : 'to']: prefixLink(href) || '#',
+      [external ? 'href' : 'to']: formattedHref || '#',
       target: external ? '_blank' : null,
       rel: external ? 'noopener noreferrer' : null
     })
