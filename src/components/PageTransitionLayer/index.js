@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { TimelineLite } from 'gsap'
 import { TRANSITION_LAYER_DURATION } from 'src/values/animations'
+import breakpoints from 'src/values/breakpoints'
 import styles from './page-transition-layer.module.scss'
 
 class PageTransitionLayer extends Component {
@@ -34,10 +35,14 @@ class PageTransitionLayer extends Component {
   }
 
   animate (direction, onComplete, reverse) {
-    if (direction === 'in') {
-      this.animateIn(onComplete, reverse)
-    } else if (direction === 'out') {
-      this.animateOut(onComplete, reverse)
+    if (window.innerWidth >= breakpoints.desktop) {
+      if (direction === 'in') {
+        this.animateIn(onComplete, reverse)
+      } else if (direction === 'out') {
+        this.animateOut(onComplete, reverse)
+      }
+    } else {
+      onComplete()
     }
   }
 

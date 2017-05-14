@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
 import Waypoint from 'react-waypoint'
+import breakpoints from 'src/values/breakpoints'
 import styles from './project-image.module.scss'
 
 class ProjectImage extends Component {
@@ -11,7 +12,7 @@ class ProjectImage extends Component {
 
   constructor (props) {
     super(props)
-    this.state = { visible: false }
+    this.state = { visible: window.innerWidth < breakpoints.desktop }
   }
 
   render () {

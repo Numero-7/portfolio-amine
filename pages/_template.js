@@ -4,6 +4,7 @@ import { config } from 'config'
 import TransitionGroup from 'preact-transition-group'
 import 'src/utils/browser/gsap-react-plugin'
 import throttle from 'lodash/throttle'
+import breakpoints from 'src/values/breakpoints'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import getChildrenPage from 'src/utils/get-children-page'
@@ -38,12 +39,12 @@ class Template extends Component {
   componentWillMount () {
     if (typeof window !== 'undefined') {
       this.setState({
-        isMobile: window.innerWidth < 900,
+        isMobile: window.innerWidth < breakpoints.desktop,
         projectsData: getProjectsData(this.props.route.pages)
       })
 
       window.addEventListener('resize', throttle(() => (
-        this.setState({ isMobile: window.innerWidth < 900 })
+        this.setState({ isMobile: window.innerWidth < breakpoints.desktop })
       ), 500))
     }
   }
@@ -55,7 +56,7 @@ class Template extends Component {
         previousPath: this.props.location.pathname,
         // Flag needed to wait for the end of the old page’s exit transition before rendering the
         // new child.
-        transitionEnded: false
+        transitionEnded: window.innerWidth < breakpoints.desktop
       })
     }
   }

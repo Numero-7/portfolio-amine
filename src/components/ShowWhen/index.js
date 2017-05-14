@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
 import Rezponsive from 'rezponsive'
+import breakpoints from 'src/values/breakpoints'
 
 const mediaQueries = {
-  mobile: 'screen and (max-width: 899px)',
-  desktop: 'screen and (min-width: 900px)'
+  small: `screen and (max-width: ${breakpoints.small}px)`,
+  desktop: `screen and (min-width: ${breakpoints.desktop}px)`
 }
 
 const Show = WrappedComponent => props => (

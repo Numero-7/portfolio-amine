@@ -4,6 +4,7 @@ import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
+import breakpoints from 'src/values/breakpoints'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import LinkColumn from '../LinkColumn'
@@ -33,20 +34,7 @@ class ProjectPage extends Component {
   }
 
   componentWillAppear (onComplete) {
-    TweenLite.fromTo(
-      this,
-      PAGE_FADE_DURATION,
-      { state: { contentOpacity: 0 } },
-      { state: { contentOpacity: 1 }, onComplete }
-    )
-  }
-
-  componentWillEnter (onComplete) {
-    const { previousPath, transitionPage } = this.props
-
-    if (previousPath === '/about/' || previousPath === '/projects/') {
-      transitionPage('in', onComplete, true)
-    } else {
+    if (window.innerWidth >= breakpoints.desktop) {
       TweenLite.fromTo(
         this,
         PAGE_FADE_DURATION,
@@ -56,10 +44,27 @@ class ProjectPage extends Component {
     }
   }
 
+  componentWillEnter (onComplete) {
+    const { previousPath, transitionPage } = this.props
+
+    if (previousPath === '/about/' || previousPath === '/projects/') {
+      transitionPage('in', onComplete, true)
+    } else if (window.innerWidth >= breakpoints.desktop) {
+      TweenLite.fromTo(
+        this,
+        PAGE_FADE_DURATION,
+        { state: { contentOpacity: 0 } },
+        { state: { contentOpacity: 1 }, onComplete }
+      )
+    } else {
+      onComplete()
+    }
+  }
+
   componentWillLeave (onComplete) {
     if (this.columnClicked) {
       this.props.transitionPage('out', onComplete)
-    } else {
+    } else if (window.innerWidth >= breakpoints.desktop) {
       TweenLite.fromTo(
         this,
         PAGE_FADE_DURATION,
@@ -72,6 +77,9 @@ class ProjectPage extends Component {
           }
         }
       )
+    } else {
+      this.base.scrollIntoView(true)
+      onComplete()
     }
   }
 

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
+import breakpoints from 'src/values/breakpoints'
 import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {
@@ -30,17 +31,22 @@ class ProjectsGrid extends Component {
   }
 
   animate () {
-    const interval = setInterval(
-      () => {
-        const { linksDisplayedCount } = this.state
-        this.setState({ linksDisplayedCount: linksDisplayedCount + 1 })
+    const { projects } = this.props
 
-        if (linksDisplayedCount > this.props.projects.length) {
-          clearInterval(interval)
-        }
-      },
-      500
-    )
+    if (window.innerWidth >= breakpoints.desktop) {
+      const interval = setInterval(
+        () => {
+          this.setState(prevState => ({ linksDisplayedCount: prevState.linksDisplayedCount + 1 }))
+
+          if (this.state.linksDisplayedCount > projects.length) {
+            clearInterval(interval)
+          }
+        },
+        500
+      )
+    } else {
+      this.setState({ linksDisplayedCount: projects.length })
+    }
   }
 
   handleEnterLink (index) {

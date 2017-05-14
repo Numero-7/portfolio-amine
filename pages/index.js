@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite, TimelineLite } from 'gsap'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
+import breakpoints from 'src/values/breakpoints'
 import ShowWhen from 'src/components/ShowWhen'
 import StretchedContainer from 'src/components/StretchedContainer'
 import LinkColumn from 'src/components/LinkColumn'
@@ -25,12 +26,16 @@ class Index extends Component {
   }
 
   componentWillAppear (onComplete) {
-    TweenLite.fromTo(
-      this,
-      PAGE_FADE_DURATION,
-      { state: { sliderOpacity: 0 } },
-      { state: { sliderOpacity: 1 }, onComplete }
-    )
+    if (window.innerWidth >= breakpoints.desktop) {
+      TweenLite.fromTo(
+        this,
+        PAGE_FADE_DURATION,
+        { state: { sliderOpacity: 0 } },
+        { state: { sliderOpacity: 1 }, onComplete }
+      )
+    } else {
+      onComplete()
+    }
   }
 
   componentWillEnter (onComplete) {
@@ -38,30 +43,36 @@ class Index extends Component {
 
     if (previousPath === '/about/' || previousPath === '/projects/') {
       transitionPage('in', onComplete, true)
-    } else {
+    } else if (window.innerWidth >= breakpoints.desktop) {
       TweenLite.fromTo(
         this,
         1,
         { state: { sliderOpacity: 0 } },
         { state: { sliderOpacity: 1 }, onComplete }
       )
+    } else {
+      onComplete()
     }
   }
 
   componentWillLeave (onComplete) {
     if (this.projectLinkClicked) {
-      this.slider.animatingOut = true
-      const timeline = new TimelineLite({ onComplete })
-      timeline.add(() => {
-        this.projectCoverCallback(timeline, () => {
-          timeline.fromTo(
-            this,
-            PAGE_FADE_DURATION,
-            { state: { sliderOpacity: 1 } },
-            { state: { sliderOpacity: 0 } }
-          )
+      if (window.innerWidth >= breakpoints.desktop) {
+        this.slider.animatingOut = true
+        const timeline = new TimelineLite({ onComplete })
+        timeline.add(() => {
+          this.projectCoverCallback(timeline, () => {
+            timeline.fromTo(
+              this,
+              PAGE_FADE_DURATION,
+              { state: { sliderOpacity: 1 } },
+              { state: { sliderOpacity: 0 } }
+            )
+          })
         })
-      })
+      } else {
+        onComplete()
+      }
     } else {
       this.props.transitionPage('out', onComplete)
     }
@@ -104,7 +115,7 @@ class Index extends Component {
           </div>
         </ShowWhen>
 
-        <ShowWhen when="mobile">
+        <ShowWhen when="small">
           <ProjectsList projectsData={projectsData} />
         </ShowWhen>
 

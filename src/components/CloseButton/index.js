@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
 import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
+import breakpoints from 'src/values/breakpoints'
 import styles from './close-button.module.scss'
 
 class CloseButton extends Component {
@@ -12,18 +13,20 @@ class CloseButton extends Component {
   }
 
   componentDidMount () {
-    const { previousPath } = this.props
-    const delay = (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : 0)
+    if (window.innerWidth >= breakpoints.desktop) {
+      const { previousPath } = this.props
+      const delay = (previousPath === '/' ? HOME_PAGE_LEAVE_DURATION : 0)
 
-    TweenLite.fromTo(
-      this.base,
-      1,
-      { autoAlpha: 0 },
-      {
-        autoAlpha: 1,
-        delay
-      }
-    )
+      TweenLite.fromTo(
+        this.base,
+        1,
+        { autoAlpha: 0 },
+        {
+          autoAlpha: 1,
+          delay
+        }
+      )
+    }
   }
 
   render () {

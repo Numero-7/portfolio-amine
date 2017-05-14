@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import { TweenLite } from 'gsap'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
+import breakpoints from 'src/values/breakpoints'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import StretchedContainer from 'src/components/StretchedContainer'
@@ -24,12 +25,16 @@ class About extends Component {
   }
 
   componentWillAppear (onComplete) {
-    TweenLite.fromTo(
-      this,
-      PAGE_FADE_DURATION,
-      { state: { contentOpacity: 0 } },
-      { state: { contentOpacity: 1 }, onComplete }
-    )
+    if (window.innerWidth >= breakpoints.desktop) {
+      TweenLite.fromTo(
+        this,
+        PAGE_FADE_DURATION,
+        { state: { contentOpacity: 0 } },
+        { state: { contentOpacity: 1 }, onComplete }
+      )
+    } else {
+      onComplete()
+    }
   }
 
   componentWillEnter (onComplete) {
