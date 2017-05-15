@@ -1,3 +1,4 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/colors';
 @import 'src/sass/variables/typography';
 @import 'src/sass/variables/layout';
@@ -95,6 +96,10 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 }
 
 .buttonWrapper {
+  @include media("height<730px") {
+    margin-top: 2.5em;
+  }
+
   position: relative;
   z-index: 3;
   margin-top: 4em;
