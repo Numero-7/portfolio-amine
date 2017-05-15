@@ -16,10 +16,6 @@ $about-text-letter-spacing-mobile: 50px;
     margin-right: -$about-text-letter-spacing-mobile;
     font-size: $big-font-size;
     letter-spacing: $about-text-letter-spacing-mobile;
-
-    &::before {
-      top: -3px;
-    }
   }
 
   @include media('>=small', '<=medium') {
@@ -35,6 +31,9 @@ $about-text-letter-spacing-mobile: 50px;
   text-transform: uppercase;
 
   &::before {
+    @include media('<small') {
+      top: -3px;
+    }
     position: absolute;
     top: -$text-shadow-offset;
     content: attr(data-content);
