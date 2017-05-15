@@ -6,16 +6,16 @@
 $border: 2px solid $contrast-grey;
 
 .root {
+  @include media('<small') {
+    display: none;
+  }
+
   position: fixed;
   top: 0;
   z-index: 3;
   width: $content-padding;
   height: 100vh;
   background: $black;
-
-  @include media('<small') {
-    display: none;
-  }
 }
 
 .transparent {

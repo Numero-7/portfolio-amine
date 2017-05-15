@@ -21,6 +21,7 @@
 .background {
   @include stretch;
   z-index: -1;
+  background-position: center;
   background-size: cover;
   opacity: 0;
 }
@@ -36,8 +37,6 @@
 $item-offset: 10%;
 
 .item {
-  align-self: center;
-
   @include media('>small') {
     &:nth-child(odd) {
       align-self: flex-start;
@@ -55,6 +54,8 @@ $item-offset: 10%;
       margin-left: $item-offset;
     }
   }
+
+  align-self: center;
 }
 
 $link-grey: rgb(63, 63, 63);

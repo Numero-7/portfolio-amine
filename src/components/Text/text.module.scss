@@ -3,13 +3,13 @@
 @import 'src/sass/variables/typography';
 
 .root {
+  @include media('<small') {
+    font-size: $small-font-size;
+  }
+
   font-family: $serif-font-stack;
   line-height: 2;
   letter-spacing: 1px;
   color: $white;
   text-align: center;
-
-  @include media('<small') {
-    font-size: $small-font-size;
-  }
 }

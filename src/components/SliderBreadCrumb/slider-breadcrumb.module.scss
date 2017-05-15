@@ -4,8 +4,8 @@
 
 .root {
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   width: 100%;
   height: $slider-breadcrumb-height;
 }
@@ -16,11 +16,11 @@
 }
 
 .item {
-  width: 180px;
+  width: 148px;
 }
 
 .number {
-  font: $root-font-size $sans-serif-font-stack;
+  font: 100% $sans-serif-font-stack;
   color: $light-grey;
   text-align: center;
   cursor: pointer;

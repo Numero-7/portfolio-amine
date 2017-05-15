@@ -3,11 +3,11 @@
 @import 'src/sass/variables/colors';
 
 .link {
-  font: $big-font-size $serif-font-stack;
-  color: $white;
-  text-decoration: none;
-
   @include media('<small') {
     font-size: 90%;
   }
+
+  font: $big-font-size $serif-font-stack;
+  color: $white;
+  text-decoration: none;
 }

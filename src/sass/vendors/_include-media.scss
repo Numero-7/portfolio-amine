@@ -32,7 +32,9 @@
 ///  $breakpoints: ('phone': 320px);
 ///
 $breakpoints: (
-  'small': 900px
+  'x-small': 600px,
+  'small': 900px,
+  'medium': 1140px
 ) !default;
 
 
@@ -552,7 +554,7 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 ///  @include media('>=350px', '<tablet', 'retina3x') { }
 ///
 @mixin media($conditions...) {
-  // scss-lint:disable SpaceAroundOperator
+  // scss-lint:disable all
   @if ($im-media-support and length($conditions) == 0) or
       (not $im-media-support and im-intercepts-static-breakpoint($conditions...)) {
     @content;
@@ -564,4 +566,5 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
       }
     }
   }
+  // scss-lint:enable all
 }

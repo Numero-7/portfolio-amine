@@ -58,6 +58,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
   z-index: -1;
   width: 80%;
   height: 100%;
+  background-position: center;
   background-size: cover;
   transform: translateX(-50%);
 }

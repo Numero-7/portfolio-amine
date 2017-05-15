@@ -4,6 +4,14 @@
 @import 'src/sass/variables/layout';
 
 .root {
+  @include media('<small') {
+    position: static;
+    right: initial;
+    left: initial;
+    padding: 0 1em;
+    margin: 2em 0 3em;
+  }
+
   position: fixed;
   top: $header-top-margin;
   right: 6em;
@@ -13,14 +21,6 @@
   align-items: flex-start;
   justify-content: space-between;
   height: $header-height;
-
-  @include media('<small') {
-    position: static;
-    right: initial;
-    left: initial;
-    padding: 0 1em;
-    margin: 2em 0 3em;
-  }
 }
 
 .text {
@@ -30,17 +30,18 @@
 }
 
 .name {
-  font-size: $big-font-size;
-  color: $white;
-
   @include media('<small') {
     font-size: $root-font-size;
   }
+
+  font-size: $big-font-size;
+  color: $white;
 }
 
 .role {
-  color: $light-grey;
   @include media('<small') {
     font-size: 95%;
   }
+
+  color: $light-grey;
 }

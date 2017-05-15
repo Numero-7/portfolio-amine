@@ -12,6 +12,21 @@ $about-text-letter-spacing-mobile: 50px;
  *    opacity relative to its parent.
  */
 .text {
+  @include media('<small') {
+    margin-right: -$about-text-letter-spacing-mobile;
+    font-size: $big-font-size;
+    letter-spacing: $about-text-letter-spacing-mobile;
+
+    &::before {
+      top: -3px;
+    }
+  }
+
+  @include media('>=small', '<=medium') {
+    margin-right: -140px;
+    letter-spacing: 140px;
+  }
+
   position: relative; /* 1 */
   margin-right: -$about-text-letter-spacing; /* 2 */
   font: $very-huge-font-size $serif-font-stack;
@@ -23,15 +38,5 @@ $about-text-letter-spacing-mobile: 50px;
     position: absolute;
     top: -$text-shadow-offset;
     content: attr(data-content);
-  }
-
-  @include media('<small') {
-    font-size: $big-font-size;
-    letter-spacing: $about-text-letter-spacing-mobile;
-    margin-right: -$about-text-letter-spacing-mobile;
-
-    &::before {
-      top: -3px;
-    }
   }
 }

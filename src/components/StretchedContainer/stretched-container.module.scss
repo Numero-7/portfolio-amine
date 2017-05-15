@@ -3,37 +3,37 @@
 @import 'src/sass/variables/layout';
 
 .root {
-  position: absolute;
-  width: 100%;
-  min-height: 100vh;
-  background: $black;
-
   @include media('<small') {
     position: static;
     min-height: initial;
   }
+
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background: $black;
 }
 
 .pushed {
-  padding-top: calc(#{$header-top-margin} + #{$header-height});
-
   @include media('<small') {
     padding-top: 0;
   }
+
+  padding-top: calc(#{$header-top-margin} + #{$header-height});
 }
 
 .left {
-  padding-left: $content-padding;
-
   @include media('<small') {
     padding-left: 0;
   }
+
+  padding-left: $content-padding;
 }
 
 .right {
-  padding-right: $content-padding;
-
   @include media('<small') {
     padding-right: 0;
   }
+
+  padding-right: $content-padding;
 }
