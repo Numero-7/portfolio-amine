@@ -1,12 +1,20 @@
+@import 'src/sass/vendors/include-media';
 @import 'src/sass/variables/typography';
 
 $credit-color: rgb(148, 148, 148);
 
 .root {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
+  @include media('>=small') {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-top: 0;
+    transform: translateX(-50%);
+  }
+
+  position: static;
+  margin-top: 3em;
   font: 90% $serif-font-stack;
   color: $credit-color;
-  transform: translateX(-50%);
+  text-align: center;
 }
