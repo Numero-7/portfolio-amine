@@ -29,9 +29,15 @@ const ProjectIntro = ({ project }) => (
         <ProjectInfo title="date" content={project.date} isSmallText={true} />
       </div>
 
-      <div className={styles.buttonWrapper}>
-        <SwagButton text="View website" />
-      </div>
+      {project.url && (
+        <div className={styles.buttonWrapper}>
+          <SwagButton
+            text="View website"
+            href={project.url}
+            external={true}
+          />
+        </div>
+      )}
     </div>
   </section>
 )
