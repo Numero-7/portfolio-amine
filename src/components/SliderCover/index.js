@@ -55,12 +55,13 @@ class SliderCover extends Component {
           this,
           HOME_PAGE_COVER_FILL_DURATION,
           { state: { greyStrokeDashoffset: styles.projectCoverPerimeter } },
-          { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } }
+          { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } },
+          '-=0.5'
         )
-        .fromTo(this, 0.85, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
+        .fromTo(this, 0.5, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
         .fromTo(this, 3, { state: { smokeOpacity: 0 } }, { state: { smokeOpacity: 1 } })
-        .set(this, { state: { buttonIsVisible: true } }, '-=2')
-        .fromTo(this, 0.85, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } }, '-=2')
+        .set(this, { state: { buttonIsVisible: true } }, '-=2.75')
+        .fromTo(this, 1, { state: { buttonOpacity: 0 } }, { state: { buttonOpacity: 1 } }, '-=2.75')
     )
   }
 
