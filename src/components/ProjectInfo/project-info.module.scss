@@ -19,6 +19,11 @@
   text-align: center;
 }
 
+.content a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .smallText {
   @include media('<small') {
     max-width: 70px;

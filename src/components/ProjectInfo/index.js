@@ -5,7 +5,12 @@ const ProjectInfo = ({ title, content, isSmallText }) => (
   <div className={styles.infoWrapper}>
     <span className={styles.title}>{title}</span>
     {typeof content === 'string'
-      ? <span className={`${styles.content} ${isSmallText ? styles.smallText : ''}`}>{content}</span>
+      ? (
+        <span
+          className={`${styles.content} ${isSmallText ? styles.smallText : ''}`}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )
       : (content.map && content.map(line => (<span className={styles.content}>{line}</span>))
       )
     }
