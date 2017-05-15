@@ -3,7 +3,6 @@
 @import 'src/sass/variables/typography';
 @import 'src/sass/variables/layout';
 
-$grey-stroke: rgb(56, 56, 56);
 $gradient-dark-grey: rgb(19, 19, 19);
 $gradient-light-grey: rgb(32, 32, 32);
 $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-light-grey 100%);
@@ -88,7 +87,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 }
 
 .grey {
-  stroke: rgb(32, 32, 32);
+  stroke: $gradient-light-grey;
 }
 
 .white {
@@ -96,7 +95,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 }
 
 .buttonWrapper {
-  @include media("height<730px") {
+  @include media('height<730px') {
     margin-top: 2.5em;
   }
 

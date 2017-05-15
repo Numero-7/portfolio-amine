@@ -66,3 +66,12 @@
   position: relative;
   top: $text-shadow-offset; /* 1 */
 }
+
+.devWrapper {
+  color: $white;
+}
+
+.dev {
+  color: inherit;
+  text-decoration: inherit;
+}

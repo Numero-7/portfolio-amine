@@ -1,0 +1,12 @@
+@import 'src/sass/variables/typography';
+
+$credit-color: rgb(148, 148, 148);
+
+.root {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  font: 90% $serif-font-stack;
+  color: $credit-color;
+  transform: translateX(-50%);
+}

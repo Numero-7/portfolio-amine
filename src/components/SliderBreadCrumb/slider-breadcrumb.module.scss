@@ -4,7 +4,7 @@
 @import 'src/sass/variables/layout';
 
 .root {
-  @include media("height<730px") {
+  @include media('height<730px') {
     height: $slider-breadcrumb-height-small;
   }
 
@@ -55,7 +55,7 @@
 }
 
 .thumbnail {
-  @include media("height<730px") {
+  @include media('height<730px') {
     height: 75px;
   }
 

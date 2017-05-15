@@ -3,6 +3,7 @@ import ShowWhen from '../ShowWhen'
 import TextShadow from '../TextShadow'
 import Text from '../Text'
 import SocialNetworks from '../SocialNetworks'
+import Credits from '../Credits'
 import styles from './about-content.module.scss'
 
 const AboutContent = () => (
@@ -13,7 +14,7 @@ const AboutContent = () => (
 
     <div className={styles.contentWrapper}>
       <Text>
-        Yo, I’m Amine, a 21 years old French designer and freelancer based in Paris.
+        Hey, I’m Amine, a 22-year old French digital designer and freelancer based in Paris.
         <br />
         I am in 4th year at&nbsp;
         <a
@@ -59,6 +60,29 @@ const AboutContent = () => (
         <TextShadow text="Me" />
       </div>
     </ShowWhen>
+
+    <Credits>
+      Developed by&nbsp;
+      <span className={styles.devWrapper}>
+        <a
+          href="http://tom-bonnike.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.dev}
+        >
+          Tom Bonnike&nbsp;
+        </a>
+        &&nbsp;
+        <a
+          href="http://martingoutry.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.dev}
+        >
+          Martin Goutry
+        </a>
+      </span>
+    </Credits>
   </div>
 )
 
