@@ -1,0 +1,23 @@
+{
+  "title": "Rolls-Royce",
+  "shortTitle": "R-R",
+  "order": 1,
+  "images": [
+    "/static/images/rolls-royce/rolls-royce-1.jpg",
+    "/static/images/rolls-royce/rolls-royce-2.jpg",
+    "/static/images/rolls-royce/rolls-royce-3.jpg",
+    "/static/images/rolls-royce/rolls-royce-4.jpg",
+    "/static/images/rolls-royce/rolls-royce-5.jpg",
+    "/static/images/rolls-royce/rolls-royce-6.jpg",
+    "/static/images/rolls-royce/rolls-royce-7.jpg"
+  ],
+  "cover": "/static/images/rolls-royce/rolls-royce-cover.png",
+  "intro": "/static/images/rolls-royce/rolls-royce-intro.png",
+  "description": "Redesign of Rolls-Royce Motor Cars (official website)",
+  "type": "Website",
+  "role": [
+    "Art Direction",
+    "UX/UI Design"
+  ],
+  "date": "2017"
+}
