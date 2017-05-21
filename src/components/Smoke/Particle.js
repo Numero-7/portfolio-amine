@@ -1,4 +1,4 @@
-import { Sprite, Texture, BLEND_MODES } from 'isomorphic-pixi'
+import { Sprite, Texture } from 'isomorphic-pixi'
 import getRandomBetween from 'src/utils/get-random-between'
 
 // Server-side, we extend null instead of PIXI.Sprite so that the super call doesn’t fail.
@@ -21,7 +21,6 @@ class Particle extends Ancestor {
 
     this.tint = 0x2E2E2E
     this.alpha = getRandomBetween(0.2, 0.25, true)
-    this.blendMode = BLEND_MODES.NORMAL
 
     const smokeNumber = Math.floor(getRandomBetween(1, 3, true))
     this.texture = Texture.fromImage(`/static/images/smoke-${smokeNumber}.png`)

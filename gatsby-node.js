@@ -4,13 +4,14 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 exports.modifyWebpackConfig = function (config, stage) {
-  // Requiring the server version of react-dom is hardcoded right now
-  // in the development server. So we’ll just avoid loading Preact there
-  // for now.
   if (stage !== 'develop-html') {
     config._config.resolve.alias = { // eslint-disable-line
+      // Requiring the server version of react-dom is hardcoded in Gatsby’s developement server. We
+      // only want to alias react when building the site for production.
       react: 'preact-compat',
-      'react-dom': 'preact-compat'
+      'react-dom': 'preact-compat',
+      // We only use the core of Pixi.js, which reduces bundle size.
+      'pixi.js': 'pixi.js/lib/core'
     }
   }
 
