@@ -1,8 +1,10 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
 const copy = require('copy')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 exports.modifyWebpackConfig = function (config, stage) {
-  // Requiring the server version of React-dom is hardcoded right now
+  // Requiring the server version of react-dom is hardcoded right now
   // in the development server. So we’ll just avoid loading Preact there
   // for now.
   if (stage !== 'develop-html') {
@@ -10,6 +12,14 @@ exports.modifyWebpackConfig = function (config, stage) {
       react: 'preact-compat',
       'react-dom': 'preact-compat'
     }
+  }
+
+  if (stage === 'build-javascript') {
+    config.plugin('webpack-bundle-analyzer', BundleAnalyzerPlugin, [{
+      openAnalyzer: false,
+      analyzerMode: 'static',
+      reportFilename: path.join(__dirname, 'webpack-bundle-analyzer-report.html')
+    }])
   }
 
   // Modify existing loader to ignore css files loaded after the first render
@@ -34,8 +44,8 @@ exports.modifyWebpackConfig = function (config, stage) {
     test: /\.(jpe?g|png|gif|svg)(\?.*)?$/i,
     loaders: [
       'file?name=[path][name].[ext]',
-      'image-webpack-loader?{ progressive: true, optimizationLevel: 7, interlaced: false, pngquant: { quality: "65-90", speed: 4 }, mozjpeg: { quality: 65 } }', // eslint-disable-line
-    ],
+      'image-webpack-loader?{ progressive: true, optimizationLevel: 7, interlaced: false, pngquant: { quality: "65-90", speed: 4 }, mozjpeg: { quality: 65 } }' // eslint-disable-line
+    ]
   })
 
   return config
