@@ -5,32 +5,33 @@ import breakpoints from 'src/values/breakpoints'
 import styles from './page-transition-layer.module.scss'
 
 class PageTransitionLayer extends Component {
-  /* eslint-disable no-useless-constructor */
-  // A constructor is required to call the animate methods from other components, using a ref.
-  constructor (props) {
-    super(props)
+  getInitialState () {
+    return {
+      width: 0,
+      left: 'initial',
+      right: 'initial'
+    }
   }
-  /* eslint-enable no-useless-constructor */
 
   animateOut (onComplete, reverse) {
     const timeline = new TimelineLite({ onComplete })
-    const initialProperties = { width: 0 }
-
-    if (reverse) {
-      initialProperties.right = 0
-    }
-
-    timeline.set(this.base, initialProperties)
-    timeline.to(this.base, TRANSITION_LAYER_DURATION, { width: '100%' })
+    timeline.fromTo(
+      this,
+      TRANSITION_LAYER_DURATION,
+      { state: { width: 0, [reverse ? 'right' : 'left']: 0 } },
+      { state: { width: 100 } }
+    )
     this.resetTimelineProperties(timeline)
   }
 
   animateIn (onComplete, reverse) {
     const timeline = new TimelineLite({ onComplete })
-    const initialProperties = { width: '100%', [reverse ? 'left' : 'right']: 0 }
-
-    timeline.set(this.base, initialProperties)
-    timeline.to(this.base, TRANSITION_LAYER_DURATION, { width: 0 })
+    timeline.fromTo(
+      this,
+      TRANSITION_LAYER_DURATION,
+      { state: { width: 100, [reverse ? 'left' : 'right']: 0 } },
+      { state: { width: 0 } }
+    )
     this.resetTimelineProperties(timeline)
   }
 
@@ -49,12 +50,21 @@ class PageTransitionLayer extends Component {
   resetTimelineProperties (timeline) {
     // Always reset timelines properties after they have finished animating so that we don’t have
     // to manually reset styles everytime.
-    timeline.set(this.base, { clearProps: 'left,right' })
+    timeline.set(this, { state: this.getInitialState() })
   }
 
   render () {
+    const { width, left, right } = this.state
+
     return (
-      <div className={styles.root} />
+      <div
+        className={styles.root}
+        style={{
+          width: `${width}%`,
+          left,
+          right
+        }}
+      />
     )
   }
 }
