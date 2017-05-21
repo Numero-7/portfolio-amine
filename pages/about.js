@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite } from 'gsap'
+import TweenLite from 'gsap/TweenLite'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
 import breakpoints from 'src/values/breakpoints'
 import getPageTitle from 'src/utils/get-page-title'

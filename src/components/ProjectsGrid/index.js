@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite } from 'gsap'
+import TweenLite from 'gsap/TweenLite'
 import breakpoints from 'src/values/breakpoints'
 import styles from './projects-grid.module.scss'
 

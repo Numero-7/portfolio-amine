@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { TweenLite } from 'gsap'
+import TweenLite from 'gsap/TweenLite'
 import Scene from './Scene'
 import Emitter from './Emitter'
 import styles from './smoke.module.scss'

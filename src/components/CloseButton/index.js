@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
-import { TweenLite } from 'gsap'
+import TweenLite from 'gsap/TweenLite'
 import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
 import breakpoints from 'src/values/breakpoints'
 import styles from './close-button.module.scss'

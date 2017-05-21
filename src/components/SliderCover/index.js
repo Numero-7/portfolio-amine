@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { prefixLink } from 'gatsby-helpers'
-import { TimelineLite, Power2 } from 'gsap'
+import TimelineLite from 'gsap/TimelineLite'
 import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
 import Smoke from '../Smoke'
 import SwagButton from '../SwagButton'
@@ -55,7 +55,7 @@ class SliderCover extends Component {
           this,
           HOME_PAGE_COVER_FILL_DURATION,
           { state: { greyStrokeDashoffset: styles.projectCoverPerimeter } },
-          { state: { greyStrokeDashoffset: 0, ease: Power2.easeOut } },
+          { state: { greyStrokeDashoffset: 0, ease: 'Power2.easeOut' } },
           '-=0.5'
         )
         .fromTo(this, 0.5, { state: { titleOpacity: 0 } }, { state: { titleOpacity: 1 } })
@@ -76,7 +76,7 @@ class SliderCover extends Component {
           this,
           HOME_PAGE_COVER_FILL_DURATION,
           { state: { whiteStrokeDashoffset: styles.projectCoverPerimeter } },
-          { state: { whiteStrokeDashoffset: 0, ease: Power2.easeOut } }
+          { state: { whiteStrokeDashoffset: 0, ease: 'Power2.easeOut' } }
         )
         .add(onComplete)
     ))
