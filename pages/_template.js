@@ -70,7 +70,8 @@ class Template extends Component {
     const pageTitle = getPageTitle()
 
     const showHeader = (
-      ((transitionEnded || previousPath !== '/about/') && !hideHeader && assetsReady) || (isMobile && assetsReady)
+      ((transitionEnded || previousPath !== '/about/') && !hideHeader && assetsReady)
+      || (isMobile && assetsReady)
     )
 
     return (
@@ -88,7 +89,7 @@ class Template extends Component {
           ]}
         />
 
-        { showHeader && (
+        {showHeader && (
           <Header
             previousPath={previousPath}
             currentPath={childrenPage.path}
