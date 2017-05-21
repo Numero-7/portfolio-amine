@@ -25,7 +25,6 @@ html {
  * 1. Fixes some typography bugs.
  */
 body {
-  overflow-x: inherit;
   font: #{$root-font-size} / 1.5 $sans-serif-font-stack;
   color: $grey;
   background-color: $black;
