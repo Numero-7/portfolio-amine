@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { string } from 'prop-types'
 import styles from './text-shadow.module.scss'
 
 const TextShadow = ({ text }) => (
@@ -11,7 +12,7 @@ const TextShadow = ({ text }) => (
 )
 
 TextShadow.propTypes = {
-  text: PropTypes.string.isRequired
+  text: string.isRequired
 }
 
 export default TextShadow

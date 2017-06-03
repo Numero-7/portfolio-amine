@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { arrayOf, object } from 'prop-types'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
@@ -7,7 +8,7 @@ import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {
   static propTypes = {
-    projects: PropTypes.arrayOf(PropTypes.object).isRequired
+    projects: arrayOf(object).isRequired
   }
 
   getInitialState () {

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, string, func } from 'prop-types'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
@@ -12,10 +13,10 @@ import AboutContent from 'src/components/AboutContent'
 
 class About extends Component {
   static propTypes = {
-    route: PropTypes.object.isRequired,
-    previousPath: PropTypes.string.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired
+    route: object.isRequired,
+    previousPath: string.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired
   }
 
   getInitialState () {

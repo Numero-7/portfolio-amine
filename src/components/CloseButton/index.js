@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { string } from 'prop-types'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
@@ -8,8 +9,8 @@ import styles from './close-button.module.scss'
 
 class CloseButton extends Component {
   static propTypes = {
-    previousPath: PropTypes.string.isRequired,
-    currentPath: PropTypes.string.isRequired
+    previousPath: string.isRequired,
+    currentPath: string.isRequired
   }
 
   componentDidMount () {

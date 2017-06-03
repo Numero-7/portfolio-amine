@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { node, object } from 'prop-types'
 import Helmet from 'react-helmet'
 import { config } from 'config'
 import TransitionGroup from 'preact-transition-group'
@@ -23,9 +24,9 @@ import 'src/sass/base/_root.scss'
 
 class Template extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
-    route: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired
+    children: node.isRequired,
+    route: object.isRequired,
+    location: object.isRequired
   }
 
   getInitialState () {

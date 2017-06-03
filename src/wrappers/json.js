@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, arrayOf } from 'prop-types'
 import ProjectPage from '../src/components/ProjectPage'
 
 class JSONWrapper extends Component {
   static propTypes = {
-    route: PropTypes.object.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    route: object.isRequired,
+    projectsData: arrayOf(object).isRequired
   }
 
   // To handle the animations on the project page, we use its instance methods through a ref.

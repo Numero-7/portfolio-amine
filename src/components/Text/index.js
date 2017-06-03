@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { node } from 'prop-types'
 import styles from './text.module.scss'
 
 const Text = ({ children }) => (
@@ -8,7 +9,7 @@ const Text = ({ children }) => (
 )
 
 Text.propTypes = {
-  children: PropTypes.node.isRequired
+  children: node.isRequired
 }
 
 export default Text

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, func } from 'prop-types'
 import { prefixLink } from 'gatsby-helpers'
 import TimelineLite from 'gsap/TimelineLite'
 import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
@@ -8,8 +9,8 @@ import styles from './slider-cover.module.scss'
 
 class SliderCover extends Component {
   static propTypes = {
-    project: PropTypes.object.isRequired,
-    handleProjectLinkClick: PropTypes.func.isRequired
+    project: object.isRequired,
+    handleProjectLinkClick: func.isRequired
   }
 
   getInitialState () {

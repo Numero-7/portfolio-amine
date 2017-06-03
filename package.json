@@ -21,6 +21,7 @@
     "preact": "^7.2.1",
     "preact-compat": "^3.14.3",
     "preact-transition-group": "^1.1.0",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-helmet": "^3.2.2",
     "react-waypoint": "^7.0.3",

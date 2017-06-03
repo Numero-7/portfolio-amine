@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { node } from 'prop-types'
 import styles from './container.module.scss'
 
 const Container = ({ children }) => (
@@ -8,7 +9,7 @@ const Container = ({ children }) => (
 )
 
 Container.propTypes = {
-  children: PropTypes.node.isRequired
+  children: node.isRequired
 }
 
 export default Container

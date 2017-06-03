@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { func, bool, string, oneOf } from 'prop-types'
 import { Link } from 'react-router'
 import styles from './link-column.module.scss'
 
@@ -34,12 +35,12 @@ const LinkColumn = ({ handleClick, transparent, text, href, pull, icon }) => (
 )
 
 LinkColumn.propTypes = {
-  handleClick: PropTypes.func,
-  transparent: PropTypes.bool,
-  text: PropTypes.string,
-  icon: PropTypes.bool,
-  href: PropTypes.string.isRequired,
-  pull: PropTypes.oneOf(['right', 'left'])
+  handleClick: func,
+  transparent: bool,
+  text: string,
+  icon: bool,
+  href: string.isRequired,
+  pull: oneOf(['right', 'left'])
 }
 
 LinkColumn.defaultProps = {

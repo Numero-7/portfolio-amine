@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { bool } from 'prop-types'
 import styles from './scroll-indicator.module.scss'
 
 const ScrollIndicator = ({ hidden }) => (
@@ -6,7 +7,7 @@ const ScrollIndicator = ({ hidden }) => (
 )
 
 ScrollIndicator.propTypes = {
-  hidden: PropTypes.bool.isRequired
+  hidden: bool.isRequired
 }
 
 export default ScrollIndicator

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { object } from 'prop-types'
 import { prefixLink } from 'gatsby-helpers'
 import ProjectInfo from '../ProjectInfo'
 import SwagButton from '../SwagButton'
@@ -43,7 +44,7 @@ const ProjectIntro = ({ project }) => (
 )
 
 ProjectIntro.propTypes = {
-  project: PropTypes.object.isRequired
+  project: object.isRequired
 }
 
 export default ProjectIntro

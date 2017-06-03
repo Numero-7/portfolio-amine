@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, string, func, arrayOf } from 'prop-types'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
 import { prefixLink } from 'gatsby-helpers'
@@ -18,12 +19,12 @@ import styles from './project-page.module.scss'
 
 class ProjectPage extends Component {
   static propTypes = {
-    route: PropTypes.object.isRequired,
-    previousPath: PropTypes.string.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired,
-    project: PropTypes.object.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    route: object.isRequired,
+    previousPath: string.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired,
+    project: object.isRequired,
+    projectsData: arrayOf(object).isRequired
   }
 
   getInitialState () {

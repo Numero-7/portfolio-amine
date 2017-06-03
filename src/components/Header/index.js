@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { string, bool } from 'prop-types'
 import CloseButton from '../CloseButton'
 import styles from './header.module.scss'
 
@@ -19,9 +20,9 @@ const Header = ({ previousPath, currentPath, showCloseButton }) => (
 )
 
 Header.propTypes = {
-  previousPath: PropTypes.string.isRequired,
-  currentPath: PropTypes.string.isRequired,
-  showCloseButton: PropTypes.bool
+  previousPath: string.isRequired,
+  currentPath: string.isRequired,
+  showCloseButton: bool
 }
 
 Header.defaultProps = {

@@ -1,14 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { func, string, bool } from 'prop-types'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import styles from './swag-button.module.scss'
 
 class SwagButton extends Component {
   static propTypes = {
-    handleClick: PropTypes.func,
-    text: PropTypes.string.isRequired,
-    href: PropTypes.string,
-    external: PropTypes.bool
+    handleClick: func,
+    text: string.isRequired,
+    href: string,
+    external: bool
   }
 
   static defaultProps = {

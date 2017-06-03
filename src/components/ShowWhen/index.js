@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { node, object, string } from 'prop-types'
 import Rezponsive from 'rezponsive'
 import breakpoints from 'src/values/breakpoints'
 
@@ -21,9 +22,9 @@ const When = ({ children, currentMedia, when }) => (
 )
 
 When.propTypes = {
-  children: PropTypes.node.isRequired,
-  currentMedia: PropTypes.object.isRequired,
-  when: PropTypes.string.isRequired
+  children: node.isRequired,
+  currentMedia: object.isRequired,
+  when: string.isRequired
 }
 
 export default Show(Rezponsive(When))

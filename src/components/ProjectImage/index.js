@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { string } from 'prop-types'
 import { prefixLink } from 'gatsby-helpers'
 import Waypoint from 'react-waypoint'
 import breakpoints from 'src/values/breakpoints'
@@ -6,8 +7,8 @@ import styles from './project-image.module.scss'
 
 class ProjectImage extends Component {
   static propTypes = {
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    src: string.isRequired,
+    title: string.isRequired
   }
 
   constructor (props) {

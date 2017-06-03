@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, arrayOf, string, func } from 'prop-types'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import getPageTitle from 'src/utils/get-page-title'
@@ -9,11 +10,11 @@ import ProjectsGrid from 'src/components/ProjectsGrid'
 
 class Projects extends Component {
   static propTypes = {
-    route: PropTypes.object.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    previousPath: PropTypes.string.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired
+    route: object.isRequired,
+    projectsData: arrayOf(object).isRequired,
+    previousPath: string.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired
   }
 
   getInitialState () {

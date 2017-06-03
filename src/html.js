@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { string, object } from 'prop-types'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
@@ -64,9 +65,9 @@ const HTML = ({ body, headComponents, postBodyComponents }) => {
 }
 
 HTML.propTypes = {
-  body: PropTypes.string.isRequired,
-  headComponents: PropTypes.object.isRequired,
-  postBodyComponents: PropTypes.object.isRequired
+  body: string.isRequired,
+  headComponents: object.isRequired,
+  postBodyComponents: object.isRequired
 }
 
 module.exports = HTML

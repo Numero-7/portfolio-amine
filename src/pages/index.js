@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { arrayOf, object, string, bool, func } from 'prop-types'
 import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
@@ -13,11 +14,11 @@ import ProjectsList from 'src/components/ProjectsList'
 
 class Index extends Component {
   static propTypes = {
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    previousPath: PropTypes.string.isRequired,
-    isMobile: PropTypes.bool.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired
+    projectsData: arrayOf(object).isRequired,
+    previousPath: string.isRequired,
+    isMobile: bool.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired
   }
 
   getInitialState () {
