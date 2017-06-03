@@ -1,11 +1,11 @@
 import React from 'react'
-import { config } from 'config'
+import { arrayOf, object } from 'prop-types'
 import SwagButton from '../SwagButton'
 import styles from './social-networks.module.scss'
 
-const SocialNetworks = () => (
+const SocialNetworks = ({ socialNetworks }) => (
   <ul className={styles.root}>
-    {config.socialNetworks.map(network => (
+    {socialNetworks.map(network => (
       <li>
         <SwagButton
           text={network.name}
@@ -17,4 +17,15 @@ const SocialNetworks = () => (
   </ul>
 )
 
+SocialNetworks.propTypes = {
+  socialNetworks: arrayOf(object).isRequired
+}
+
 export default SocialNetworks
+export const socialNetworksQuery = `
+  site {
+    siteMetadata {
+      socialNetworks
+    }
+  }
+`

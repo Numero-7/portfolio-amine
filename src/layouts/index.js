@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { node, object } from 'prop-types'
+import { node, object, string } from 'prop-types'
 import Helmet from 'react-helmet'
-import { config } from 'config'
 import TransitionGroup from 'preact-transition-group'
 import 'src/utils/browser/gsap-react-plugin'
 import throttle from 'lodash/throttle'
@@ -26,7 +25,8 @@ class Template extends Component {
   static propTypes = {
     children: node.isRequired,
     route: object.isRequired,
-    location: object.isRequired
+    location: object.isRequired,
+    siteDescription: string.isRequired
   }
 
   getInitialState () {
@@ -64,7 +64,7 @@ class Template extends Component {
 
   render () {
     const { isMobile, assetsReady, projectsData, previousPath, transitionEnded } = this.state
-    const { children, route } = this.props
+    const { children, route, siteDescription } = this.props
     const childrenComponent = children()
     const childrenPage = getChildrenPage(childrenComponent)
     const { skipLoader, hideHeader } = childrenPage.data
@@ -84,9 +84,9 @@ class Template extends Component {
             { rel: 'canonical', href: currentURL }
           ]}
           meta={[
-            { name: 'description', content: config.siteDescription },
+            { name: 'description', content: siteDescription },
             { property: 'og:title', content: pageTitle },
-            { property: 'og:description', content: config.siteDescription },
+            { property: 'og:description', content: siteDescription },
             { property: 'og:url', content: currentURL }
           ]}
         />
@@ -134,3 +134,10 @@ class Template extends Component {
 }
 
 export default Template
+export const siteDescriptionQuery = `
+  site {
+    siteMetadata {
+      siteDescription
+    }
+  }
+`

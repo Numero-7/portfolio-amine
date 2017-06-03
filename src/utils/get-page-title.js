@@ -1,7 +1,7 @@
-import { config } from 'config'
+import { siteTitle } from '../../gatsby-config'
 
 const getPageTitle = title => (
-  title ? `${config.siteTitle} | ${title}` : config.siteTitle
+  title ? `${siteTitle} | ${title}` : siteTitle
 )
 
 export default getPageTitle
