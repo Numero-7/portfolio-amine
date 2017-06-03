@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { object, arrayOf, string, func } from 'prop-types'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
 import getPageTitle from 'src/utils/get-page-title'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 import StretchedContainer from 'src/components/StretchedContainer'
@@ -67,7 +66,7 @@ class Projects extends Component {
           <LinkColumn
             handleClick={() => { this.aboutLinkClicked = true }}
             text="About me."
-            href={prefixLink('/about/')}
+            href="/about/"
           />
 
           <div style={{ opacity: contentOpacity }}>
@@ -80,7 +79,7 @@ class Projects extends Component {
           <LinkColumn
             handleClick={() => { this.goBackLinkClicked = true }}
             text="Go back."
-            href={(previousPath !== '/about/' && prefixLink(previousPath)) || prefixLink('/')}
+            href={(previousPath !== '/about/' && previousPath) || '/'}
             pull="right"
           />
         </StretchedContainer>

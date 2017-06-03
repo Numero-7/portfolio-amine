@@ -1,13 +1,12 @@
 import React from 'react'
 import { object } from 'prop-types'
-import { prefixLink } from 'gatsby-helpers'
 import ProjectInfo from '../ProjectInfo'
 import SwagButton from '../SwagButton'
 import styles from './project-intro.module.scss'
 
 const ProjectIntro = ({ project }) => (
   <section
-    style={{ backgroundImage: `url(${prefixLink(project.intro)})` }}
+    style={{ backgroundImage: `url(${project.intro})` }}
     className={styles.root}
   >
     <div className={styles.content}>

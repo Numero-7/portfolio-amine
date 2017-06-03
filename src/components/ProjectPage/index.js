@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { object, string, func, arrayOf } from 'prop-types'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
-import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
 import breakpoints from 'src/values/breakpoints'
@@ -124,7 +123,7 @@ class ProjectPage extends Component {
           handleClick={() => { this.columnClicked = true }}
           transparent={true}
           text="About me."
-          href={prefixLink('/about/')}
+          href="/about/"
           pull="left"
         />
 
@@ -162,7 +161,7 @@ class ProjectPage extends Component {
           transparent={true}
           icon={true}
           text="All projects."
-          href={prefixLink('/projects/')}
+          href="/projects/"
           pull="right"
         />
       </StretchedContainer>

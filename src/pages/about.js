@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { object, string, func } from 'prop-types'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
 import breakpoints from 'src/values/breakpoints'
@@ -79,7 +78,7 @@ class About extends Component {
           </div>
 
           <LinkColumn
-            href={prefixLink(previousPath) || prefixLink('/')}
+            href={previousPath || '/'}
             text="Close."
             pull={columnPosition}
           />

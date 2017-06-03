@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { arrayOf, object, func, number } from 'prop-types'
-import { prefixLink } from 'gatsby-helpers'
 import styles from './slider-breadcrumb.module.scss'
 
 class SliderBreadCrumb extends Component {
@@ -48,7 +47,7 @@ class SliderBreadCrumb extends Component {
 
                 <div
                   className={this.getClassName(index, 'thumbnail', 'visible')}
-                  style={{ backgroundImage: `url(${prefixLink(project.cover)})` }}
+                  style={{ backgroundImage: `url(${project.cover})` }}
                 />
               </div>
             </li>

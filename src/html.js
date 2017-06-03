@@ -1,7 +1,6 @@
 import React from 'react'
 import { string, object } from 'prop-types'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 
 const HTML = ({ body, headComponents, postBodyComponents }) => {
@@ -38,7 +37,7 @@ const HTML = ({ body, headComponents, postBodyComponents }) => {
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getAbsoluteURL('/static/images/og-image.png')} />
         {head.meta.toComponent()}
-        <link rel="icon" href={prefixLink('/static/images/favicon.ico')} />
+        <link rel="icon" href="/static/images/favicon.ico" />
         {head.link.toComponent()}
 
         <script

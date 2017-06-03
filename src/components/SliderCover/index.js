@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { object, func } from 'prop-types'
-import { prefixLink } from 'gatsby-helpers'
 import TimelineLite from 'gsap/TimelineLite'
 import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
 import Smoke from '../Smoke'
@@ -118,7 +117,7 @@ class SliderCover extends Component {
           <div
             className={styles.projectImage}
             style={{
-              backgroundImage: `url(${prefixLink(project.cover)})`,
+              backgroundImage: `url(${project.cover})`,
               opacity: imageOpacity
             }}
           />
@@ -155,7 +154,7 @@ class SliderCover extends Component {
         >
           <SwagButton
             handleClick={() => this.handleProjectLinkClick()}
-            href={prefixLink(path)}
+            href={path}
             text="View project"
           />
         </div>

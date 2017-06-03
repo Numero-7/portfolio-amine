@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { string } from 'prop-types'
-import { Link } from 'react-router'
-import { prefixLink } from 'gatsby-helpers'
+import { Link } from 'gatsby-link'
 import TweenLite from 'gsap/TweenLite'
 import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
 import breakpoints from 'src/values/breakpoints'
@@ -36,7 +35,7 @@ class CloseButton extends Component {
     return (
       <Link
         className={styles.link}
-        to={currentPath === '/' ? prefixLink('/about/') : prefixLink('/')}
+        to={currentPath === '/' ? '/about/' : '/'}
       >
         {currentPath === '/' ? 'About me.' : 'Close.'}
       </Link>

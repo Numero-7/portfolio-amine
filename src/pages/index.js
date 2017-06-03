@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { arrayOf, object, string, bool, func } from 'prop-types'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
 import TimelineLite from 'gsap/TimelineLite'
 import { PAGE_FADE_DURATION } from 'src/values/animations'
@@ -97,7 +96,7 @@ class Index extends Component {
         />
 
         <LinkColumn
-          href={prefixLink('/about/')}
+          href="/about/"
           text="About me."
         />
 
@@ -122,7 +121,7 @@ class Index extends Component {
         </ShowWhen>
 
         <LinkColumn
-          href={prefixLink('/projects/')}
+          href="/projects/"
           icon={true}
           text="All projects."
           pull="right"

@@ -1,6 +1,5 @@
 import React from 'react'
 import { arrayOf, object } from 'prop-types'
-import { prefixLink } from 'gatsby-helpers'
 import SwagButton from '../SwagButton'
 import styles from './projects-list.module.scss'
 
@@ -8,7 +7,7 @@ const ProjectsList = ({ projectsData }) => (
   <ul className={styles.root}>
     {projectsData.map(project => (
       <li
-        style={{ backgroundImage: `url(${prefixLink(project.intro)})` }}
+        style={{ backgroundImage: `url(${project.intro})` }}
         className={styles.item}
       >
         <div className={styles.content}>
@@ -18,7 +17,7 @@ const ProjectsList = ({ projectsData }) => (
 
         <div className={styles.buttonWrapper}>
           <SwagButton
-            href={prefixLink(project.path)}
+            href={project.path}
             text="View project"
           />
         </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { string } from 'prop-types'
-import { prefixLink } from 'gatsby-helpers'
 import Waypoint from 'react-waypoint'
 import breakpoints from 'src/values/breakpoints'
 import styles from './project-image.module.scss'
@@ -27,7 +26,7 @@ class ProjectImage extends Component {
       >
         <img
           className={`${styles.image} ${visible ? styles.visible : ''}`}
-          src={prefixLink(src)}
+          src={src}
           alt={`showcasing ${title} project`}
         />
       </Waypoint>
