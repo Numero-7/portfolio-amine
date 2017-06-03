@@ -3,9 +3,7 @@ import Helmet from 'react-helmet'
 import { prefixLink } from 'gatsby-helpers'
 import getAbsoluteURL from 'src/utils/get-absolute-url'
 
-const BUILD_TIME = new Date().getTime()
-
-const HTML = ({ body }) => {
+const HTML = ({ body, headComponents, postBodyComponents }) => {
   const head = Helmet.rewind()
   let css
   let js
@@ -48,6 +46,7 @@ const HTML = ({ body }) => {
           }}
         />
         {css}
+        {headComponents}
       </head>
       <body>
         <div
@@ -57,7 +56,7 @@ const HTML = ({ body }) => {
           }}
         />
 
-        <script src={prefixLink(`/bundle.js?t=${BUILD_TIME}`)} />
+        {postBodyComponents}
         {js}
       </body>
     </html>
@@ -65,7 +64,9 @@ const HTML = ({ body }) => {
 }
 
 HTML.propTypes = {
-  body: PropTypes.string.isRequired
+  body: PropTypes.string.isRequired,
+  headComponents: PropTypes.object.isRequired,
+  postBodyComponents: PropTypes.object.isRequired
 }
 
 module.exports = HTML
