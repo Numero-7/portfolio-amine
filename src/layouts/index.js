@@ -65,7 +65,8 @@ class Template extends Component {
   render () {
     const { isMobile, assetsReady, projectsData, previousPath, transitionEnded } = this.state
     const { children, route } = this.props
-    const childrenPage = getChildrenPage(children)
+    const childrenComponent = children()
+    const childrenPage = getChildrenPage(childrenComponent)
     const { skipLoader, hideHeader } = childrenPage.data
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle()
@@ -105,7 +106,7 @@ class Template extends Component {
                 <PageTransitionLayer ref={(component) => { this.transitionLayer = component }} />
                 <TransitionGroup component="div">
                   {transitionEnded && (
-                    passDataToChildren(children, {
+                    passDataToChildren(childrenComponent, {
                       projectsData,
                       previousPath,
                       isMobile,

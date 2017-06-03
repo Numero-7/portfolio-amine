@@ -52,6 +52,6 @@ exports.modifyWebpackConfig = function (config, stage) {
   return config
 }
 
-exports.postBuild = function (pages, callback) {
+exports.onPostBuild = function (_, callback) {
   copy('./CNAME', './public/', callback)
 }
