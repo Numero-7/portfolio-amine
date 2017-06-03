@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { arrayOf, object } from 'prop-types'
-import { Link } from 'gatsby-link'
+import Link from 'gatsby-link'
 import TweenLite from 'gsap/TweenLite'
-import breakpoints from 'src/values/breakpoints'
+import breakpoints from '@values/breakpoints'
 import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {

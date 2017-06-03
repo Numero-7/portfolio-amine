@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { string } from 'prop-types'
 import Waypoint from 'react-waypoint'
-import breakpoints from 'src/values/breakpoints'
+import breakpoints from '@values/breakpoints'
 import styles from './project-image.module.scss'
 
 class ProjectImage extends Component {
@@ -10,9 +10,8 @@ class ProjectImage extends Component {
     title: string.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.state = { visible: window.innerWidth < breakpoints.desktop }
+  getInitialState () {
+    return { visible: window.innerWidth < breakpoints.desktop }
   }
 
   render () {

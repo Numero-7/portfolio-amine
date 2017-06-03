@@ -1,5 +1,5 @@
 import flattenDeep from 'lodash/flattenDeep'
-import isProjectPage from './is-project-page'
+import isProjectPage from '@utils/is-project-page'
 
 const getPagesAssets = pages => (
   flattenDeep(

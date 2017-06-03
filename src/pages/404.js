@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { func } from 'prop-types'
 import Helmet from 'react-helmet'
-import NotFoundContent from 'src/components/NotFoundContent'
-import getPageTitle from 'src/utils/get-page-title'
+import NotFoundContent from '@components/NotFoundContent'
+import getPageTitle from '@utils/get-page-title'
 
 class notFound extends Component {
   static propTypes = {

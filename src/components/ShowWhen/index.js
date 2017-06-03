@@ -1,7 +1,7 @@
 import React from 'react'
 import { node, object, string } from 'prop-types'
 import Rezponsive from 'rezponsive'
-import breakpoints from 'src/values/breakpoints'
+import breakpoints from '@values/breakpoints'
 
 const mediaQueries = {
   small: `screen and (max-width: ${breakpoints.small}px)`,

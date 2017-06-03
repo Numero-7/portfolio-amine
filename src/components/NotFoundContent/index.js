@@ -1,6 +1,6 @@
 import React from 'react'
-import Text from '../Text'
-import SwagButton from '../SwagButton'
+import Text from '@components/Text'
+import SwagButton from '@components/SwagButton'
 import styles from './not-found-content.module.scss'
 
 const NotFoundContent = () => (

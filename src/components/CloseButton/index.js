@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { string } from 'prop-types'
-import { Link } from 'gatsby-link'
+import Link from 'gatsby-link'
 import TweenLite from 'gsap/TweenLite'
-import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
-import breakpoints from 'src/values/breakpoints'
+import { HOME_PAGE_LEAVE_DURATION } from '@values/animations'
+import breakpoints from '@values/breakpoints'
 import styles from './close-button.module.scss'
 
 class CloseButton extends Component {

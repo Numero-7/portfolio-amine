@@ -2,26 +2,26 @@ import React, { Component } from 'react'
 import { node, object, string } from 'prop-types'
 import Helmet from 'react-helmet'
 import TransitionGroup from 'preact-transition-group'
-import 'src/utils/browser/gsap-react-plugin'
+import '@utils/browser/gsap-react-plugin'
 import throttle from 'lodash/throttle'
-import breakpoints from 'src/values/breakpoints'
-import getPageTitle from 'src/utils/get-page-title'
-import getAbsoluteURL from 'src/utils/get-absolute-url'
-import getChildrenPage from 'src/utils/get-children-page'
-import getPagesAssets from 'src/utils/get-pages-assets'
-import getProjectsData from 'src/utils/get-projects-data'
-import passDataToChildren from 'src/utils/pass-data-to-children'
-import isProjectPage from 'src/utils/is-project-page'
-import Header from 'src/components/Header'
-import Container from 'src/components/Container'
-import Loader from 'src/components/Loader'
-import PageTransitionLayer from 'src/components/PageTransitionLayer'
+import breakpoints from '@values/breakpoints'
+import getPageTitle from '@utils/get-page-title'
+import getAbsoluteURL from '@utils/get-absolute-url'
+import getChildrenPage from '@utils/get-children-page'
+import getPagesAssets from '@utils/get-pages-assets'
+import getProjectsData from '@utils/get-projects-data'
+import passDataToChildren from '@utils/pass-data-to-children'
+import isProjectPage from '@utils/is-project-page'
+import Header from '@components/Header'
+import Container from '@components/Container'
+import Loader from '@components/Loader'
+import PageTransitionLayer from '@components/PageTransitionLayer'
 
 // Inject global styles.
-import 'src/sass/vendors/_reset.scss'
-import 'src/sass/base/_root.scss'
+import '@sass/vendors/_reset.scss'
+import '@sass/base/_root.scss'
 
-class Template extends Component {
+class DefaultLayout extends Component {
   static propTypes = {
     children: node.isRequired,
     route: object.isRequired,
@@ -133,7 +133,7 @@ class Template extends Component {
   }
 }
 
-export default Template
+export default DefaultLayout
 export const siteDescriptionQuery = `
   site {
     siteMetadata {

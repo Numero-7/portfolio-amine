@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { func, array } from 'prop-types'
 import assetsLoader from 'assets-loader'
-import ProgressBar from '../ProgressBar'
+import ProgressBar from '@components/ProgressBar'
 import styles from './loader.module.scss'
 
 class Loader extends Component {
@@ -10,9 +10,8 @@ class Loader extends Component {
     assets: array.isRequired
   }
 
-  constructor (props) {
-    super(props)
-    this.state = { progress: 0 }
+  getInitialState () {
+    return { progress: 0 }
   }
 
   componentDidMount () {

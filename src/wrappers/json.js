@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { object, arrayOf } from 'prop-types'
-import ProjectPage from '../src/components/ProjectPage'
+import ProjectPage from '@components/ProjectPage'
 
 class JSONWrapper extends Component {
   static propTypes = {

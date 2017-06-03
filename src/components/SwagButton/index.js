@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { func, string, bool } from 'prop-types'
-import { Link } from 'gatsby-link'
+import Link from 'gatsby-link'
 import styles from './swag-button.module.scss'
 
 class SwagButton extends Component {

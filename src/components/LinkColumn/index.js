@@ -1,6 +1,6 @@
 import React from 'react'
 import { func, bool, string, oneOf } from 'prop-types'
-import { Link } from 'gatsby-link'
+import Link from 'gatsby-link'
 import styles from './link-column.module.scss'
 
 const LinkColumn = ({ handleClick, transparent, text, href, pull, icon }) => (

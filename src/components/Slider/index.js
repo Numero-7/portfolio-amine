@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { arrayOf, object } from 'prop-types'
 import debounce from 'lodash/debounce'
 import throttle from 'lodash/throttle'
-import SliderCover from '../SliderCover'
-import SliderBreadCrumb from '../SliderBreadCrumb'
+import SliderCover from '@components/SliderCover'
+import SliderBreadCrumb from '@components/SliderBreadCrumb'
 import styles from './slider.module.scss'
 
 class Slider extends Component {

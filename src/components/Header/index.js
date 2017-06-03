@@ -1,6 +1,6 @@
 import React from 'react'
 import { string, bool } from 'prop-types'
-import CloseButton from '../CloseButton'
+import CloseButton from '@components/CloseButton'
 import styles from './header.module.scss'
 
 const Header = ({ previousPath, currentPath, showCloseButton }) => (

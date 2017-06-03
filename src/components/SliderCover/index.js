@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { object, func } from 'prop-types'
 import TimelineLite from 'gsap/TimelineLite'
-import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
-import Smoke from '../Smoke'
-import SwagButton from '../SwagButton'
+import { HOME_PAGE_COVER_FILL_DURATION } from '@values/animations'
+import Smoke from '@components/Smoke'
+import SwagButton from '@components/SwagButton'
 import styles from './slider-cover.module.scss'
 
 class SliderCover extends Component {

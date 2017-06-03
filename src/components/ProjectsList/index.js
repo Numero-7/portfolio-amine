@@ -1,6 +1,6 @@
 import React from 'react'
 import { arrayOf, object } from 'prop-types'
-import SwagButton from '../SwagButton'
+import SwagButton from '@components/SwagButton'
 import styles from './projects-list.module.scss'
 
 const ProjectsList = ({ projectsData }) => (

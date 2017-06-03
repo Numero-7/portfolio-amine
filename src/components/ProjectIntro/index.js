@@ -1,7 +1,7 @@
 import React from 'react'
 import { object } from 'prop-types'
-import ProjectInfo from '../ProjectInfo'
-import SwagButton from '../SwagButton'
+import ProjectInfo from '@components/ProjectInfo'
+import SwagButton from '@components/SwagButton'
 import styles from './project-intro.module.scss'
 
 const ProjectIntro = ({ project }) => (

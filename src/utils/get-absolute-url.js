@@ -1,4 +1,4 @@
-import { siteURL } from '../../gatsby-config'
+import { siteURL } from '@root/gatsby-config'
 
 const getAbsoluteURL = path => (
   siteURL + path

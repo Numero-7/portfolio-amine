@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { object, arrayOf, string, func } from 'prop-types'
 import Helmet from 'react-helmet'
-import getPageTitle from 'src/utils/get-page-title'
-import getAbsoluteURL from 'src/utils/get-absolute-url'
-import StretchedContainer from 'src/components/StretchedContainer'
-import LinkColumn from 'src/components/LinkColumn'
-import ProjectsGrid from 'src/components/ProjectsGrid'
+import getPageTitle from '@utils/get-page-title'
+import getAbsoluteURL from '@utils/get-absolute-url'
+import StretchedContainer from '@components/StretchedContainer'
+import LinkColumn from '@components/LinkColumn'
+import ProjectsGrid from '@components/ProjectsGrid'
 
 class Projects extends Component {
   static propTypes = {

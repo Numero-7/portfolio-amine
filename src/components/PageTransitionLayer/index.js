@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TimelineLite from 'gsap/TimelineLite'
-import { TRANSITION_LAYER_DURATION } from 'src/values/animations'
-import breakpoints from 'src/values/breakpoints'
+import { TRANSITION_LAYER_DURATION } from '@values/animations'
+import breakpoints from '@values/breakpoints'
 import styles from './page-transition-layer.module.scss'
 
 class PageTransitionLayer extends Component {
