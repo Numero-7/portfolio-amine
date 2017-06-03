@@ -38,4 +38,4 @@ class JSONWrapper extends Component {
   }
 }
 
-module.exports = JSONWrapper
+export default JSONWrapper

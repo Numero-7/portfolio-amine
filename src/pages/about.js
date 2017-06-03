@@ -89,7 +89,7 @@ class About extends Component {
 }
 
 export default About
-exports.data = {
+export const data = {
   hideHeader: true,
   assets: [
     '/static/images/about-picture.png'

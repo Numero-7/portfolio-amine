@@ -69,4 +69,4 @@ HTML.propTypes = {
   postBodyComponents: object.isRequired
 }
 
-module.exports = HTML
+export default HTML

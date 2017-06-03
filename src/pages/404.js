@@ -29,7 +29,7 @@ class notFound extends Component {
 }
 
 export default notFound
-exports.data = {
+export const data = {
   path: '/404.html',
   skipLoader: true,
   hideHeader: true

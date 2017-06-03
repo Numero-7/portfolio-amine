@@ -132,7 +132,7 @@ class Index extends Component {
 }
 
 export default Index
-exports.data = {
+export const data = {
   assets: [
     '/static/images/smoke-1.png',
     '/static/images/smoke-2.png'
