@@ -10,8 +10,9 @@ class ProjectImage extends Component {
     title: string.isRequired
   }
 
-  getInitialState () {
-    return { visible: window.innerWidth < breakpoints.desktop }
+  constructor (props) {
+    super(props)
+    this.state = { visible: window.innerWidth < breakpoints.desktop }
   }
 
   render () {

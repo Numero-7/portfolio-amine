@@ -10,8 +10,9 @@ class Loader extends Component {
     assets: array.isRequired
   }
 
-  getInitialState () {
-    return { progress: 0 }
+  constructor (props) {
+    super(props)
+    this.state = { progress: 0 }
   }
 
   componentDidMount () {

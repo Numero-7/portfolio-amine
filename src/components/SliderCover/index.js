@@ -12,17 +12,20 @@ class SliderCover extends Component {
     handleProjectLinkClick: func.isRequired
   }
 
-  getInitialState () {
-    return {
-      imageOpacity: 0,
-      infoOpacity: 0,
-      greyStrokeDashoffset: styles.projectCoverPerimeter,
-      whiteStrokeDashoffset: styles.projectCoverPerimeter,
-      titleOpacity: 0,
-      smokeOpacity: 0,
-      buttonIsVisible: false,
-      buttonOpacity: 0
-    }
+  static initialState = {
+    imageOpacity: 0,
+    infoOpacity: 0,
+    greyStrokeDashoffset: styles.projectCoverPerimeter,
+    whiteStrokeDashoffset: styles.projectCoverPerimeter,
+    titleOpacity: 0,
+    smokeOpacity: 0,
+    buttonIsVisible: false,
+    buttonOpacity: 0
+  }
+
+  constructor (props) {
+    super(props)
+    this.state = this.initialState
   }
 
   componentDidMount () {
@@ -32,7 +35,7 @@ class SliderCover extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.project.title !== nextProps.project.title) {
-      this.setState(this.getInitialState(), () => { this.animate() })
+      this.setState(this.initialState, () => { this.animate() })
     }
   }
 

@@ -5,12 +5,15 @@ import breakpoints from '@values/breakpoints'
 import styles from './page-transition-layer.module.scss'
 
 class PageTransitionLayer extends Component {
-  getInitialState () {
-    return {
-      width: 0,
-      left: 'initial',
-      right: 'initial'
-    }
+  static initialState = {
+    width: 0,
+    left: 'initial',
+    right: 'initial'
+  }
+
+  constructor (props) {
+    super(props)
+    this.state = this.initialState
   }
 
   animateOut (onComplete, reverse) {
@@ -50,7 +53,7 @@ class PageTransitionLayer extends Component {
   resetTimelineProperties (timeline) {
     // Always reset timelines properties after they have finished animating so that we don’t have
     // to manually reset styles everytime.
-    timeline.set(this, { state: this.getInitialState() })
+    timeline.set(this, { state: this.initialState })
   }
 
   render () {

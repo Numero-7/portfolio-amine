@@ -29,8 +29,9 @@ class DefaultLayout extends Component {
     siteDescription: string.isRequired
   }
 
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       assetsReady: false,
       transitionEnded: true,
       previousPath: ''
@@ -135,9 +136,11 @@ class DefaultLayout extends Component {
 
 export default DefaultLayout
 export const siteDescriptionQuery = `
-  site {
-    siteMetadata {
-      siteDescription
+  query siteMetaData {
+    site {
+      siteMetadata {
+        siteDescription
+      }
     }
   }
 `

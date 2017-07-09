@@ -10,8 +10,9 @@ class ProjectsGrid extends Component {
     projects: arrayOf(object).isRequired
   }
 
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       activeProject: {},
       linksDisplayedCount: 0,
       backgroundImageOpacity: 0

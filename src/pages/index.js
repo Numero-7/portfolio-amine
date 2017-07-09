@@ -20,10 +20,9 @@ class Index extends Component {
     notifyPageTransitionEnded: func.isRequired
   }
 
-  getInitialState () {
-    return {
-      sliderOpacity: 1
-    }
+  constructor (props) {
+    super(props)
+    this.state = { sliderOpacity: 1 }
   }
 
   componentWillAppear (onComplete) {

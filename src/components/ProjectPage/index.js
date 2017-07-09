@@ -26,8 +26,9 @@ class ProjectPage extends Component {
     projectsData: arrayOf(object).isRequired
   }
 
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       hideScrollIndicator: false,
       contentOpacity: 1
     }

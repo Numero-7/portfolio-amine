@@ -11,10 +11,9 @@ class Slider extends Component {
     projectsData: arrayOf(object).isRequired
   }
 
-  getInitialState () {
-    return {
-      currentIndex: 0
-    }
+  constructor (props) {
+    super(props)
+    this.state = { currentIndex: 0 }
   }
 
   componentDidMount () {

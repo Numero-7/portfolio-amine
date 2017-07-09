@@ -16,10 +16,9 @@ class Projects extends Component {
     notifyPageTransitionEnded: func.isRequired
   }
 
-  getInitialState () {
-    return {
-      contentOpacity: 1
-    }
+  constructor (props) {
+    super(props)
+    this.state = { contentOpacity: 1 }
   }
 
   componentWillEnter (onComplete) {
