@@ -1,5 +1,5 @@
 module.exports = {
-  linkPrefix: '/',
+  pathPrefix: '/',
   siteMetadata: {
     siteURL: 'http://amine-bouneggar.com',
     siteTitle: 'Amine Bouneggar',
