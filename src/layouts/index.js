@@ -135,8 +135,8 @@ class DefaultLayout extends Component {
 }
 
 export default DefaultLayout
-export const siteDescriptionQuery = `
-  query siteMetaData {
+export const pageQuery = graphql`
+  query DefaultLayoutQuery {
     site {
       siteMetadata {
         siteDescription
