@@ -1,5 +1,5 @@
 import React from 'react'
-import { string, object } from 'prop-types'
+import { string, arrayOf, object } from 'prop-types'
 import Helmet from 'react-helmet'
 import getAbsoluteURL from '@utils/get-absolute-url'
 
@@ -55,8 +55,8 @@ const HTML = ({ body, headComponents, postBodyComponents }) => {
 
 HTML.propTypes = {
   body: string.isRequired,
-  headComponents: object.isRequired,
-  postBodyComponents: object.isRequired
+  headComponents: arrayOf(object).isRequired,
+  postBodyComponents: arrayOf(object).isRequired
 }
 
 export default HTML
