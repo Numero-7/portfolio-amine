@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
-import { prefixLink } from 'gatsby-helpers'
+import React, { Component } from 'react'
+import { string } from 'prop-types'
+import Link from 'gatsby-link'
 import TweenLite from 'gsap/TweenLite'
-import { HOME_PAGE_LEAVE_DURATION } from 'src/values/animations'
-import breakpoints from 'src/values/breakpoints'
+import { HOME_PAGE_LEAVE_DURATION } from '@values/animations'
+import breakpoints from '@values/breakpoints'
 import styles from './close-button.module.scss'
 
 class CloseButton extends Component {
   static propTypes = {
-    previousPath: PropTypes.string.isRequired,
-    currentPath: PropTypes.string.isRequired
+    previousPath: string.isRequired,
+    currentPath: string.isRequired
   }
 
   componentDidMount () {
@@ -35,7 +35,7 @@ class CloseButton extends Component {
     return (
       <Link
         className={styles.link}
-        to={currentPath === '/' ? prefixLink('/about/') : prefixLink('/')}
+        to={currentPath === '/' ? '/about/' : '/'}
       >
         {currentPath === '/' ? 'About me.' : 'Close.'}
       </Link>

@@ -1,7 +1,6 @@
 import React from 'react'
-import { prefixLink } from 'gatsby-helpers'
-import Text from '../Text'
-import SwagButton from '../SwagButton'
+import Text from '@components/Text'
+import SwagButton from '@components/SwagButton'
 import styles from './not-found-content.module.scss'
 
 const NotFoundContent = () => (
@@ -11,7 +10,7 @@ const NotFoundContent = () => (
     <div className={styles.buttonWrapper}>
       <SwagButton
         text="Go back to homepage"
-        href={prefixLink('/')}
+        href="/"
       />
     </div>
   </section>

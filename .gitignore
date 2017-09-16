@@ -29,6 +29,7 @@ node_modules
 .DS_STORE
 .vscode/
 .gatsby-context.js
+.cache/
 .sass-cache/
 public/
 webpack-bundle-analyzer-report.html

@@ -3,17 +3,23 @@ const copy = require('copy')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-exports.modifyWebpackConfig = function (config, stage) {
-  if (stage !== 'develop-html') {
-    config._config.resolve.alias = { // eslint-disable-line
-      // Requiring the server version of react-dom is hardcoded in Gatsby’s developement server. We
-      // only want to alias react when building the site for production.
-      react: 'preact-compat',
-      'react-dom': 'preact-compat',
-      // We only use the core of Pixi.js, which reduces bundle size.
-      'pixi.js': 'pixi.js/lib/core'
-    }
+const getAliases = () => {
+  const aliases = {
+    '@root': __dirname, // Alias root for easier access in modules
+    'pixi.js': 'pixi.js/lib/core' // We only want to use the core of Pixi.js to reduce bundle size.
   }
+
+  // Setup aliases for all folders in src/
+  ;['components', 'layouts', 'pages', 'sass', 'utils', 'values'].forEach(
+    (folder) => { aliases[`@${folder}`] = path.join(__dirname, `src/${folder}`) }
+  )
+
+  return aliases
+}
+
+exports.modifyWebpackConfig = function (data) {
+  const { config, stage } = data
+  config._config.resolve.alias = getAliases() // eslint-disable-line
 
   if (stage === 'build-javascript') {
     config.plugin('webpack-bundle-analyzer', BundleAnalyzerPlugin, [{
@@ -45,13 +51,22 @@ exports.modifyWebpackConfig = function (config, stage) {
     test: /\.(jpe?g|png|gif|svg)(\?.*)?$/i,
     loaders: [
       'file?name=[path][name].[ext]',
-      'image-webpack-loader?{ progressive: true, optimizationLevel: 7, interlaced: false, pngquant: { quality: "65-90", speed: 4 }, mozjpeg: { quality: 65 } }' // eslint-disable-line
+      {
+        loader: 'image-webpack-loader',
+        query: {
+          progressive: true,
+          optimizationLevel: 7,
+          interlaced: false,
+          pngquant: { quality: '65-90', speed: 4 },
+          mozjpeg: { quality: 65 }
+        }
+      }
     ]
   })
 
   return config
 }
 
-exports.postBuild = function (pages, callback) {
+exports.onPostBuild = function (_, callback) {
   copy('./CNAME', './public/', callback)
 }

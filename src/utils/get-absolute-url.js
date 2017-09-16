@@ -1,7 +1,7 @@
-import { config } from 'config'
+import { siteURL } from '@root/gatsby-config'
 
 const getAbsoluteURL = path => (
-  config.siteURL + path
+  siteURL + path
 )
 
 export default getAbsoluteURL

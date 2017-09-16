@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { func, array } from 'prop-types'
 import assetsLoader from 'assets-loader'
-import ProgressBar from '../ProgressBar'
+import ProgressBar from '@components/ProgressBar'
 import styles from './loader.module.scss'
 
 class Loader extends Component {
   static propTypes = {
-    onReady: PropTypes.func.isRequired,
-    assets: PropTypes.array.isRequired
+    onReady: func.isRequired,
+    assets: array.isRequired
   }
 
   constructor (props) {

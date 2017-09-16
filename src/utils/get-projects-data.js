@@ -1,4 +1,4 @@
-import isProjectPage from './is-project-page'
+import isProjectPage from '@utils/is-project-page'
 
 const getProjectsData = pages => (
   pages

@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
-import { prefixLink } from 'gatsby-helpers'
+import React, { Component } from 'react'
+import { func, string, bool } from 'prop-types'
+import Link from 'gatsby-link'
 import styles from './swag-button.module.scss'
 
 class SwagButton extends Component {
   static propTypes = {
-    handleClick: PropTypes.func,
-    text: PropTypes.string.isRequired,
-    href: PropTypes.string,
-    external: PropTypes.bool
+    handleClick: func,
+    text: string.isRequired,
+    href: string,
+    external: bool
   }
 
   static defaultProps = {
@@ -26,7 +26,6 @@ class SwagButton extends Component {
 
   createLinkProps () {
     const { handleClick, href, external } = this.props
-    const formattedHref = external ? href : prefixLink(href)
     const onActive = () => this.handleActive()
     const onLeave = () => this.handleLeave()
 
@@ -36,7 +35,7 @@ class SwagButton extends Component {
       onFocus: onActive,
       onMouseLeave: onLeave,
       onBlur: onLeave,
-      [external ? 'href' : 'to']: formattedHref || '#',
+      [external ? 'href' : 'to']: href || '#',
       target: external ? '_blank' : null,
       rel: external ? 'noopener noreferrer' : null
     })

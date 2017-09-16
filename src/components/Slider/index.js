@@ -1,19 +1,19 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { arrayOf, object } from 'prop-types'
 import debounce from 'lodash/debounce'
 import throttle from 'lodash/throttle'
-import SliderCover from '../SliderCover'
-import SliderBreadCrumb from '../SliderBreadCrumb'
+import SliderCover from '@components/SliderCover'
+import SliderBreadCrumb from '@components/SliderBreadCrumb'
 import styles from './slider.module.scss'
 
 class Slider extends Component {
   static propTypes = {
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    projectsData: arrayOf(object).isRequired
   }
 
-  getInitialState () {
-    return {
-      currentIndex: 0
-    }
+  constructor (props) {
+    super(props)
+    this.state = { currentIndex: 0 }
   }
 
   componentDidMount () {

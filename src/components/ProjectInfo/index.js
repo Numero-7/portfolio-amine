@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { string, oneOfType, arrayOf, bool } from 'prop-types'
 import styles from './project-info.module.scss'
 
 const ProjectInfo = ({ title, content, isSmallText }) => (
@@ -18,12 +19,12 @@ const ProjectInfo = ({ title, content, isSmallText }) => (
 )
 
 ProjectInfo.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+  title: string.isRequired,
+  content: oneOfType([
+    string,
+    arrayOf(string)
   ]).isRequired,
-  isSmallText: PropTypes.bool
+  isSmallText: bool
 }
 
 ProjectInfo.defaultProps = {

@@ -1,5 +1,5 @@
 import { Sprite, Texture } from 'isomorphic-pixi'
-import getRandomBetween from 'src/utils/get-random-between'
+import getRandomBetween from '@utils/get-random-between'
 
 // Server-side, we extend null instead of PIXI.Sprite so that the super call doesn’t fail.
 const Ancestor = typeof window !== 'undefined' ? Sprite : null

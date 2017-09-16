@@ -1,9 +1,9 @@
 import React from 'react'
-import ShowWhen from '../ShowWhen'
-import TextShadow from '../TextShadow'
-import Text from '../Text'
-import SocialNetworks from '../SocialNetworks'
-import Credits from '../Credits'
+import ShowWhen from '@components/ShowWhen'
+import TextShadow from '@components/TextShadow'
+import Text from '@components/Text'
+import SocialNetworks from '@components/SocialNetworks'
+import Credits from '@components/Credits'
 import styles from './about-content.module.scss'
 
 const AboutContent = () => (

@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from 'react'
-import { prefixLink } from 'gatsby-helpers'
+import React, { Component } from 'react'
+import { arrayOf, object, func, number } from 'prop-types'
 import styles from './slider-breadcrumb.module.scss'
 
 class SliderBreadCrumb extends Component {
   static propTypes = {
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    handleProjectSwitch: PropTypes.func.isRequired,
-    currentIndex: PropTypes.number.isRequired
+    projectsData: arrayOf(object).isRequired,
+    handleProjectSwitch: func.isRequired,
+    currentIndex: number.isRequired
   }
 
   getLabel (index) {
@@ -47,7 +47,7 @@ class SliderBreadCrumb extends Component {
 
                 <div
                   className={this.getClassName(index, 'thumbnail', 'visible')}
-                  style={{ backgroundImage: `url(${prefixLink(project.cover)})` }}
+                  style={{ backgroundImage: `url(${project.cover})` }}
                 />
               </div>
             </li>

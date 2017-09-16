@@ -1,17 +1,18 @@
-import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
-import { prefixLink } from 'gatsby-helpers'
+import React, { Component } from 'react'
+import { arrayOf, object } from 'prop-types'
+import Link from 'gatsby-link'
 import TweenLite from 'gsap/TweenLite'
-import breakpoints from 'src/values/breakpoints'
+import breakpoints from '@values/breakpoints'
 import styles from './projects-grid.module.scss'
 
 class ProjectsGrid extends Component {
   static propTypes = {
-    projects: PropTypes.arrayOf(PropTypes.object).isRequired
+    projects: arrayOf(object).isRequired
   }
 
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       activeProject: {},
       linksDisplayedCount: 0,
       backgroundImageOpacity: 0
@@ -82,7 +83,7 @@ class ProjectsGrid extends Component {
       <div className={styles.root}>
         <div
           style={{
-            backgroundImage: `url(${prefixLink(activeProject.cover)})`,
+            backgroundImage: `url(${activeProject.cover})`,
             opacity: backgroundImageOpacity
           }}
           className={styles.background}
@@ -96,7 +97,7 @@ class ProjectsGrid extends Component {
             >
               <Link
                 className={`${styles.link} ${index < linksDisplayedCount ? styles.visible : ''}`}
-                to={prefixLink(project.path)}
+                to={project.path}
                 onMouseOver={() => this.handleEnterLink(index)}
                 onFocus={() => this.handleEnterLink(index)}
                 onMouseLeave={() => this.handleLeaveLink()}

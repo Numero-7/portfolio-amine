@@ -1,33 +1,34 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, string, func, arrayOf } from 'prop-types'
 import Helmet from 'react-helmet'
 import Waypoint from 'react-waypoint'
-import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
-import { PAGE_FADE_DURATION } from 'src/values/animations'
-import breakpoints from 'src/values/breakpoints'
-import getPageTitle from 'src/utils/get-page-title'
-import getAbsoluteURL from 'src/utils/get-absolute-url'
-import LinkColumn from '../LinkColumn'
-import ScrollIndicator from '../ScrollIndicator'
-import ProjectIntro from '../ProjectIntro'
-import ProjectImage from '../ProjectImage'
-import ProjectsGrid from '../ProjectsGrid'
-import StretchedContainer from '../StretchedContainer'
+import { PAGE_FADE_DURATION } from '@values/animations'
+import breakpoints from '@values/breakpoints'
+import getPageTitle from '@utils/get-page-title'
+import getAbsoluteURL from '@utils/get-absolute-url'
+import LinkColumn from '@components/LinkColumn'
+import ScrollIndicator from '@components/ScrollIndicator'
+import ProjectIntro from '@components/ProjectIntro'
+import ProjectImage from '@components/ProjectImage'
+import ProjectsGrid from '@components/ProjectsGrid'
+import StretchedContainer from '@components/StretchedContainer'
 import styles from './project-page.module.scss'
 
 
 class ProjectPage extends Component {
   static propTypes = {
-    route: PropTypes.object.isRequired,
-    previousPath: PropTypes.string.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired,
-    project: PropTypes.object.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    route: object.isRequired,
+    previousPath: string.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired,
+    project: object.isRequired,
+    projectsData: arrayOf(object).isRequired
   }
 
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       hideScrollIndicator: false,
       contentOpacity: 1
     }
@@ -123,7 +124,7 @@ class ProjectPage extends Component {
           handleClick={() => { this.columnClicked = true }}
           transparent={true}
           text="About me."
-          href={prefixLink('/about/')}
+          href="/about/"
           pull="left"
         />
 
@@ -161,7 +162,7 @@ class ProjectPage extends Component {
           transparent={true}
           icon={true}
           text="All projects."
-          href={prefixLink('/projects/')}
+          href="/projects/"
           pull="right"
         />
       </StretchedContainer>

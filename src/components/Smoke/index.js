@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { number } from 'prop-types'
 import TweenLite from 'gsap/TweenLite'
 import Scene from './Scene'
 import Emitter from './Emitter'
@@ -6,7 +7,7 @@ import styles from './smoke.module.scss'
 
 class Smoke extends Component {
   static propTypes = {
-    opacity: PropTypes.number.isRequired
+    opacity: number.isRequired
   }
 
   getDefaultProps () {

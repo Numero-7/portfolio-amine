@@ -1,29 +1,28 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { arrayOf, object, string, bool, func } from 'prop-types'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
 import TimelineLite from 'gsap/TimelineLite'
-import { PAGE_FADE_DURATION } from 'src/values/animations'
-import breakpoints from 'src/values/breakpoints'
-import ShowWhen from 'src/components/ShowWhen'
-import StretchedContainer from 'src/components/StretchedContainer'
-import LinkColumn from 'src/components/LinkColumn'
-import Slider from 'src/components/Slider'
-import ProjectsList from 'src/components/ProjectsList'
+import { PAGE_FADE_DURATION } from '@values/animations'
+import breakpoints from '@values/breakpoints'
+import ShowWhen from '@components/ShowWhen'
+import StretchedContainer from '@components/StretchedContainer'
+import LinkColumn from '@components/LinkColumn'
+import Slider from '@components/Slider'
+import ProjectsList from '@components/ProjectsList'
 
 class Index extends Component {
   static propTypes = {
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    previousPath: PropTypes.string.isRequired,
-    isMobile: PropTypes.bool.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired
+    projectsData: arrayOf(object).isRequired,
+    previousPath: string.isRequired,
+    isMobile: bool.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired
   }
 
-  getInitialState () {
-    return {
-      sliderOpacity: 1
-    }
+  constructor (props) {
+    super(props)
+    this.state = { sliderOpacity: 1 }
   }
 
   componentWillAppear (onComplete) {
@@ -96,7 +95,7 @@ class Index extends Component {
         />
 
         <LinkColumn
-          href={prefixLink('/about/')}
+          href="/about/"
           text="About me."
         />
 
@@ -121,7 +120,7 @@ class Index extends Component {
         </ShowWhen>
 
         <LinkColumn
-          href={prefixLink('/projects/')}
+          href="/projects/"
           icon={true}
           text="All projects."
           pull="right"
@@ -132,7 +131,7 @@ class Index extends Component {
 }
 
 export default Index
-exports.data = {
+export const data = {
   assets: [
     '/static/images/smoke-1.png',
     '/static/images/smoke-2.png'

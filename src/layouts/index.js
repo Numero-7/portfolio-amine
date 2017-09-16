@@ -1,35 +1,37 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { node, object, string } from 'prop-types'
 import Helmet from 'react-helmet'
-import { config } from 'config'
 import TransitionGroup from 'preact-transition-group'
-import 'src/utils/browser/gsap-react-plugin'
+import '@utils/browser/gsap-react-plugin'
 import throttle from 'lodash/throttle'
-import breakpoints from 'src/values/breakpoints'
-import getPageTitle from 'src/utils/get-page-title'
-import getAbsoluteURL from 'src/utils/get-absolute-url'
-import getChildrenPage from 'src/utils/get-children-page'
-import getPagesAssets from 'src/utils/get-pages-assets'
-import getProjectsData from 'src/utils/get-projects-data'
-import passDataToChildren from 'src/utils/pass-data-to-children'
-import isProjectPage from 'src/utils/is-project-page'
-import Header from 'src/components/Header'
-import Container from 'src/components/Container'
-import Loader from 'src/components/Loader'
-import PageTransitionLayer from 'src/components/PageTransitionLayer'
+import breakpoints from '@values/breakpoints'
+import getPageTitle from '@utils/get-page-title'
+import getAbsoluteURL from '@utils/get-absolute-url'
+import getChildrenPage from '@utils/get-children-page'
+import getPagesAssets from '@utils/get-pages-assets'
+import getProjectsData from '@utils/get-projects-data'
+import passDataToChildren from '@utils/pass-data-to-children'
+import isProjectPage from '@utils/is-project-page'
+import Header from '@components/Header'
+import Container from '@components/Container'
+import Loader from '@components/Loader'
+import PageTransitionLayer from '@components/PageTransitionLayer'
 
 // Inject global styles.
-import 'src/sass/vendors/_reset.scss'
-import 'src/sass/base/_root.scss'
+import '@sass/vendors/_reset.scss'
+import '@sass/base/_root.scss'
 
-class Template extends Component {
+class DefaultLayout extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
-    route: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired
+    children: node.isRequired,
+    route: object.isRequired,
+    location: object.isRequired,
+    siteDescription: string.isRequired
   }
 
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+    this.state = {
       assetsReady: false,
       transitionEnded: true,
       previousPath: ''
@@ -63,8 +65,9 @@ class Template extends Component {
 
   render () {
     const { isMobile, assetsReady, projectsData, previousPath, transitionEnded } = this.state
-    const { children, route } = this.props
-    const childrenPage = getChildrenPage(children)
+    const { children, route, siteDescription } = this.props
+    const childrenComponent = children()
+    const childrenPage = getChildrenPage(childrenComponent)
     const { skipLoader, hideHeader } = childrenPage.data
     const currentURL = getAbsoluteURL(route.path)
     const pageTitle = getPageTitle()
@@ -82,9 +85,9 @@ class Template extends Component {
             { rel: 'canonical', href: currentURL }
           ]}
           meta={[
-            { name: 'description', content: config.siteDescription },
+            { name: 'description', content: siteDescription },
             { property: 'og:title', content: pageTitle },
-            { property: 'og:description', content: config.siteDescription },
+            { property: 'og:description', content: siteDescription },
             { property: 'og:url', content: currentURL }
           ]}
         />
@@ -104,7 +107,7 @@ class Template extends Component {
                 <PageTransitionLayer ref={(component) => { this.transitionLayer = component }} />
                 <TransitionGroup component="div">
                   {transitionEnded && (
-                    passDataToChildren(children, {
+                    passDataToChildren(childrenComponent, {
                       projectsData,
                       previousPath,
                       isMobile,
@@ -131,4 +134,13 @@ class Template extends Component {
   }
 }
 
-export default Template
+export default DefaultLayout
+export const pageQuery = graphql`
+  query DefaultLayoutQuery {
+    site {
+      siteMetadata {
+        siteDescription
+      }
+    }
+  }
+`

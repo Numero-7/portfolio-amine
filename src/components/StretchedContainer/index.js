@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { node, bool, oneOf } from 'prop-types'
 import styles from './stretched-container.module.scss'
 
 const StretchedContainer = ({ children, pushed, paddingSide }) => (
@@ -12,9 +13,9 @@ const StretchedContainer = ({ children, pushed, paddingSide }) => (
 )
 
 StretchedContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-  pushed: PropTypes.bool,
-  paddingSide: PropTypes.oneOf(['right', 'left', ''])
+  children: node.isRequired,
+  pushed: bool,
+  paddingSide: oneOf(['right', 'left', ''])
 }
 
 StretchedContainer.defaultProps = {

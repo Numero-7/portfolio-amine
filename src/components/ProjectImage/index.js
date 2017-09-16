@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from 'react'
-import { prefixLink } from 'gatsby-helpers'
+import React, { Component } from 'react'
+import { string } from 'prop-types'
 import Waypoint from 'react-waypoint'
-import breakpoints from 'src/values/breakpoints'
+import breakpoints from '@values/breakpoints'
 import styles from './project-image.module.scss'
 
 class ProjectImage extends Component {
   static propTypes = {
-    src: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    src: string.isRequired,
+    title: string.isRequired
   }
 
   constructor (props) {
@@ -26,7 +26,7 @@ class ProjectImage extends Component {
       >
         <img
           className={`${styles.image} ${visible ? styles.visible : ''}`}
-          src={prefixLink(src)}
+          src={src}
           alt={`showcasing ${title} project`}
         />
       </Waypoint>

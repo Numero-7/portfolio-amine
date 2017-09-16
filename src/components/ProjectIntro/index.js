@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react'
-import { prefixLink } from 'gatsby-helpers'
-import ProjectInfo from '../ProjectInfo'
-import SwagButton from '../SwagButton'
+import React from 'react'
+import { object } from 'prop-types'
+import ProjectInfo from '@components/ProjectInfo'
+import SwagButton from '@components/SwagButton'
 import styles from './project-intro.module.scss'
 
 const ProjectIntro = ({ project }) => (
   <section
-    style={{ backgroundImage: `url(${prefixLink(project.intro)})` }}
+    style={{ backgroundImage: `url(${project.intro})` }}
     className={styles.root}
   >
     <div className={styles.content}>
@@ -43,7 +43,7 @@ const ProjectIntro = ({ project }) => (
 )
 
 ProjectIntro.propTypes = {
-  project: PropTypes.object.isRequired
+  project: object.isRequired
 }
 
 export default ProjectIntro

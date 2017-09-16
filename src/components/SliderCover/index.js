@@ -1,28 +1,31 @@
-import React, { Component, PropTypes } from 'react'
-import { prefixLink } from 'gatsby-helpers'
+import React, { Component } from 'react'
+import { object, func } from 'prop-types'
 import TimelineLite from 'gsap/TimelineLite'
-import { HOME_PAGE_COVER_FILL_DURATION } from 'src/values/animations'
-import Smoke from '../Smoke'
-import SwagButton from '../SwagButton'
+import { HOME_PAGE_COVER_FILL_DURATION } from '@values/animations'
+import Smoke from '@components/Smoke'
+import SwagButton from '@components/SwagButton'
 import styles from './slider-cover.module.scss'
 
 class SliderCover extends Component {
   static propTypes = {
-    project: PropTypes.object.isRequired,
-    handleProjectLinkClick: PropTypes.func.isRequired
+    project: object.isRequired,
+    handleProjectLinkClick: func.isRequired
   }
 
-  getInitialState () {
-    return {
-      imageOpacity: 0,
-      infoOpacity: 0,
-      greyStrokeDashoffset: styles.projectCoverPerimeter,
-      whiteStrokeDashoffset: styles.projectCoverPerimeter,
-      titleOpacity: 0,
-      smokeOpacity: 0,
-      buttonIsVisible: false,
-      buttonOpacity: 0
-    }
+  static initialState = {
+    imageOpacity: 0,
+    infoOpacity: 0,
+    greyStrokeDashoffset: styles.projectCoverPerimeter,
+    whiteStrokeDashoffset: styles.projectCoverPerimeter,
+    titleOpacity: 0,
+    smokeOpacity: 0,
+    buttonIsVisible: false,
+    buttonOpacity: 0
+  }
+
+  constructor (props) {
+    super(props)
+    this.state = this.initialState
   }
 
   componentDidMount () {
@@ -32,7 +35,7 @@ class SliderCover extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.project.title !== nextProps.project.title) {
-      this.setState(this.getInitialState(), () => { this.animate() })
+      this.setState(this.initialState, () => { this.animate() })
     }
   }
 
@@ -117,7 +120,7 @@ class SliderCover extends Component {
           <div
             className={styles.projectImage}
             style={{
-              backgroundImage: `url(${prefixLink(project.cover)})`,
+              backgroundImage: `url(${project.cover})`,
               opacity: imageOpacity
             }}
           />
@@ -154,7 +157,7 @@ class SliderCover extends Component {
         >
           <SwagButton
             handleClick={() => this.handleProjectLinkClick()}
-            href={prefixLink(path)}
+            href={path}
             text="View project"
           />
         </div>

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { number } from 'prop-types'
 import styles from './progress-bar.module.scss'
 
 const BARS_COUNT = 40
@@ -30,7 +31,7 @@ const ProgressBar = ({ progress }) => {
 }
 
 ProgressBar.propTypes = {
-  progress: PropTypes.number.isRequired
+  progress: number.isRequired
 }
 
 export default ProgressBar

@@ -1,25 +1,24 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, arrayOf, string, func } from 'prop-types'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
-import getPageTitle from 'src/utils/get-page-title'
-import getAbsoluteURL from 'src/utils/get-absolute-url'
-import StretchedContainer from 'src/components/StretchedContainer'
-import LinkColumn from 'src/components/LinkColumn'
-import ProjectsGrid from 'src/components/ProjectsGrid'
+import getPageTitle from '@utils/get-page-title'
+import getAbsoluteURL from '@utils/get-absolute-url'
+import StretchedContainer from '@components/StretchedContainer'
+import LinkColumn from '@components/LinkColumn'
+import ProjectsGrid from '@components/ProjectsGrid'
 
 class Projects extends Component {
   static propTypes = {
-    route: PropTypes.object.isRequired,
-    projectsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    previousPath: PropTypes.string.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired
+    route: object.isRequired,
+    projectsData: arrayOf(object).isRequired,
+    previousPath: string.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired
   }
 
-  getInitialState () {
-    return {
-      contentOpacity: 1
-    }
+  constructor (props) {
+    super(props)
+    this.state = { contentOpacity: 1 }
   }
 
   componentWillEnter (onComplete) {
@@ -66,7 +65,7 @@ class Projects extends Component {
           <LinkColumn
             handleClick={() => { this.aboutLinkClicked = true }}
             text="About me."
-            href={prefixLink('/about/')}
+            href="/about/"
           />
 
           <div style={{ opacity: contentOpacity }}>
@@ -79,7 +78,7 @@ class Projects extends Component {
           <LinkColumn
             handleClick={() => { this.goBackLinkClicked = true }}
             text="Go back."
-            href={(previousPath !== '/about/' && prefixLink(previousPath)) || prefixLink('/')}
+            href={(previousPath !== '/about/' && previousPath) || '/'}
             pull="right"
           />
         </StretchedContainer>

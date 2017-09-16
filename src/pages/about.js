@@ -1,27 +1,26 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { object, string, func } from 'prop-types'
 import Helmet from 'react-helmet'
-import { prefixLink } from 'gatsby-helpers'
 import TweenLite from 'gsap/TweenLite'
-import { PAGE_FADE_DURATION } from 'src/values/animations'
-import breakpoints from 'src/values/breakpoints'
-import getPageTitle from 'src/utils/get-page-title'
-import getAbsoluteURL from 'src/utils/get-absolute-url'
-import StretchedContainer from 'src/components/StretchedContainer'
-import LinkColumn from 'src/components/LinkColumn'
-import AboutContent from 'src/components/AboutContent'
+import { PAGE_FADE_DURATION } from '@values/animations'
+import breakpoints from '@values/breakpoints'
+import getPageTitle from '@utils/get-page-title'
+import getAbsoluteURL from '@utils/get-absolute-url'
+import StretchedContainer from '@components/StretchedContainer'
+import LinkColumn from '@components/LinkColumn'
+import AboutContent from '@components/AboutContent'
 
 class About extends Component {
   static propTypes = {
-    route: PropTypes.object.isRequired,
-    previousPath: PropTypes.string.isRequired,
-    transitionPage: PropTypes.func.isRequired,
-    notifyPageTransitionEnded: PropTypes.func.isRequired
+    route: object.isRequired,
+    previousPath: string.isRequired,
+    transitionPage: func.isRequired,
+    notifyPageTransitionEnded: func.isRequired
   }
 
-  getInitialState () {
-    return {
-      contentOpacity: 1
-    }
+  constructor (props) {
+    super(props)
+    this.state = { contentOpacity: 1 }
   }
 
   componentWillAppear (onComplete) {
@@ -78,7 +77,7 @@ class About extends Component {
           </div>
 
           <LinkColumn
-            href={prefixLink(previousPath) || prefixLink('/')}
+            href={previousPath || '/'}
             text="Close."
             pull={columnPosition}
           />
@@ -89,7 +88,7 @@ class About extends Component {
 }
 
 export default About
-exports.data = {
+export const data = {
   hideHeader: true,
   assets: [
     '/static/images/about-picture.png'
