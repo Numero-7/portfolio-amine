@@ -14,9 +14,9 @@ const AboutContent = () => (
 
     <div className={styles.contentWrapper}>
       <Text>
-        Hey, I’m Amine, a 22-year old French digital designer and freelancer based in Paris.
+        Amine Bouneggar, a French Designer based in Paris specializing in interactive and product design.
         <br />
-        I am in 4th year at&nbsp;
+        Graduated in Master Design from&nbsp;
         <a
           href="https://www.hetic.net/"
           target="_blank"
@@ -27,16 +27,16 @@ const AboutContent = () => (
         </a>
         .
         <br />
-        Formerly part of&nbsp;
+        Previously at&nbsp;
         <a
           href="https://boldbeyond.com/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.link}
         >
-          Bold+Beyond
+          Bold Beyond
         </a>
-        &nbsp;and currently working for&nbsp;
+        &nbsp;,&nbsp;
         <a
           href="https://pureemaison.com/"
           target="_blank"
@@ -45,9 +45,29 @@ const AboutContent = () => (
         >
           Purée Maison
         </a>
-        &nbsp;in my spare time.
+        &nbsp;,
+
+        <a
+          href="https://hellodesign.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          Hello Design
+        </a>
+        &nbsp;,
+
+        <a
+          href="https://uzik.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          Uzik
+        </a>
+
         <br />
-        <span className={styles.gold}>I am looking for a 6-month internship…</span>
+        <span className={styles.gold}>I am looking for a full time position.</span>
       </Text>
 
       <div className={styles.socialNetworksWrapper}>
