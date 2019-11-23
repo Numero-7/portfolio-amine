@@ -41,7 +41,7 @@
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.1",
     "sass-lint": "^1.10.2",
-    "webpack-bundle-analyzer": "^2.8.2"
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "pre-commit": {
     "run": "lint:staged",
