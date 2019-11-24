@@ -51,3 +51,7 @@ exports.modifyWebpackConfig = function (config, stage) {
 
   return config
 }
+
+exports.postBuild = function () {
+  process.exit() // needed otherwise hangs after building
+}
