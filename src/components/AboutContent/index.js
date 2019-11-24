@@ -36,7 +36,7 @@ const AboutContent = () => (
         >
           Bold Beyond
         </a>
-        &nbsp;,&nbsp;
+        ,&nbsp;
         <a
           href="https://pureemaison.com/"
           target="_blank"
@@ -45,7 +45,7 @@ const AboutContent = () => (
         >
           Purée Maison
         </a>
-        &nbsp;,
+        ,&nbsp;
 
         <a
           href="https://hellodesign.com/"
@@ -55,7 +55,7 @@ const AboutContent = () => (
         >
           Hello Design
         </a>
-        &nbsp;,
+        ,&nbsp;
 
         <a
           href="https://uzik.com/"
@@ -63,7 +63,7 @@ const AboutContent = () => (
           rel="noopener noreferrer"
           className={styles.link}
         >
-          Uzik
+        , and Uzik
         </a>
 
         <br />
