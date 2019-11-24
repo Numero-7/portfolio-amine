@@ -4,11 +4,11 @@
 
 .root {
   @include media('<small') {
-    font-size: 40px;
+    font-size: $big-font-size;
   }
 
   font-family: $serif-font-stack;
-  line-height: 2;
+  line-height: 8;
   letter-spacing: 1px;
   color: $white;
   text-align: center;
