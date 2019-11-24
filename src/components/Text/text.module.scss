@@ -6,11 +6,11 @@
   @include media('<small') {
     font-size: $small-font-size;
   }
-
+  width: 900px;
   font-family: $serif-font-stack;
-  font-size: $huge-font-size;
-  line-height: 2;
-  letter-spacing: 1px;
+  font-size: 60px;
+  line-height: 1.3;
+  letter-spacing: normal;
   color: $white;
   text-align: center;
 }
