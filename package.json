@@ -1,9 +1,8 @@
 {
   "scripts": {
-    "build": "yarn build:clean && gatsby build",
+    "build": "yarn build:clean && gatsby build --prefix-links",
     "build:clean": "rimraf public",
     "build:serve": "gatsby serve-build",
-    "deploy": "yarn build:clean && gatsby build --prefix-links && gh-pages -d public",
     "develop": "gatsby develop",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "./node_modules/.bin/eslint '**/*.js'",
