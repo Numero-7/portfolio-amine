@@ -4,7 +4,7 @@
 
 .root {
   @include media('<small') {
-    font-size: $big-font-size;
+    font-size: $project-number-font-size;
   }
 
   font-family: $serif-font-stack;
