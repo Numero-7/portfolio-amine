@@ -1,5 +1,5 @@
 const path = require('path')
-const copy = require('copy')
+
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
