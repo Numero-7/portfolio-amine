@@ -55,7 +55,7 @@ const AboutContent = () => (
         >
           Hello Design
         </a>
-        &&nbsp;and&&nbsp;
+       and
 
         <a
           href="https://uzik.com/"
