@@ -4,7 +4,7 @@
 
 .root {
   @include media('<small') {
-    font-size: $small-font-size;
+    font-size: $huge-font-size;
   }
 
   font-family: $serif-font-stack;
