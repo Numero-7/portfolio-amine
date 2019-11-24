@@ -28,11 +28,11 @@
 
 @font-face {
  font-family: "Portrait Regular";
- src: url("/pages/static/fonts/PortraitText-Regular.ttf") format("ttf");
+ src: url("/pages/static/fonts/PortraitText-Regular.woff") format("woff");
 }
 
 @font-face {
  font-family: "Portrait Bold";
- src: url("/pages/static/fonts/Portrait-Bold.ttf") format("ttf");
+ src: url("/pages/static/fonts/Portrait-Bold.woff") format("woff");
 }
         
