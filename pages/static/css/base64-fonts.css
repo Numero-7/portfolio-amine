@@ -35,4 +35,10 @@
  font-family: "Portrait Bold";
  src: url("/pages/static/fonts/Portrait-Bold.woff") format("woff");
 }
+
+
+@font-face {
+ font-family: "Orpheus Pro";
+ src: url("/pages/static/fonts/Orpheus_Pro.woff") format("woff");
+}
         
