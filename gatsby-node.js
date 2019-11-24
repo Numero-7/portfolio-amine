@@ -15,13 +15,13 @@ exports.modifyWebpackConfig = function (config, stage) {
     }
   }
 
-  if (stage === 'build-javascript') {
-    config.plugin('webpack-bundle-analyzer', BundleAnalyzerPlugin, [{
-      openAnalyzer: false,
-      analyzerMode: 'static',
-      reportFilename: path.join(__dirname, 'webpack-bundle-analyzer-report.html')
-    }])
-  }
+  // if (stage === 'build-javascript') {
+  //  config.plugin('webpack-bundle-analyzer', BundleAnalyzerPlugin, [{
+  //    openAnalyzer: false,
+  //    analyzerMode: 'static',
+  //    reportFilename: path.join(__dirname, 'webpack-bundle-analyzer-report.html')
+  //  }])
+  // }
 
   // Modify existing loader to ignore css files loaded after the first render
   // that are stored in the /static/ folder (e.g. the base64 css fonts).
