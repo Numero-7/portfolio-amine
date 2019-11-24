@@ -25,3 +25,14 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+ font-family: "Portrait Regular";
+ src: url("/pages/static/fonts/PortraitText-Regular.ttf") format("ttf");
+}
+
+@font-face {
+ font-family: "Portrait Bold";
+ src: url("/pages/static/fonts/Portrait-Bold.ttf") format("ttf");
+}
+        
