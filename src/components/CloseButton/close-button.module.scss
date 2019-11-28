@@ -11,3 +11,37 @@
   color: $white;
   text-decoration: none;
 }
+
+.verticalText {
+  position: relative; /* 1 */
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentcolor;
+    content: '';
+    transition: width 500ms ease-in-out;
+  }
+}
+
+.icon {
+  overflow: visible;
+  transition: stroke 350ms ease-in-out;
+  stroke: rgba($white, 0.5);
+  stroke-width: 1;
+}
+
+// sass-lint:disable force-pseudo-nesting
+.link:hover,
+.link:focus {
+  .verticalText::after {
+    width: 100%;
+  }
+
+  .icon {
+    stroke: $white;
+  }
+}

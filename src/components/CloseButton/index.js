@@ -37,7 +37,7 @@ class CloseButton extends Component {
         className={styles.link}
         to={currentPath === '/' ? prefixLink('/about/') : prefixLink('/')}
       >
-        {currentPath === '/' ? 'About me.' : 'Close.'}
+        {currentPath === '/' ? 'About me' : 'Close'}
       </Link>
     )
   }
