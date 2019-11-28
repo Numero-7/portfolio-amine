@@ -97,7 +97,7 @@ class Index extends Component {
 
         <LinkColumn
           href={prefixLink('/about/')}
-          text="About me."
+          text="About me"
         />
 
         <ShowWhen when="desktop">

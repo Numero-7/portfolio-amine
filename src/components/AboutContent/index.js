@@ -36,7 +36,7 @@ const AboutContent = () => (
         >
           Bold Beyond
         </a>
-        ,
+        ,&nbsp;
         <a
           href="https://pureemaison.com/"
           target="_blank"
@@ -45,7 +45,7 @@ const AboutContent = () => (
         >
           Purée Maison
         </a>
-        ,
+        ,&nbsp;
 
         <a
           href="https://hellodesign.com/"
@@ -55,7 +55,7 @@ const AboutContent = () => (
         >
           Hello Design
         </a>
-        ,
+        ,&nbsp;and&nbsp;
 
         <a
           href="https://uzik.com/"

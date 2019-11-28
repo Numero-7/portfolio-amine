@@ -38,9 +38,14 @@
 
   &:hover,
   &:focus {
-    color: $gold;
+    color: $white;
+    overflow: visible;
+    transition: stroke 350ms ease-in-out;
+    stroke: rgba($white, 0.5);
+    stroke-width: 1;
   }
 }
+
 
 .socialNetworksWrapper {
   @include media('<small') {

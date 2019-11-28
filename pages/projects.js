@@ -78,7 +78,7 @@ class Projects extends Component {
 
           <LinkColumn
             handleClick={() => { this.goBackLinkClicked = true }}
-            text="Go back."
+            text="Go back"
             href={(previousPath !== '/about/' && prefixLink(previousPath)) || prefixLink('/')}
             pull="right"
           />
