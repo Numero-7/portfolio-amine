@@ -79,7 +79,7 @@ class About extends Component {
 
           <LinkColumn
             href={prefixLink(previousPath) || prefixLink('/')}
-            text="Close."
+            text="Close"
             pull={columnPosition}
           />
         </StretchedContainer>
