@@ -34,18 +34,21 @@
 .link {
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.4s;
 
   &:hover,
   &:focus {
-    color: $white;
-    overflow: visible;
-    transition: stroke 350ms ease-in-out;
-    stroke: rgba($white, 0.5);
-    stroke-width: 1;
+    color: $light-grey;
+
   }
 }
 
+.icon {
+  overflow: visible;
+  transition: stroke 350ms ease-in-out;
+  stroke: rgba($white, 0.5);
+  stroke-width: 1;
+}
 
 .socialNetworksWrapper {
   @include media('<small') {

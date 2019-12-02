@@ -58,7 +58,7 @@ const AboutContent = () => (
         ,&nbsp;and&nbsp;
 
         <a
-          href="https://uzik.com/"
+          href="http://uzik.com/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.link}
