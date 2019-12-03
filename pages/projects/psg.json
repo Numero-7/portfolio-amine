@@ -1,7 +1,7 @@
 {
-  "title": "Anna - Le Film",
-  "shortTitle": "Anna",
-  "order": 17,
+  "title": "Paris Saint-Germain",
+  "shortTitle": "PSG",
+  "order": 1,
   "images": [
     "/static/images/anna/anna-1.jpg",
     "/static/images/anna/anna-2.jpg",
@@ -10,12 +10,12 @@
   ],
   "cover": "/static/images/anna/anna-cover.png",
   "intro": "/static/images/anna/anna-intro.png",
-  "description": "I was in charge of the UX/UI design for the promotional website of our short film Anna, made as a school project.",
-  "type": "Promotional website",
+  "description": "I worked  for Paris Saint-Germain, the french football team, on the design and art direction of their new website.",
+  "type": "Interface Design",
   "role": [
     "Art Direction",
     "UX/UI Design"
   ],
-  "date": "2017",
-  "url": "https://www.anna-lefilm.com/"
+  "date": "2018-2019",
+  "url": "https://www.psg.fr/"
 }

@@ -1,7 +1,7 @@
 {
-  "title": "Elhadad Malidi",
-  "shortTitle": "EM",
-  "order": 5,
+  "title": "Journey App",
+  "shortTitle": "J",
+  "order": 10,
   "images": [
     "/static/images/elhadad-malidi/elhadad-malidi-1.jpg",
     "/static/images/elhadad-malidi/elhadad-malidi-2.jpg",
@@ -10,11 +10,11 @@
   ],
   "cover": "/static/images/elhadad-malidi/elhadad-malidi-cover.png",
   "intro": "/static/images/elhadad-malidi/elhadad-malidi-intro.png",
-  "description": "I was in charge of the art direction of the new website of Elhadad Malidi, a web developer and student at HETIC.",
-  "type": "Portfolio",
+  "description": "E-commerce website for the luxury brand Carolina Herrera",
+  "type": "Product Design",
   "role": [
-    "Art Direction",
+    "Product design",
     "UX/UI Design"
   ],
-  "date": "2017"
+  "date": "2016"
 }

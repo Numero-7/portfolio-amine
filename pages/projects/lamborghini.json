@@ -1,0 +1,20 @@
+{
+  "title": "Lamborghini store",
+  "shortTitle": "LAMBO",
+  "order": 4,
+  "images": [
+    "/static/images/elhadad-malidi/elhadad-malidi-1.jpg",
+    "/static/images/elhadad-malidi/elhadad-malidi-2.jpg",
+    "/static/images/elhadad-malidi/elhadad-malidi-3.jpg",
+    "/static/images/elhadad-malidi/elhadad-malidi-4.jpg"
+  ],
+  "cover": "/static/images/elhadad-malidi/elhadad-malidi-cover.png",
+  "intro": "/static/images/elhadad-malidi/elhadad-malidi-intro.png",
+  "description": "E-commerce website for the luxury brand Carolina Herrera",
+  "type": "Interface design",
+  "role": [
+    "Art direction",
+    "UX/UI Design"
+  ],
+  "date": "2018"
+}
