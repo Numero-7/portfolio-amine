@@ -1,0 +1,19 @@
+{
+  "title": "Brinks Compusafe",
+  "shortTitle": "BRINKS",
+  "order": 6,
+  "images": [
+    "/static/images/brinks/brinks-1.png",
+    "/static/images/brinks/brinks-2.png"
+  ],
+  "cover": "/static/images/brinks/brinks-cover.png",
+  "intro": "/static/images/unkut/unkut-intro.png",
+  "description": "Redesign of the Brinks Compusafe's website, a secure solution for cash management in stores ",
+  "type": "Interface design - Website",
+  "role": [
+    "Art Direction",
+    "UX/UI Design"
+  ],
+  "date": "2018",
+  "url": "https://compusafe.fr//"
+}
