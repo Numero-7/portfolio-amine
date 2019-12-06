@@ -82,7 +82,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 .grey,
 .white {
   fill: none;
-  stroke-width: 1px;
+  stroke-width: 2px;
   shape-rendering: crispEdges; /* 1 */
 }
 
@@ -92,7 +92,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 }
 
 .white {
-  stroke: $white;
+  stroke: $fluo;
 }
 
 .buttonWrapper {
