@@ -82,12 +82,13 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 .grey,
 .white {
   fill: none;
-  stroke-width: 2px;
+  stroke-width: 1px;
   shape-rendering: crispEdges; /* 1 */
 }
 
 .grey {
   stroke: $gradient-light-grey;
+  stroke-opacity: 0.2;
 }
 
 .white {
