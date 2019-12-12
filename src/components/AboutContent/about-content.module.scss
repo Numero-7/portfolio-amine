@@ -14,8 +14,7 @@
   justify-content: center;
   height: 100vh;
   max-height: 100vh;
-  background-image: url('/static/images/abackground.gif');
-  background-opacity: 20%;
+  background-image: url('/static/images/abackground.gif'), opacity: 0.3;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
