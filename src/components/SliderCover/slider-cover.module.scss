@@ -31,6 +31,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
   top: -0.85em;
   left: 50%;
   font: 700% $sans-serif-title-font-stack;
+  -webkit-text-stroke: 1px;
   color: $gradient-light-grey;
   text-transform: uppercase;
   transform: translateX(-50%) translateZ(0); /* 1 */
@@ -68,6 +69,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
   letter-spacing: 0.5px;
   color: $fluo;
   left: 40%;
+  text-align: left;
 }
 
 .projectName {
@@ -75,6 +77,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
   letter-spacing: 1px;
   color: $white;
   left: 40%;
+  
 }
 
 /**
