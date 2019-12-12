@@ -1,6 +1,6 @@
 // All pages
-export const PAGE_FADE_DURATION = 0.3
-export const TRANSITION_LAYER_DURATION = 0.3
+export const PAGE_FADE_DURATION = 1.5
+export const TRANSITION_LAYER_DURATION = 1
 
 // Homepage
 export const HOME_PAGE_COVER_FILL_DURATION = 1
