@@ -32,7 +32,7 @@ const ProjectIntro = ({ project }) => (
       {project.url && (
         <div className={styles.buttonWrapper}>
           <SwagButton
-            text="View website"
+            text="See in live"
             href={project.url}
             external={true}
           />

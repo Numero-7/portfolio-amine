@@ -92,6 +92,6 @@ export default About
 exports.data = {
   hideHeader: true,
   assets: [
-    '/static/images/about-picture.png'
+    '/static/images/abackground.jpg'
   ]
 }
