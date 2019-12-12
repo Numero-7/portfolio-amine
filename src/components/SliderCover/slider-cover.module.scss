@@ -32,7 +32,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
   left: 50%;
   font: 700% $sans-serif-title-font-stack;
   -webkit-text-stroke: 1px;
-  color: $gradient-light-grey;
+  color: $black;
   text-transform: uppercase;
   transform: translateX(-50%) translateZ(0); /* 1 */
 
