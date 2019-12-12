@@ -45,7 +45,7 @@ $title-gradient: linear-gradient(to right, $gradient-dark-grey 0%, $gradient-lig
 .projectInfo {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 50px;
   z-index: 3;
   transform: translateY(-50%);
 }

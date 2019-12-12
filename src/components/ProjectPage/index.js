@@ -122,7 +122,7 @@ class ProjectPage extends Component {
         <LinkColumn
           handleClick={() => { this.columnClicked = true }}
           transparent={true}
-          text="About me."
+          text="About me"
           href={prefixLink('/about/')}
           pull="left"
         />
