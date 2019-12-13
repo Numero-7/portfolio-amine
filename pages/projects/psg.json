@@ -3,10 +3,7 @@
   "shortTitle": "PSG",
   "order": 1,
   "images": [
-    "/static/images/anna/anna-1.jpg",
-    "/static/images/anna/anna-2.jpg",
-    "/static/images/anna/anna-3.jpg",
-    "/static/images/anna/anna-4.jpg"
+    "/static/images/psg/psg-1.jpg"
   ],
   "cover": "/static/images/psg/psg-cover.jpg",
   "intro": "/static/images/psg/psg-intro.jpg",
