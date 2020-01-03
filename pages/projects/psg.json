@@ -3,7 +3,12 @@
   "shortTitle": "PSG",
   "order": 1,
   "images": [
-    "/static/images/psg/psg-1.jpg"
+    "/static/images/psg/psg-1.jpg",
+    "/static/images/psg/psg-2.jpg",
+    "/static/images/psg/psg-3.jpg",
+    "/static/images/psg/psg-4.jpg",
+    "/static/images/psg/psg-5.jpg",
+    "/static/images/psg/psg-6.jpg"
   ],
   "cover": "/static/images/psg/psg-cover.jpg",
   "intro": "/static/images/psg/psg-intro.jpg",
