@@ -3,14 +3,13 @@
   "shortTitle": "CH",
   "order": 2,
   "images": [
-    "/static/images/elhadad-malidi/elhadad-malidi-1.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-2.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-3.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-4.jpg"
+    "/static/images/ch/ch1.jpg",
+    "/static/images/ch/ch2.jpg",
+    "/static/images/ch/ch3.jpg"
   ],
   "cover": "/static/images/ch/ch-cover.jpg",
   "intro": "/static/images/ch/ch-intro.jpg",
-  "description": "E-commerce website for the luxury brand Carolina Herrera",
+  "description": "The main goal was to redesign the homepage and the collections pages of the E-commerce website of the luxury brand Carolina Herrera",
   "type": "Interface design",
   "role": [
     "Art direction",
