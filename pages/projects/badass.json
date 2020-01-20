@@ -1,0 +1,22 @@
+{
+  "title": "Badass Films TV",
+  "shortTitle": "Badass",
+  "order": ,
+  "images": [
+    "/static/images/badass/badass1.jpg",
+    "/static/images/badass/badass2.jpg",
+    "/static/images/badass/badass3.jpg",
+    "/static/images/badass/badass4.jpg"
+   
+  ],
+  "cover": "/static/images/badass/badass-cover.jpg",
+  "intro": "/static/images/badass/badass-intro.jpg",
+  "description": "I designed the new website of Badass Films TV, a great french video production company.",
+  "type": "Interface design",
+  "role": [
+    "Art direction",
+    "UX/UI Design"
+  ],
+  "date": "2017",
+  "url": "https://badassfilms.tv/"
+}
