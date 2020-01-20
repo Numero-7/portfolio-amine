@@ -1,0 +1,23 @@
+{
+  "title": "Yard Agency",
+  "shortTitle": "YARD",
+  "order": 7,
+  "images": [
+    "/static/images/yard/yard1.jpg",
+    "/static/images/yard/yard2.jpg",
+    "/static/images/yard/yard3.jpg",
+    "/static/images/yard/yard4.jpg",
+    "/static/images/yard/yard5.jpg",
+    "/static/images/yard/yard6.jpg",
+    "/static/images/yard/yard7.jpg"
+  ],
+  "cover": "/static/images/yard/yard-cover.jpg",
+  "intro": "/static/images/yard/yard-intro.jpg",
+  "description": "I design the new website of Yard Agency, a 360° campaign and events agency in Paris.",
+  "type": "Interface design",
+  "role": [
+    "Art direction",
+    "UX/UI Design"
+  ],
+  "date": "2019"
+}

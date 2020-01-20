@@ -3,11 +3,14 @@
   "shortTitle": "MB",
   "order": 3,
   "images": [
-    "/static/images/michela/michela-1.mp4",
-    "/static/images/elhadad-malidi/elhadad-malidi-2.jpg"
+    "/static/images/michela/MB1.jpg",
+    "/static/images/michela/MB2.jpg",
+    "/static/images/michela/MB3.jpg",
+    "/static/images/michela/MB4.jpg"
+    
   ],
-  "cover": "/static/images/rmagazine/rmag-cover.jpg",
-  "intro": "/static/images/elhadad-malidi/elhadad-malidi-intro.png",
+  "cover": "/static/images/michela/michela-cover.jpg",
+  "intro": "/static/images/michela/michela-intro.jpg",
   "description": "I designed a portfolio for Michela Burratti. She is a fashion stylist and beauty editor based in New York City.",
   "type": "Interface design",
   "role": [

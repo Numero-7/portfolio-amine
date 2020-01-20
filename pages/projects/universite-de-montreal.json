@@ -3,6 +3,9 @@
   "shortTitle": "UDM",
   "order": 14,
   "images": [
+    "/static/images/universite-de-montreal/udm1.png",
+    "/static/images/universite-de-montreal/udm2.png",
+    "/static/images/universite-de-montreal/udm3.png",
     "/static/images/universite-de-montreal/universite-de-montreal-1.jpg",
     "/static/images/universite-de-montreal/universite-de-montreal-2.jpg",
     "/static/images/universite-de-montreal/universite-de-montreal-3.jpg",

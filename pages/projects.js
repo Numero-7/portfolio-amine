@@ -65,7 +65,7 @@ class Projects extends Component {
         <StretchedContainer>
           <LinkColumn
             handleClick={() => { this.aboutLinkClicked = true }}
-            text="About me."
+            text="About me"
             href={prefixLink('/about/')}
           />
 
