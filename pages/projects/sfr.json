@@ -3,18 +3,15 @@
   "shortTitle": "SFR",
   "order": 6,
   "images": [
-    "/static/images/elhadad-malidi/elhadad-malidi-1.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-2.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-3.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-4.jpg"
+    "/static/images/sfr/sfr1.jpg"
   ],
   "cover": "/static/images/sfr/sfr-cover.jpg",
   "intro": "/static/images/sfr/sfr-intro.jpg",
-  "description": "I was in charge of the art direction of the new website of Elhadad Malidi, a web developer and student at HETIC.",
-  "type": "Product Design - mobile",
+  "description": "Design the new app (SFR & moi) for the SFR subscribers. Through a design system on Sketch App. SFR is the first internet provider and mobile operator in France.",
+  "type": "Product Design - Design System",
   "role": [
     "Product design",
-    "UX/UI Design"
+    "UX/UI Design",
   ],
   "date": "2018"
 }
