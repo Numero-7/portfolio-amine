@@ -7,11 +7,12 @@
   ],
   "cover": "/static/images/sfr/sfr-cover.jpg",
   "intro": "/static/images/sfr/sfr-intro.jpg",
-  "description": "Design the new app (SFR & moi) for the SFR subscribers. Through a design system on Sketch App. SFR is the first internet provider and mobile operator in France.",
+  "description": "Design the new app (SFR & moi) for millions SFR subscribers. Through a design system on Sketch App. SFR is the first internet provider and mobile operator in France.",
   "type": "Product Design - Design System",
   "role": [
     "Product design",
-    "UX/UI Design",
+    "UX/UI Design"
   ],
-  "date": "2018"
+  "date": "2018",
+  "url": "https://apps.apple.com/fr/app/sfr-moi/id326161564"
 }
