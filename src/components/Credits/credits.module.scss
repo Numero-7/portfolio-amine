@@ -14,7 +14,8 @@ $credit-color: rgb(148, 148, 148);
 
   position: static;
   margin-top: 3em;
-  font: $small-font-size $serif-font-stack;
+  font: $serif-font-stack;
+  font-size: 11px;
   color: $credit-color;
   text-align: center;
 }
