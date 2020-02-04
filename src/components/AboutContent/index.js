@@ -14,7 +14,7 @@ const AboutContent = () => (
 
     <div className={styles.contentWrapper}>
       <Text>
-        Amine Bouneggar, French Designer based in Paris specializing in interactive and product design.
+        Amine Bouneggar, French creative designer based in Paris specializing in interactive and product design.
         <br />
         Graduated in Master Design from&nbsp;
         <a
