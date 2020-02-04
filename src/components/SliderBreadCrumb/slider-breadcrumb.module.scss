@@ -21,7 +21,7 @@
 }
 
 .item {
-  width: 130px;
+  width: 100px;
 }
 
 .number {
@@ -33,8 +33,6 @@
   border: 0;
   outline: none;
   transition: color 0.4s;
-  margin-left: 120px;
-  margin-right: 120px;
 
   &::after {
     display: block;
