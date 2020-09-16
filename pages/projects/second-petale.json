@@ -1,20 +1,17 @@
 {
   "title": "Second Pétale",
   "shortTitle": "SP",
-  "order": 1,
+  "order": 2,
   "images": [
-    "/static/images/elhadad-malidi/elhadad-malidi-1.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-2.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-3.jpg",
-    "/static/images/elhadad-malidi/elhadad-malidi-4.jpg"
+    "/static/images/secondpetale/secondpetale-1.jpg"
   ],
-  "cover": "/static/images/lambo/lambo-cover.jpg",
-  "intro": "/static/images/lambo/lambo-intro.jpg",
-  "description": "E-commerce website for the luxury brand Carolina Herrera",
+  "cover": "/static/images/secondpetale/secondpetale-cover.jpg",
+  "intro": "/static/images/secondpetale/secondpetale-intro.jpg",
+  "description": "Design for a french luxury jewelry gallery",
   "type": "Interface design",
   "role": [
     "Art direction",
     "UX/UI Design"
   ],
-  "date": "2018-2019"
+  "date": "2019"
 }
