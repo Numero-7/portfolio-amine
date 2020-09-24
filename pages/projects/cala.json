@@ -1,0 +1,18 @@
+{
+  "title": "Domaine de Cala",
+  "shortTitle": "DC",
+  "order": 18,
+  "images": [
+    "/static/images/cala/cala-1.jpg",
+    "/static/images/cala/cala-2.jpg"
+  ],
+  "cover": "/static/images/cala/cala-cover.jpg",
+  "intro": "/static/images/cala/cala-intro.jpg",
+  "description": "Design of a brand of great french wine.",
+  "type": "Interface design",
+  "role": [
+    "UX/UI Design"
+  ],
+  "date": "2016",
+  "url": "http://domainedecala.com/fr/"
+}
