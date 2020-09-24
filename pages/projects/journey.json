@@ -1,0 +1,18 @@
+{
+  "title": "Journey City Guides",
+  "shortTitle": "J",
+  "order": 17,
+  "images": [
+    "/static/images/journey/journey.jpg"
+  ],
+  "cover": "/static/images/yard/journey-cover.jpg",
+  "intro": "/static/images/yard/journey-intro.jpg",
+  "description": "Design of an application that lists the best places to visit for tourists in major cities. The concept of the startup is to offer already organized days to tourists.",
+  "type": "Product design",
+  "role": [
+    "Product designer",
+    "UX/UI Design"
+  ],
+  "date": "2016",
+  "url": "https://apps.apple.com/ke/app/journey-city-guides/id1219302517"
+}
