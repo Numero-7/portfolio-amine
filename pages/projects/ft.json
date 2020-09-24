@@ -1,0 +1,18 @@
+{
+  "title": "French Tuesdays",
+  "shortTitle": "FT",
+  "order": 15,
+  "images": [
+    "/static/images/ft/ft1.png",
+    "/static/images/ft/ft2.png"
+  ],
+  "cover": "/static/images/ft/ft-cover.jpg",
+  "intro": "/static/images/ft/ft-intro.jpg",
+  "description": "Redesign of a site for events and parties around the world",
+  "type": "Webdesign",
+  "role": [
+    "UX/UI Design"
+  ],
+  "date": "2016",
+  "url": "https://www.frenchtuesdays.com/"
+}
