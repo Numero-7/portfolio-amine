@@ -55,7 +55,7 @@ const AboutContent = () => (
         >
           Hello Design
         </a>
-        ,&nbsp;and&nbsp;
+        ,&nbsp;
 
         <a
           href="http://uzik.com/"
@@ -64,6 +64,16 @@ const AboutContent = () => (
           className={styles.link}
         >
         Uzik
+        </a>
+        ,&nbsp;and&nbsp;
+
+        <a
+          href="https://index.studio/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+        Index
         </a>
 
         <br />
