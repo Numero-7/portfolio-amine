@@ -6,11 +6,12 @@
     "/static/images/android/android-1.png",
     "/static/images/android/android-2.png",
     "/static/images/android/android-3.jpg",
-    "/static/images/android/android-4.jpg"
+    "/static/images/android/android-4.jpg",
+    "/static/images/android/android-5.jpg"
   ],
-  "cover": "/static/images/anna/android-cover.png",
-  "intro": "/static/images/anna/android-intro.jpg",
-  "description": "Redesign of the official android website for the release of the new version of android",
+  "cover": "/static/images/android/android-cover.jpg",
+  "intro": "/static/images/android/android-intro.jpg",
+  "description": "Redesign of the official Android website for the release of the new version of Android",
   "type": "Interface design",
   "role": [
     "Art Direction",
