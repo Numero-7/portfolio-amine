@@ -1,0 +1,21 @@
+{
+  "title": "Google Android",
+  "shortTitle": "Android",
+  "order": 1,
+  "images": [
+    "/static/images/android/android-1.png",
+    "/static/images/android/android-2.png",
+    "/static/images/android/android-3.jpg",
+    "/static/images/android/android-4.jpg"
+  ],
+  "cover": "/static/images/anna/android-cover.png",
+  "intro": "/static/images/anna/android-intro.jpg",
+  "description": "Redesign of the official android website for the release of the new version of android",
+  "type": "Interface design",
+  "role": [
+    "Art Direction",
+    "UX/UI Design"
+  ],
+  "date": "2019",
+  "url": "https://www.android.com/"
+}
