@@ -65,7 +65,7 @@ const AboutContent = () => (
         >
         Uzik
         </a>
-        ,&nbsp;and&nbsp;
+        ,&nbsp;I have also worked for several agencies and clients as a freelancer (&nbsp;
 
         <a
           href="https://index.studio/"
@@ -75,6 +75,7 @@ const AboutContent = () => (
         >
         Index
         </a>
+        ..)
 
         <br />
         <span className={styles.gold}>I am looking for a full time position.</span>
