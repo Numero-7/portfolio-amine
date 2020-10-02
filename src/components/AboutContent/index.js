@@ -75,7 +75,7 @@ const AboutContent = () => (
         >
         Index
         </a>
-        ..)
+        , ..)
 
         <br />
         <span className={styles.gold}>I am looking for a full time position.</span>
